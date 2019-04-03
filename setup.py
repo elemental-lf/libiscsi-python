@@ -8,32 +8,25 @@ except ImportError:
     from distutils.core import setup, Extension
     from distutils.command.build_ext import build_ext
 
-
-name = 'libiscsi'
-version = '1.0'
-release = '1'
-versrel = version + '-' + release
-readme = 'README'
-download_url = "https://github.com/sahlberg/libiscsi-python/libiscsi-" + \
-                                                          versrel + ".tar.gz"
-long_description = file(readme).read()
+long_description = open('README').read()
 
 _libiscsi = Extension(name='libiscsi._libiscsi',
-                      sources=['libiscsi/libiscsi_wrap.c'],
+                      sources=['libiscsi/libiscsi.i'],
                       libraries=['iscsi'],
+                      library_dirs=['/usr/lib64/iscsi', '/usr/lib/iscsi'],
+                      swig_opts=['-py3', '-shadow'],
 )
 
 
-setup(name = name,
-      version = versrel,
+setup(name = 'libiscsi',
+      version = '1.0.post1',
       description = 'A libiscsi wrapper for Python.',
       long_description = long_description,
       license = 'LGPLv2.1',
       platforms = ['any'],
-      author = 'Ronnie Sahlberg',
-      author_email = 'ronniesahlberg@gmail.com',
-      url = 'https://github.com/sahlberg/libiscsi-python/',
-      download_url = download_url,
+      author = 'Ronnie Sahlberg, Lars Fenneberg',
+      author_email = 'ronniesahlberg@gmail.com, lf@elemental.net',
+      url = 'https://github.com/elemental-lf/libiscsi-python/',
       packages = ['libiscsi'],
       classifiers = [
           'Development Status :: 4 - Beta',

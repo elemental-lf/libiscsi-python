@@ -23,6 +23,7 @@
 %}
 
 %include <stdint.i>
+%include <bytes.i>
 
 %typemap(in) (int cdb_size, unsigned char *cdb)
   (int res, Py_ssize_t size = 0, const void *buf = 0) {

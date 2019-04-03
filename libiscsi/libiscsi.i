@@ -1227,8 +1227,14 @@ struct scsi_write16_cdb {
 	uint8_t  control;
 };
 
+%inline %{
+typedef union {
+	struct scsi_readcapacity16 readcapacity16;
+} scsi_datain_unmarshalled;
+%}
+
 extern int scsi_datain_getfullsize(struct scsi_task *task);
-extern void *scsi_datain_unmarshall(struct scsi_task *task);
+extern scsi_datain_unmarshalled *scsi_datain_unmarshall(struct scsi_task *task);
 extern void *scsi_cdb_unmarshall(struct scsi_task *task, enum scsi_opcode opcode);
 
 extern struct scsi_task *scsi_cdb_compareandwrite(uint64_t lba, uint32_t xferlen, int blocksize, int wrprotect, int dpo, int fua, int fua_nv, int group_number);

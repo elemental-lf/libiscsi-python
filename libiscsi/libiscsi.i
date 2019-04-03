@@ -201,7 +201,29 @@ struct iscsi_data {
 
 #define SCSI_CDB_MAX_SIZE			16
 
-struct scsi_task;
+struct scsi_task {
+        int status;
+
+        int cdb_size;
+        int xfer_dir;
+        int expxferlen;
+        unsigned char cdb[SCSI_CDB_MAX_SIZE];
+
+        enum scsi_residual residual_status;
+        size_t residual;
+        struct scsi_sense sense;
+        struct scsi_data datain;
+        struct scsi_allocated_memory *mem;
+
+        void *ptr;
+
+        uint32_t itt;
+        uint32_t cmdsn;
+        uint32_t lun;
+
+        struct scsi_iovector iovector_in;
+        struct scsi_iovector iovector_out;
+};
 
 enum iscsi_task_mgmt_funcs {
      ISCSI_TM_ABORT_TASK        = 0x01,

@@ -1,1 +1,2 @@
-include README
+include COPYING README copy-build-env.sh
+recursive-include build-env-1.18.0 *

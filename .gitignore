@@ -4,3 +4,4 @@ build
 libiscsi.egg-info
 libiscsi/libiscsi_wrap.c
 libiscsi/libiscsi.py
+libiscsi-root-*

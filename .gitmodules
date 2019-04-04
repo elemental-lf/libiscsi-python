@@ -1,0 +1,4 @@
+[submodule "libiscsi-src-1.18.0"]
+	path = libiscsi-src-1.18.0
+	url = https://github.com/sahlberg/libiscsi
+        ignore = dirty

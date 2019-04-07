@@ -1,7 +1,10 @@
 *~
+*.iml
+__pycache__
 dist
 build
 libiscsi.egg-info
 libiscsi/libiscsi_wrap.c
 libiscsi/libiscsi.py
-libiscsi-root-*
+libiscsi-*/src
+libiscsi-*/install-root

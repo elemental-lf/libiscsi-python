@@ -1,2 +1,2 @@
 include COPYING README copy-build-env.sh
-recursive-include build-env-1.18.0 *
+recursive-include libiscsi-1.18.0/build-env *

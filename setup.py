@@ -16,7 +16,7 @@ except ImportError:
 
 libiscsi_git_url = 'https://github.com/sahlberg/libiscsi'
 libiscsi_release = '1.18.0'
-long_description = open('README').read()
+long_description = open('README.md').read()
 
 cwd = os.getcwd()
 libiscsi_build_env = 'libiscsi-{}/build-env'.format(libiscsi_release)
@@ -127,6 +127,7 @@ setup(
     version='1.0.post1',
     description='A libiscsi wrapper for Python.',
     long_description=long_description,
+    long_description_content_type='text/markdown',
     license='LGPLv2.1',
     platforms=['any'],
     author='Ronnie Sahlberg, Lars Fenneberg',

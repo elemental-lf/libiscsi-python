@@ -99,645 +99,33 @@ except __builtin__.Exception:
 def bytes(ptr: 'void *', nelements: 'size_t') -> "BYTESCDATA":
     return _libiscsi.bytes(ptr, nelements)
 bytes = _libiscsi.bytes
-
-def iscsi_get_fd(iscsi: 'struct iscsi_context *') -> "int":
-    return _libiscsi.iscsi_get_fd(iscsi)
-iscsi_get_fd = _libiscsi.iscsi_get_fd
-
-def iscsi_which_events(iscsi: 'struct iscsi_context *') -> "int":
-    return _libiscsi.iscsi_which_events(iscsi)
-iscsi_which_events = _libiscsi.iscsi_which_events
-
-def iscsi_service(iscsi: 'struct iscsi_context *', revents: 'int') -> "int":
-    return _libiscsi.iscsi_service(iscsi, revents)
-iscsi_service = _libiscsi.iscsi_service
-
-def iscsi_queue_length(iscsi: 'struct iscsi_context *') -> "int":
-    return _libiscsi.iscsi_queue_length(iscsi)
-iscsi_queue_length = _libiscsi.iscsi_queue_length
-
-def iscsi_set_timeout(iscsi: 'struct iscsi_context *', timeout: 'int') -> "int":
-    return _libiscsi.iscsi_set_timeout(iscsi, timeout)
-iscsi_set_timeout = _libiscsi.iscsi_set_timeout
-
-def iscsi_set_tcp_keepalive(iscsi: 'struct iscsi_context *', idle: 'int', count: 'int', interval: 'int') -> "int":
-    return _libiscsi.iscsi_set_tcp_keepalive(iscsi, idle, count, interval)
-iscsi_set_tcp_keepalive = _libiscsi.iscsi_set_tcp_keepalive
-MAX_STRING_SIZE = _libiscsi.MAX_STRING_SIZE
-class iscsi_url(_object):
+class scsi_datain_unmarshalled(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, iscsi_url, name, value)
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_datain_unmarshalled, name, value)
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, iscsi_url, name)
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_datain_unmarshalled, name)
     __repr__ = _swig_repr
-    __swig_setmethods__["portal"] = _libiscsi.iscsi_url_portal_set
-    __swig_getmethods__["portal"] = _libiscsi.iscsi_url_portal_get
+    __swig_setmethods__["readcapacity16"] = _libiscsi.scsi_datain_unmarshalled_readcapacity16_set
+    __swig_getmethods__["readcapacity16"] = _libiscsi.scsi_datain_unmarshalled_readcapacity16_get
     if _newclass:
-        portal = _swig_property(_libiscsi.iscsi_url_portal_get, _libiscsi.iscsi_url_portal_set)
-    __swig_setmethods__["target"] = _libiscsi.iscsi_url_target_set
-    __swig_getmethods__["target"] = _libiscsi.iscsi_url_target_get
-    if _newclass:
-        target = _swig_property(_libiscsi.iscsi_url_target_get, _libiscsi.iscsi_url_target_set)
-    __swig_setmethods__["user"] = _libiscsi.iscsi_url_user_set
-    __swig_getmethods__["user"] = _libiscsi.iscsi_url_user_get
-    if _newclass:
-        user = _swig_property(_libiscsi.iscsi_url_user_get, _libiscsi.iscsi_url_user_set)
-    __swig_setmethods__["passwd"] = _libiscsi.iscsi_url_passwd_set
-    __swig_getmethods__["passwd"] = _libiscsi.iscsi_url_passwd_get
-    if _newclass:
-        passwd = _swig_property(_libiscsi.iscsi_url_passwd_get, _libiscsi.iscsi_url_passwd_set)
-    __swig_setmethods__["lun"] = _libiscsi.iscsi_url_lun_set
-    __swig_getmethods__["lun"] = _libiscsi.iscsi_url_lun_get
-    if _newclass:
-        lun = _swig_property(_libiscsi.iscsi_url_lun_get, _libiscsi.iscsi_url_lun_set)
-    __swig_setmethods__["iscsi"] = _libiscsi.iscsi_url_iscsi_set
-    __swig_getmethods__["iscsi"] = _libiscsi.iscsi_url_iscsi_get
-    if _newclass:
-        iscsi = _swig_property(_libiscsi.iscsi_url_iscsi_get, _libiscsi.iscsi_url_iscsi_set)
+        readcapacity16 = _swig_property(_libiscsi.scsi_datain_unmarshalled_readcapacity16_get, _libiscsi.scsi_datain_unmarshalled_readcapacity16_set)
 
     def __init__(self):
-        this = _libiscsi.new_iscsi_url()
+        this = _libiscsi.new_scsi_datain_unmarshalled()
         try:
             self.this.append(this)
         except __builtin__.Exception:
             self.this = this
-    __swig_destroy__ = _libiscsi.delete_iscsi_url
+    __swig_destroy__ = _libiscsi.delete_scsi_datain_unmarshalled
     __del__ = lambda self: None
-iscsi_url_swigregister = _libiscsi.iscsi_url_swigregister
-iscsi_url_swigregister(iscsi_url)
-
-ISCSI_IMMEDIATE_DATA_NO = _libiscsi.ISCSI_IMMEDIATE_DATA_NO
-ISCSI_IMMEDIATE_DATA_YES = _libiscsi.ISCSI_IMMEDIATE_DATA_YES
-
-def iscsi_set_immediate_data(iscsi: 'struct iscsi_context *', immediate_data: 'enum iscsi_immediate_data') -> "int":
-    return _libiscsi.iscsi_set_immediate_data(iscsi, immediate_data)
-iscsi_set_immediate_data = _libiscsi.iscsi_set_immediate_data
-ISCSI_INITIAL_R2T_NO = _libiscsi.ISCSI_INITIAL_R2T_NO
-ISCSI_INITIAL_R2T_YES = _libiscsi.ISCSI_INITIAL_R2T_YES
-
-def iscsi_set_initial_r2t(iscsi: 'struct iscsi_context *', initial_r2t: 'enum iscsi_initial_r2t') -> "int":
-    return _libiscsi.iscsi_set_initial_r2t(iscsi, initial_r2t)
-iscsi_set_initial_r2t = _libiscsi.iscsi_set_initial_r2t
-
-def iscsi_parse_full_url(iscsi: 'struct iscsi_context *', url: 'char const *') -> "struct iscsi_url *":
-    return _libiscsi.iscsi_parse_full_url(iscsi, url)
-iscsi_parse_full_url = _libiscsi.iscsi_parse_full_url
-
-def iscsi_destroy_url(iscsi_url: 'iscsi_url') -> "void":
-    return _libiscsi.iscsi_destroy_url(iscsi_url)
-iscsi_destroy_url = _libiscsi.iscsi_destroy_url
-
-def iscsi_parse_portal_url(iscsi: 'struct iscsi_context *', url: 'char const *') -> "struct iscsi_url *":
-    return _libiscsi.iscsi_parse_portal_url(iscsi, url)
-iscsi_parse_portal_url = _libiscsi.iscsi_parse_portal_url
-
-def iscsi_get_error(iscsi: 'struct iscsi_context *') -> "char const *":
-    return _libiscsi.iscsi_get_error(iscsi)
-iscsi_get_error = _libiscsi.iscsi_get_error
-
-def iscsi_create_context(initiator_name: 'char const *') -> "struct iscsi_context *":
-    return _libiscsi.iscsi_create_context(initiator_name)
-iscsi_create_context = _libiscsi.iscsi_create_context
-
-def iscsi_destroy_context(iscsi: 'struct iscsi_context *') -> "int":
-    return _libiscsi.iscsi_destroy_context(iscsi)
-iscsi_destroy_context = _libiscsi.iscsi_destroy_context
-
-def iscsi_set_alias(iscsi: 'struct iscsi_context *', alias: 'char const *') -> "int":
-    return _libiscsi.iscsi_set_alias(iscsi, alias)
-iscsi_set_alias = _libiscsi.iscsi_set_alias
-
-def iscsi_set_targetname(iscsi: 'struct iscsi_context *', targetname: 'char const *') -> "int":
-    return _libiscsi.iscsi_set_targetname(iscsi, targetname)
-iscsi_set_targetname = _libiscsi.iscsi_set_targetname
-
-def iscsi_get_target_address(iscsi: 'struct iscsi_context *') -> "char const *":
-    return _libiscsi.iscsi_get_target_address(iscsi)
-iscsi_get_target_address = _libiscsi.iscsi_get_target_address
-ISCSI_SESSION_DISCOVERY = _libiscsi.ISCSI_SESSION_DISCOVERY
-ISCSI_SESSION_NORMAL = _libiscsi.ISCSI_SESSION_NORMAL
-
-def iscsi_set_session_type(iscsi: 'struct iscsi_context *', session_type: 'enum iscsi_session_type') -> "int":
-    return _libiscsi.iscsi_set_session_type(iscsi, session_type)
-iscsi_set_session_type = _libiscsi.iscsi_set_session_type
-ISCSI_HEADER_DIGEST_NONE = _libiscsi.ISCSI_HEADER_DIGEST_NONE
-ISCSI_HEADER_DIGEST_NONE_CRC32C = _libiscsi.ISCSI_HEADER_DIGEST_NONE_CRC32C
-ISCSI_HEADER_DIGEST_CRC32C_NONE = _libiscsi.ISCSI_HEADER_DIGEST_CRC32C_NONE
-ISCSI_HEADER_DIGEST_CRC32C = _libiscsi.ISCSI_HEADER_DIGEST_CRC32C
-ISCSI_HEADER_DIGEST_LAST = _libiscsi.ISCSI_HEADER_DIGEST_LAST
-
-def iscsi_set_header_digest(iscsi: 'struct iscsi_context *', header_digest: 'enum iscsi_header_digest') -> "int":
-    return _libiscsi.iscsi_set_header_digest(iscsi, header_digest)
-iscsi_set_header_digest = _libiscsi.iscsi_set_header_digest
-
-def iscsi_set_initiator_username_pwd(iscsi: 'struct iscsi_context *', user: 'char const *', passwd: 'char const *') -> "int":
-    return _libiscsi.iscsi_set_initiator_username_pwd(iscsi, user, passwd)
-iscsi_set_initiator_username_pwd = _libiscsi.iscsi_set_initiator_username_pwd
-
-def iscsi_is_logged_in(iscsi: 'struct iscsi_context *') -> "int":
-    return _libiscsi.iscsi_is_logged_in(iscsi)
-iscsi_is_logged_in = _libiscsi.iscsi_is_logged_in
-SCSI_STATUS_GOOD = _libiscsi.SCSI_STATUS_GOOD
-SCSI_STATUS_CHECK_CONDITION = _libiscsi.SCSI_STATUS_CHECK_CONDITION
-SCSI_STATUS_CONDITION_MET = _libiscsi.SCSI_STATUS_CONDITION_MET
-SCSI_STATUS_BUSY = _libiscsi.SCSI_STATUS_BUSY
-SCSI_STATUS_RESERVATION_CONFLICT = _libiscsi.SCSI_STATUS_RESERVATION_CONFLICT
-SCSI_STATUS_TASK_SET_FULL = _libiscsi.SCSI_STATUS_TASK_SET_FULL
-SCSI_STATUS_ACA_ACTIVE = _libiscsi.SCSI_STATUS_ACA_ACTIVE
-SCSI_STATUS_TASK_ABORTED = _libiscsi.SCSI_STATUS_TASK_ABORTED
-SCSI_STATUS_REDIRECT = _libiscsi.SCSI_STATUS_REDIRECT
-SCSI_STATUS_CANCELLED = _libiscsi.SCSI_STATUS_CANCELLED
-SCSI_STATUS_ERROR = _libiscsi.SCSI_STATUS_ERROR
-SCSI_STATUS_TIMEOUT = _libiscsi.SCSI_STATUS_TIMEOUT
-
-def iscsi_connect_sync(iscsi: 'struct iscsi_context *', portal: 'char const *') -> "int":
-    return _libiscsi.iscsi_connect_sync(iscsi, portal)
-iscsi_connect_sync = _libiscsi.iscsi_connect_sync
-
-def iscsi_full_connect_sync(iscsi: 'struct iscsi_context *', portal: 'char const *', lun: 'int') -> "int":
-    return _libiscsi.iscsi_full_connect_sync(iscsi, portal, lun)
-iscsi_full_connect_sync = _libiscsi.iscsi_full_connect_sync
-
-def iscsi_disconnect(iscsi: 'struct iscsi_context *') -> "int":
-    return _libiscsi.iscsi_disconnect(iscsi)
-iscsi_disconnect = _libiscsi.iscsi_disconnect
-
-def iscsi_reconnect(iscsi: 'struct iscsi_context *') -> "int":
-    return _libiscsi.iscsi_reconnect(iscsi)
-iscsi_reconnect = _libiscsi.iscsi_reconnect
-
-def iscsi_login_sync(iscsi: 'struct iscsi_context *') -> "int":
-    return _libiscsi.iscsi_login_sync(iscsi)
-iscsi_login_sync = _libiscsi.iscsi_login_sync
-
-def iscsi_logout_sync(iscsi: 'struct iscsi_context *') -> "int":
-    return _libiscsi.iscsi_logout_sync(iscsi)
-iscsi_logout_sync = _libiscsi.iscsi_logout_sync
-class iscsi_target_portal(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, iscsi_target_portal, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, iscsi_target_portal, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["next"] = _libiscsi.iscsi_target_portal_next_set
-    __swig_getmethods__["next"] = _libiscsi.iscsi_target_portal_next_get
-    if _newclass:
-        next = _swig_property(_libiscsi.iscsi_target_portal_next_get, _libiscsi.iscsi_target_portal_next_set)
-    __swig_setmethods__["portal"] = _libiscsi.iscsi_target_portal_portal_set
-    __swig_getmethods__["portal"] = _libiscsi.iscsi_target_portal_portal_get
-    if _newclass:
-        portal = _swig_property(_libiscsi.iscsi_target_portal_portal_get, _libiscsi.iscsi_target_portal_portal_set)
-
-    def __init__(self):
-        this = _libiscsi.new_iscsi_target_portal()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _libiscsi.delete_iscsi_target_portal
-    __del__ = lambda self: None
-iscsi_target_portal_swigregister = _libiscsi.iscsi_target_portal_swigregister
-iscsi_target_portal_swigregister(iscsi_target_portal)
-
-class iscsi_discovery_address(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, iscsi_discovery_address, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, iscsi_discovery_address, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["next"] = _libiscsi.iscsi_discovery_address_next_set
-    __swig_getmethods__["next"] = _libiscsi.iscsi_discovery_address_next_get
-    if _newclass:
-        next = _swig_property(_libiscsi.iscsi_discovery_address_next_get, _libiscsi.iscsi_discovery_address_next_set)
-    __swig_setmethods__["target_name"] = _libiscsi.iscsi_discovery_address_target_name_set
-    __swig_getmethods__["target_name"] = _libiscsi.iscsi_discovery_address_target_name_get
-    if _newclass:
-        target_name = _swig_property(_libiscsi.iscsi_discovery_address_target_name_get, _libiscsi.iscsi_discovery_address_target_name_set)
-    __swig_setmethods__["portals"] = _libiscsi.iscsi_discovery_address_portals_set
-    __swig_getmethods__["portals"] = _libiscsi.iscsi_discovery_address_portals_get
-    if _newclass:
-        portals = _swig_property(_libiscsi.iscsi_discovery_address_portals_get, _libiscsi.iscsi_discovery_address_portals_set)
-
-    def __init__(self):
-        this = _libiscsi.new_iscsi_discovery_address()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _libiscsi.delete_iscsi_discovery_address
-    __del__ = lambda self: None
-iscsi_discovery_address_swigregister = _libiscsi.iscsi_discovery_address_swigregister
-iscsi_discovery_address_swigregister(iscsi_discovery_address)
+scsi_datain_unmarshalled_swigregister = _libiscsi.scsi_datain_unmarshalled_swigregister
+scsi_datain_unmarshalled_swigregister(scsi_datain_unmarshalled)
 
 
-def iscsi_discovery_sync(iscsi: 'struct iscsi_context *') -> "struct iscsi_discovery_address *":
-    return _libiscsi.iscsi_discovery_sync(iscsi)
-iscsi_discovery_sync = _libiscsi.iscsi_discovery_sync
-
-def iscsi_free_discovery_data(iscsi: 'struct iscsi_context *', da: 'iscsi_discovery_address') -> "void":
-    return _libiscsi.iscsi_free_discovery_data(iscsi, da)
-iscsi_free_discovery_data = _libiscsi.iscsi_free_discovery_data
-class scsi_data(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_data, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, scsi_data, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["size"] = _libiscsi.scsi_data_size_set
-    __swig_getmethods__["size"] = _libiscsi.scsi_data_size_get
-    if _newclass:
-        size = _swig_property(_libiscsi.scsi_data_size_get, _libiscsi.scsi_data_size_set)
-    __swig_setmethods__["data"] = _libiscsi.scsi_data_data_set
-    __swig_getmethods__["data"] = _libiscsi.scsi_data_data_get
-    if _newclass:
-        data = _swig_property(_libiscsi.scsi_data_data_get, _libiscsi.scsi_data_data_set)
-
-    def __init__(self):
-        this = _libiscsi.new_scsi_data()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _libiscsi.delete_scsi_data
-    __del__ = lambda self: None
-scsi_data_swigregister = _libiscsi.scsi_data_swigregister
-scsi_data_swigregister(scsi_data)
-
-class iscsi_data(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, iscsi_data, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, iscsi_data, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["size"] = _libiscsi.iscsi_data_size_set
-    __swig_getmethods__["size"] = _libiscsi.iscsi_data_size_get
-    if _newclass:
-        size = _swig_property(_libiscsi.iscsi_data_size_get, _libiscsi.iscsi_data_size_set)
-    __swig_setmethods__["data"] = _libiscsi.iscsi_data_data_set
-    __swig_getmethods__["data"] = _libiscsi.iscsi_data_data_get
-    if _newclass:
-        data = _swig_property(_libiscsi.iscsi_data_data_get, _libiscsi.iscsi_data_data_set)
-
-    def __init__(self):
-        this = _libiscsi.new_iscsi_data()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _libiscsi.delete_iscsi_data
-    __del__ = lambda self: None
-iscsi_data_swigregister = _libiscsi.iscsi_data_swigregister
-iscsi_data_swigregister(iscsi_data)
-
+def scsi_datain_unmarshall(task: 'scsi_task') -> "scsi_datain_unmarshalled *":
+    return _libiscsi.scsi_datain_unmarshall(task)
+scsi_datain_unmarshall = _libiscsi.scsi_datain_unmarshall
 SCSI_CDB_MAX_SIZE = _libiscsi.SCSI_CDB_MAX_SIZE
-class scsi_task(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_task, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, scsi_task, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["status"] = _libiscsi.scsi_task_status_set
-    __swig_getmethods__["status"] = _libiscsi.scsi_task_status_get
-    if _newclass:
-        status = _swig_property(_libiscsi.scsi_task_status_get, _libiscsi.scsi_task_status_set)
-    __swig_setmethods__["cdb_size"] = _libiscsi.scsi_task_cdb_size_set
-    __swig_getmethods__["cdb_size"] = _libiscsi.scsi_task_cdb_size_get
-    if _newclass:
-        cdb_size = _swig_property(_libiscsi.scsi_task_cdb_size_get, _libiscsi.scsi_task_cdb_size_set)
-    __swig_setmethods__["xfer_dir"] = _libiscsi.scsi_task_xfer_dir_set
-    __swig_getmethods__["xfer_dir"] = _libiscsi.scsi_task_xfer_dir_get
-    if _newclass:
-        xfer_dir = _swig_property(_libiscsi.scsi_task_xfer_dir_get, _libiscsi.scsi_task_xfer_dir_set)
-    __swig_setmethods__["expxferlen"] = _libiscsi.scsi_task_expxferlen_set
-    __swig_getmethods__["expxferlen"] = _libiscsi.scsi_task_expxferlen_get
-    if _newclass:
-        expxferlen = _swig_property(_libiscsi.scsi_task_expxferlen_get, _libiscsi.scsi_task_expxferlen_set)
-    __swig_setmethods__["cdb"] = _libiscsi.scsi_task_cdb_set
-    __swig_getmethods__["cdb"] = _libiscsi.scsi_task_cdb_get
-    if _newclass:
-        cdb = _swig_property(_libiscsi.scsi_task_cdb_get, _libiscsi.scsi_task_cdb_set)
-    __swig_setmethods__["residual_status"] = _libiscsi.scsi_task_residual_status_set
-    __swig_getmethods__["residual_status"] = _libiscsi.scsi_task_residual_status_get
-    if _newclass:
-        residual_status = _swig_property(_libiscsi.scsi_task_residual_status_get, _libiscsi.scsi_task_residual_status_set)
-    __swig_setmethods__["residual"] = _libiscsi.scsi_task_residual_set
-    __swig_getmethods__["residual"] = _libiscsi.scsi_task_residual_get
-    if _newclass:
-        residual = _swig_property(_libiscsi.scsi_task_residual_get, _libiscsi.scsi_task_residual_set)
-    __swig_setmethods__["sense"] = _libiscsi.scsi_task_sense_set
-    __swig_getmethods__["sense"] = _libiscsi.scsi_task_sense_get
-    if _newclass:
-        sense = _swig_property(_libiscsi.scsi_task_sense_get, _libiscsi.scsi_task_sense_set)
-    __swig_setmethods__["datain"] = _libiscsi.scsi_task_datain_set
-    __swig_getmethods__["datain"] = _libiscsi.scsi_task_datain_get
-    if _newclass:
-        datain = _swig_property(_libiscsi.scsi_task_datain_get, _libiscsi.scsi_task_datain_set)
-    __swig_setmethods__["mem"] = _libiscsi.scsi_task_mem_set
-    __swig_getmethods__["mem"] = _libiscsi.scsi_task_mem_get
-    if _newclass:
-        mem = _swig_property(_libiscsi.scsi_task_mem_get, _libiscsi.scsi_task_mem_set)
-    __swig_setmethods__["ptr"] = _libiscsi.scsi_task_ptr_set
-    __swig_getmethods__["ptr"] = _libiscsi.scsi_task_ptr_get
-    if _newclass:
-        ptr = _swig_property(_libiscsi.scsi_task_ptr_get, _libiscsi.scsi_task_ptr_set)
-    __swig_setmethods__["itt"] = _libiscsi.scsi_task_itt_set
-    __swig_getmethods__["itt"] = _libiscsi.scsi_task_itt_get
-    if _newclass:
-        itt = _swig_property(_libiscsi.scsi_task_itt_get, _libiscsi.scsi_task_itt_set)
-    __swig_setmethods__["cmdsn"] = _libiscsi.scsi_task_cmdsn_set
-    __swig_getmethods__["cmdsn"] = _libiscsi.scsi_task_cmdsn_get
-    if _newclass:
-        cmdsn = _swig_property(_libiscsi.scsi_task_cmdsn_get, _libiscsi.scsi_task_cmdsn_set)
-    __swig_setmethods__["lun"] = _libiscsi.scsi_task_lun_set
-    __swig_getmethods__["lun"] = _libiscsi.scsi_task_lun_get
-    if _newclass:
-        lun = _swig_property(_libiscsi.scsi_task_lun_get, _libiscsi.scsi_task_lun_set)
-    __swig_setmethods__["iovector_in"] = _libiscsi.scsi_task_iovector_in_set
-    __swig_getmethods__["iovector_in"] = _libiscsi.scsi_task_iovector_in_get
-    if _newclass:
-        iovector_in = _swig_property(_libiscsi.scsi_task_iovector_in_get, _libiscsi.scsi_task_iovector_in_set)
-    __swig_setmethods__["iovector_out"] = _libiscsi.scsi_task_iovector_out_set
-    __swig_getmethods__["iovector_out"] = _libiscsi.scsi_task_iovector_out_get
-    if _newclass:
-        iovector_out = _swig_property(_libiscsi.scsi_task_iovector_out_get, _libiscsi.scsi_task_iovector_out_set)
-
-    def __init__(self):
-        this = _libiscsi.new_scsi_task()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _libiscsi.delete_scsi_task
-    __del__ = lambda self: None
-scsi_task_swigregister = _libiscsi.scsi_task_swigregister
-scsi_task_swigregister(scsi_task)
-
-ISCSI_TM_ABORT_TASK = _libiscsi.ISCSI_TM_ABORT_TASK
-ISCSI_TM_ABORT_TASK_SET = _libiscsi.ISCSI_TM_ABORT_TASK_SET
-ISCSI_TM_CLEAR_ACA = _libiscsi.ISCSI_TM_CLEAR_ACA
-ISCSI_TM_CLEAR_TASK_SET = _libiscsi.ISCSI_TM_CLEAR_TASK_SET
-ISCSI_TM_LUN_RESET = _libiscsi.ISCSI_TM_LUN_RESET
-ISCSI_TM_TARGET_WARM_RESET = _libiscsi.ISCSI_TM_TARGET_WARM_RESET
-ISCSI_TM_TARGET_COLD_RESET = _libiscsi.ISCSI_TM_TARGET_COLD_RESET
-ISCSI_TM_TASK_REASSIGN = _libiscsi.ISCSI_TM_TASK_REASSIGN
-
-def iscsi_task_mgmt_sync(iscsi: 'struct iscsi_context *', lun: 'int', function: 'enum iscsi_task_mgmt_funcs', ritt: 'uint32_t', rcmdscn: 'uint32_t') -> "int":
-    return _libiscsi.iscsi_task_mgmt_sync(iscsi, lun, function, ritt, rcmdscn)
-iscsi_task_mgmt_sync = _libiscsi.iscsi_task_mgmt_sync
-
-def iscsi_task_mgmt_abort_task_sync(iscsi: 'struct iscsi_context *', task: 'scsi_task') -> "int":
-    return _libiscsi.iscsi_task_mgmt_abort_task_sync(iscsi, task)
-iscsi_task_mgmt_abort_task_sync = _libiscsi.iscsi_task_mgmt_abort_task_sync
-
-def iscsi_task_mgmt_abort_task_set_sync(iscsi: 'struct iscsi_context *', lun: 'uint32_t') -> "int":
-    return _libiscsi.iscsi_task_mgmt_abort_task_set_sync(iscsi, lun)
-iscsi_task_mgmt_abort_task_set_sync = _libiscsi.iscsi_task_mgmt_abort_task_set_sync
-
-def iscsi_task_mgmt_lun_reset_sync(iscsi: 'struct iscsi_context *', lun: 'uint32_t') -> "int":
-    return _libiscsi.iscsi_task_mgmt_lun_reset_sync(iscsi, lun)
-iscsi_task_mgmt_lun_reset_sync = _libiscsi.iscsi_task_mgmt_lun_reset_sync
-
-def iscsi_task_mgmt_target_warm_reset_sync(iscsi: 'struct iscsi_context *') -> "int":
-    return _libiscsi.iscsi_task_mgmt_target_warm_reset_sync(iscsi)
-iscsi_task_mgmt_target_warm_reset_sync = _libiscsi.iscsi_task_mgmt_target_warm_reset_sync
-
-def iscsi_task_mgmt_target_cold_reset_sync(iscsi: 'struct iscsi_context *') -> "int":
-    return _libiscsi.iscsi_task_mgmt_target_cold_reset_sync(iscsi)
-iscsi_task_mgmt_target_cold_reset_sync = _libiscsi.iscsi_task_mgmt_target_cold_reset_sync
-
-def iscsi_set_isid_oui(iscsi: 'struct iscsi_context *', oui: 'uint32_t', qualifier: 'uint32_t') -> "int":
-    return _libiscsi.iscsi_set_isid_oui(iscsi, oui, qualifier)
-iscsi_set_isid_oui = _libiscsi.iscsi_set_isid_oui
-
-def iscsi_set_isid_en(iscsi: 'struct iscsi_context *', en: 'uint32_t', qualifier: 'uint32_t') -> "int":
-    return _libiscsi.iscsi_set_isid_en(iscsi, en, qualifier)
-iscsi_set_isid_en = _libiscsi.iscsi_set_isid_en
-
-def iscsi_set_isid_random(iscsi: 'struct iscsi_context *', rnd: 'uint32_t', qualifier: 'uint32_t') -> "int":
-    return _libiscsi.iscsi_set_isid_random(iscsi, rnd, qualifier)
-iscsi_set_isid_random = _libiscsi.iscsi_set_isid_random
-
-def iscsi_set_isid_reserved(iscsi: 'struct iscsi_context *') -> "int":
-    return _libiscsi.iscsi_set_isid_reserved(iscsi)
-iscsi_set_isid_reserved = _libiscsi.iscsi_set_isid_reserved
-class unmap_list(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, unmap_list, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, unmap_list, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["lba"] = _libiscsi.unmap_list_lba_set
-    __swig_getmethods__["lba"] = _libiscsi.unmap_list_lba_get
-    if _newclass:
-        lba = _swig_property(_libiscsi.unmap_list_lba_get, _libiscsi.unmap_list_lba_set)
-    __swig_setmethods__["num"] = _libiscsi.unmap_list_num_set
-    __swig_getmethods__["num"] = _libiscsi.unmap_list_num_get
-    if _newclass:
-        num = _swig_property(_libiscsi.unmap_list_num_get, _libiscsi.unmap_list_num_set)
-
-    def __init__(self):
-        this = _libiscsi.new_unmap_list()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _libiscsi.delete_unmap_list
-    __del__ = lambda self: None
-unmap_list_swigregister = _libiscsi.unmap_list_swigregister
-unmap_list_swigregister(unmap_list)
-
-
-def iscsi_scsi_command_sync(iscsi: 'struct iscsi_context *', lun: 'int', task: 'scsi_task', data: 'iscsi_data') -> "struct scsi_task *":
-    return _libiscsi.iscsi_scsi_command_sync(iscsi, lun, task, data)
-iscsi_scsi_command_sync = _libiscsi.iscsi_scsi_command_sync
-
-def iscsi_reportluns_sync(iscsi: 'struct iscsi_context *', report_type: 'int', alloc_len: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_reportluns_sync(iscsi, report_type, alloc_len)
-iscsi_reportluns_sync = _libiscsi.iscsi_reportluns_sync
-
-def iscsi_testunitready_sync(iscsi: 'struct iscsi_context *', lun: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_testunitready_sync(iscsi, lun)
-iscsi_testunitready_sync = _libiscsi.iscsi_testunitready_sync
-
-def iscsi_inquiry_sync(iscsi: 'struct iscsi_context *', lun: 'int', evpd: 'int', page_code: 'int', maxsize: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_inquiry_sync(iscsi, lun, evpd, page_code, maxsize)
-iscsi_inquiry_sync = _libiscsi.iscsi_inquiry_sync
-
-def iscsi_read6_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_read6_sync(iscsi, lun, lba, datalen, blocksize)
-iscsi_read6_sync = _libiscsi.iscsi_read6_sync
-
-def iscsi_read10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_read10_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number)
-iscsi_read10_sync = _libiscsi.iscsi_read10_sync
-
-def iscsi_write10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', ro: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_write10_sync(iscsi, lun, lba, ro, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
-iscsi_write10_sync = _libiscsi.iscsi_write10_sync
-
-def iscsi_writeverify10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', ro: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_writeverify10_sync(iscsi, lun, lba, ro, blocksize, wrprotect, dpo, bytchk, group_number)
-iscsi_writeverify10_sync = _libiscsi.iscsi_writeverify10_sync
-
-def iscsi_read12_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_read12_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number)
-iscsi_read12_sync = _libiscsi.iscsi_read12_sync
-
-def iscsi_write12_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', ro: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_write12_sync(iscsi, lun, lba, ro, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
-iscsi_write12_sync = _libiscsi.iscsi_write12_sync
-
-def iscsi_writeverify12_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', ro: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_writeverify12_sync(iscsi, lun, lba, ro, blocksize, wrprotect, dpo, bytchk, group_number)
-iscsi_writeverify12_sync = _libiscsi.iscsi_writeverify12_sync
-
-def iscsi_read16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_read16_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number)
-iscsi_read16_sync = _libiscsi.iscsi_read16_sync
-
-def iscsi_write16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', ro: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_write16_sync(iscsi, lun, lba, ro, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
-iscsi_write16_sync = _libiscsi.iscsi_write16_sync
-
-def iscsi_orwrite_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', ro: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_orwrite_sync(iscsi, lun, lba, ro, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
-iscsi_orwrite_sync = _libiscsi.iscsi_orwrite_sync
-
-def iscsi_startstopunit_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', pcm: 'int', pc: 'int', no_flush: 'int', loej: 'int', start: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_startstopunit_sync(iscsi, lun, immed, pcm, pc, no_flush, loej, start)
-iscsi_startstopunit_sync = _libiscsi.iscsi_startstopunit_sync
-
-def iscsi_preventallow_sync(iscsi: 'struct iscsi_context *', lun: 'int', prevent: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_preventallow_sync(iscsi, lun, prevent)
-iscsi_preventallow_sync = _libiscsi.iscsi_preventallow_sync
-
-def iscsi_compareandwrite_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', ro: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_compareandwrite_sync(iscsi, lun, lba, ro, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
-iscsi_compareandwrite_sync = _libiscsi.iscsi_compareandwrite_sync
-
-def iscsi_writeverify16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', ro: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_writeverify16_sync(iscsi, lun, lba, ro, blocksize, wrprotect, dpo, bytchk, group_number)
-iscsi_writeverify16_sync = _libiscsi.iscsi_writeverify16_sync
-
-def iscsi_readcapacity10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'int', pmi: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_readcapacity10_sync(iscsi, lun, lba, pmi)
-iscsi_readcapacity10_sync = _libiscsi.iscsi_readcapacity10_sync
-
-def iscsi_readcapacity16_sync(iscsi: 'struct iscsi_context *', lun: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_readcapacity16_sync(iscsi, lun)
-iscsi_readcapacity16_sync = _libiscsi.iscsi_readcapacity16_sync
-
-def iscsi_get_lba_status_sync(iscsi: 'struct iscsi_context *', lun: 'int', starting_lba: 'uint64_t', alloc_len: 'uint32_t') -> "struct scsi_task *":
-    return _libiscsi.iscsi_get_lba_status_sync(iscsi, lun, starting_lba, alloc_len)
-iscsi_get_lba_status_sync = _libiscsi.iscsi_get_lba_status_sync
-
-def iscsi_sanitize_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int', sa: 'int', param_len: 'int', data: 'iscsi_data') -> "struct scsi_task *":
-    return _libiscsi.iscsi_sanitize_sync(iscsi, lun, immed, ause, sa, param_len, data)
-iscsi_sanitize_sync = _libiscsi.iscsi_sanitize_sync
-
-def iscsi_sanitize_block_erase_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_sanitize_block_erase_sync(iscsi, lun, immed, ause)
-iscsi_sanitize_block_erase_sync = _libiscsi.iscsi_sanitize_block_erase_sync
-
-def iscsi_sanitize_crypto_erase_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_sanitize_crypto_erase_sync(iscsi, lun, immed, ause)
-iscsi_sanitize_crypto_erase_sync = _libiscsi.iscsi_sanitize_crypto_erase_sync
-
-def iscsi_sanitize_exit_failure_mode_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_sanitize_exit_failure_mode_sync(iscsi, lun, immed, ause)
-iscsi_sanitize_exit_failure_mode_sync = _libiscsi.iscsi_sanitize_exit_failure_mode_sync
-
-def iscsi_synchronizecache10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'int', num_blocks: 'int', syncnv: 'int', immed: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_synchronizecache10_sync(iscsi, lun, lba, num_blocks, syncnv, immed)
-iscsi_synchronizecache10_sync = _libiscsi.iscsi_synchronizecache10_sync
-
-def iscsi_synchronizecache16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', num_blocks: 'uint32_t', syncnv: 'int', immed: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_synchronizecache16_sync(iscsi, lun, lba, num_blocks, syncnv, immed)
-iscsi_synchronizecache16_sync = _libiscsi.iscsi_synchronizecache16_sync
-
-def iscsi_prefetch10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', num_blocks: 'int', immed: 'int', group: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_prefetch10_sync(iscsi, lun, lba, num_blocks, immed, group)
-iscsi_prefetch10_sync = _libiscsi.iscsi_prefetch10_sync
-
-def iscsi_prefetch16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', num_blocks: 'int', immed: 'int', group: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_prefetch16_sync(iscsi, lun, lba, num_blocks, immed, group)
-iscsi_prefetch16_sync = _libiscsi.iscsi_prefetch16_sync
-
-def iscsi_verify10_sync(iscsi: 'struct iscsi_context *', lun: 'int', ro: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_verify10_sync(iscsi, lun, ro, lba, vprotect, dpo, bytchk, blocksize)
-iscsi_verify10_sync = _libiscsi.iscsi_verify10_sync
-
-def iscsi_verify12_sync(iscsi: 'struct iscsi_context *', lun: 'int', ro: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_verify12_sync(iscsi, lun, ro, lba, vprotect, dpo, bytchk, blocksize)
-iscsi_verify12_sync = _libiscsi.iscsi_verify12_sync
-
-def iscsi_verify16_sync(iscsi: 'struct iscsi_context *', lun: 'int', ro: 'unsigned char *', lba: 'uint64_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_verify16_sync(iscsi, lun, ro, lba, vprotect, dpo, bytchk, blocksize)
-iscsi_verify16_sync = _libiscsi.iscsi_verify16_sync
-
-def iscsi_writesame10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', ro: 'unsigned char *', num_blocks: 'uint16_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_writesame10_sync(iscsi, lun, lba, ro, num_blocks, anchor, unmap, wrprotect, group)
-iscsi_writesame10_sync = _libiscsi.iscsi_writesame10_sync
-
-def iscsi_writesame16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', ro: 'unsigned char *', num_blocks: 'uint32_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_writesame16_sync(iscsi, lun, lba, ro, num_blocks, anchor, unmap, wrprotect, group)
-iscsi_writesame16_sync = _libiscsi.iscsi_writesame16_sync
-
-def iscsi_persistent_reserve_in_sync(iscsi: 'struct iscsi_context *', lun: 'int', sa: 'int', xferlen: 'uint16_t') -> "struct scsi_task *":
-    return _libiscsi.iscsi_persistent_reserve_in_sync(iscsi, lun, sa, xferlen)
-iscsi_persistent_reserve_in_sync = _libiscsi.iscsi_persistent_reserve_in_sync
-
-def iscsi_persistent_reserve_out_sync(iscsi: 'struct iscsi_context *', lun: 'int', sa: 'int', scope: 'int', type: 'int', params: 'void *') -> "struct scsi_task *":
-    return _libiscsi.iscsi_persistent_reserve_out_sync(iscsi, lun, sa, scope, type, params)
-iscsi_persistent_reserve_out_sync = _libiscsi.iscsi_persistent_reserve_out_sync
-
-def iscsi_unmap_sync(iscsi: 'struct iscsi_context *', lun: 'int', anchor: 'int', group: 'int', list: 'unmap_list', list_len: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_unmap_sync(iscsi, lun, anchor, group, list, list_len)
-iscsi_unmap_sync = _libiscsi.iscsi_unmap_sync
-
-def iscsi_readtoc_sync(iscsi: 'struct iscsi_context *', lun: 'int', msf: 'int', format: 'int', track_session: 'int', maxsize: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_readtoc_sync(iscsi, lun, msf, format, track_session, maxsize)
-iscsi_readtoc_sync = _libiscsi.iscsi_readtoc_sync
-
-def iscsi_reserve6_sync(iscsi: 'struct iscsi_context *', lun: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_reserve6_sync(iscsi, lun)
-iscsi_reserve6_sync = _libiscsi.iscsi_reserve6_sync
-
-def iscsi_release6_sync(iscsi: 'struct iscsi_context *', lun: 'int') -> "struct scsi_task *":
-    return _libiscsi.iscsi_release6_sync(iscsi, lun)
-iscsi_release6_sync = _libiscsi.iscsi_release6_sync
-
-def iscsi_report_supported_opcodes_sync(iscsi: 'struct iscsi_context *', lun: 'int', rctd: 'int', options: 'int', opcode: 'int', sa: 'int', alloc_len: 'uint32_t') -> "struct scsi_task *":
-    return _libiscsi.iscsi_report_supported_opcodes_sync(iscsi, lun, rctd, options, opcode, sa, alloc_len)
-iscsi_report_supported_opcodes_sync = _libiscsi.iscsi_report_supported_opcodes_sync
-
-def iscsi_set_tcp_user_timeout(iscsi: 'struct iscsi_context *', timeout_ms: 'int') -> "void":
-    return _libiscsi.iscsi_set_tcp_user_timeout(iscsi, timeout_ms)
-iscsi_set_tcp_user_timeout = _libiscsi.iscsi_set_tcp_user_timeout
-
-def iscsi_set_tcp_keepidle(iscsi: 'struct iscsi_context *', value: 'int') -> "void":
-    return _libiscsi.iscsi_set_tcp_keepidle(iscsi, value)
-iscsi_set_tcp_keepidle = _libiscsi.iscsi_set_tcp_keepidle
-
-def iscsi_set_tcp_keepcnt(iscsi: 'struct iscsi_context *', value: 'int') -> "void":
-    return _libiscsi.iscsi_set_tcp_keepcnt(iscsi, value)
-iscsi_set_tcp_keepcnt = _libiscsi.iscsi_set_tcp_keepcnt
-
-def iscsi_set_tcp_keepintvl(iscsi: 'struct iscsi_context *', value: 'int') -> "void":
-    return _libiscsi.iscsi_set_tcp_keepintvl(iscsi, value)
-iscsi_set_tcp_keepintvl = _libiscsi.iscsi_set_tcp_keepintvl
-
-def iscsi_set_tcp_syncnt(iscsi: 'struct iscsi_context *', value: 'int') -> "void":
-    return _libiscsi.iscsi_set_tcp_syncnt(iscsi, value)
-iscsi_set_tcp_syncnt = _libiscsi.iscsi_set_tcp_syncnt
-
-def iscsi_set_bind_interfaces(iscsi: 'struct iscsi_context *', interfaces: 'char *') -> "void":
-    return _libiscsi.iscsi_set_bind_interfaces(iscsi, interfaces)
-iscsi_set_bind_interfaces = _libiscsi.iscsi_set_bind_interfaces
-
-def iscsi_set_reconnect_max_retries(iscsi: 'struct iscsi_context *', count: 'int') -> "void":
-    return _libiscsi.iscsi_set_reconnect_max_retries(iscsi, count)
-iscsi_set_reconnect_max_retries = _libiscsi.iscsi_set_reconnect_max_retries
 SCSI_OPCODE_TESTUNITREADY = _libiscsi.SCSI_OPCODE_TESTUNITREADY
 SCSI_OPCODE_READ6 = _libiscsi.SCSI_OPCODE_READ6
 SCSI_OPCODE_INQUIRY = _libiscsi.SCSI_OPCODE_INQUIRY
@@ -754,6 +142,7 @@ SCSI_OPCODE_WRITE_VERIFY10 = _libiscsi.SCSI_OPCODE_WRITE_VERIFY10
 SCSI_OPCODE_VERIFY10 = _libiscsi.SCSI_OPCODE_VERIFY10
 SCSI_OPCODE_PREFETCH10 = _libiscsi.SCSI_OPCODE_PREFETCH10
 SCSI_OPCODE_SYNCHRONIZECACHE10 = _libiscsi.SCSI_OPCODE_SYNCHRONIZECACHE10
+SCSI_OPCODE_READ_DEFECT_DATA10 = _libiscsi.SCSI_OPCODE_READ_DEFECT_DATA10
 SCSI_OPCODE_WRITE_SAME10 = _libiscsi.SCSI_OPCODE_WRITE_SAME10
 SCSI_OPCODE_UNMAP = _libiscsi.SCSI_OPCODE_UNMAP
 SCSI_OPCODE_READTOC = _libiscsi.SCSI_OPCODE_READTOC
@@ -762,6 +151,8 @@ SCSI_OPCODE_MODESELECT10 = _libiscsi.SCSI_OPCODE_MODESELECT10
 SCSI_OPCODE_MODESENSE10 = _libiscsi.SCSI_OPCODE_MODESENSE10
 SCSI_OPCODE_PERSISTENT_RESERVE_IN = _libiscsi.SCSI_OPCODE_PERSISTENT_RESERVE_IN
 SCSI_OPCODE_PERSISTENT_RESERVE_OUT = _libiscsi.SCSI_OPCODE_PERSISTENT_RESERVE_OUT
+SCSI_OPCODE_EXTENDED_COPY = _libiscsi.SCSI_OPCODE_EXTENDED_COPY
+SCSI_OPCODE_RECEIVE_COPY_RESULTS = _libiscsi.SCSI_OPCODE_RECEIVE_COPY_RESULTS
 SCSI_OPCODE_READ16 = _libiscsi.SCSI_OPCODE_READ16
 SCSI_OPCODE_COMPARE_AND_WRITE = _libiscsi.SCSI_OPCODE_COMPARE_AND_WRITE
 SCSI_OPCODE_WRITE16 = _libiscsi.SCSI_OPCODE_WRITE16
@@ -771,6 +162,7 @@ SCSI_OPCODE_VERIFY16 = _libiscsi.SCSI_OPCODE_VERIFY16
 SCSI_OPCODE_PREFETCH16 = _libiscsi.SCSI_OPCODE_PREFETCH16
 SCSI_OPCODE_SYNCHRONIZECACHE16 = _libiscsi.SCSI_OPCODE_SYNCHRONIZECACHE16
 SCSI_OPCODE_WRITE_SAME16 = _libiscsi.SCSI_OPCODE_WRITE_SAME16
+SCSI_OPCODE_WRITE_ATOMIC16 = _libiscsi.SCSI_OPCODE_WRITE_ATOMIC16
 SCSI_OPCODE_SERVICE_ACTION_IN = _libiscsi.SCSI_OPCODE_SERVICE_ACTION_IN
 SCSI_OPCODE_REPORTLUNS = _libiscsi.SCSI_OPCODE_REPORTLUNS
 SCSI_OPCODE_MAINTENANCE_IN = _libiscsi.SCSI_OPCODE_MAINTENANCE_IN
@@ -778,6 +170,7 @@ SCSI_OPCODE_READ12 = _libiscsi.SCSI_OPCODE_READ12
 SCSI_OPCODE_WRITE12 = _libiscsi.SCSI_OPCODE_WRITE12
 SCSI_OPCODE_WRITE_VERIFY12 = _libiscsi.SCSI_OPCODE_WRITE_VERIFY12
 SCSI_OPCODE_VERIFY12 = _libiscsi.SCSI_OPCODE_VERIFY12
+SCSI_OPCODE_READ_DEFECT_DATA12 = _libiscsi.SCSI_OPCODE_READ_DEFECT_DATA12
 SCSI_PERSISTENT_RESERVE_READ_KEYS = _libiscsi.SCSI_PERSISTENT_RESERVE_READ_KEYS
 SCSI_PERSISTENT_RESERVE_READ_RESERVATION = _libiscsi.SCSI_PERSISTENT_RESERVE_READ_RESERVATION
 SCSI_PERSISTENT_RESERVE_REPORT_CAPABILITIES = _libiscsi.SCSI_PERSISTENT_RESERVE_REPORT_CAPABILITIES
@@ -860,7 +253,10 @@ SCSI_SENSE_MISCOMPARE = _libiscsi.SCSI_SENSE_MISCOMPARE
 def scsi_sense_key_str(key: 'int') -> "char const *":
     return _libiscsi.scsi_sense_key_str(key)
 scsi_sense_key_str = _libiscsi.scsi_sense_key_str
+SCSI_SENSE_ASCQ_NO_ADDL_SENSE = _libiscsi.SCSI_SENSE_ASCQ_NO_ADDL_SENSE
 SCSI_SENSE_ASCQ_SANITIZE_IN_PROGRESS = _libiscsi.SCSI_SENSE_ASCQ_SANITIZE_IN_PROGRESS
+SCSI_SENSE_ASCQ_UNREACHABLE_COPY_TARGET = _libiscsi.SCSI_SENSE_ASCQ_UNREACHABLE_COPY_TARGET
+SCSI_SENSE_ASCQ_COPY_TARGET_DEVICE_NOT_REACHABLE = _libiscsi.SCSI_SENSE_ASCQ_COPY_TARGET_DEVICE_NOT_REACHABLE
 SCSI_SENSE_ASCQ_WRITE_AFTER_SANITIZE_REQUIRED = _libiscsi.SCSI_SENSE_ASCQ_WRITE_AFTER_SANITIZE_REQUIRED
 SCSI_SENSE_ASCQ_PARAMETER_LIST_LENGTH_ERROR = _libiscsi.SCSI_SENSE_ASCQ_PARAMETER_LIST_LENGTH_ERROR
 SCSI_SENSE_ASCQ_MISCOMPARE_DURING_VERIFY = _libiscsi.SCSI_SENSE_ASCQ_MISCOMPARE_DURING_VERIFY
@@ -870,7 +266,13 @@ SCSI_SENSE_ASCQ_LBA_OUT_OF_RANGE = _libiscsi.SCSI_SENSE_ASCQ_LBA_OUT_OF_RANGE
 SCSI_SENSE_ASCQ_INVALID_FIELD_IN_CDB = _libiscsi.SCSI_SENSE_ASCQ_INVALID_FIELD_IN_CDB
 SCSI_SENSE_ASCQ_LOGICAL_UNIT_NOT_SUPPORTED = _libiscsi.SCSI_SENSE_ASCQ_LOGICAL_UNIT_NOT_SUPPORTED
 SCSI_SENSE_ASCQ_INVALID_FIELD_IN_PARAMETER_LIST = _libiscsi.SCSI_SENSE_ASCQ_INVALID_FIELD_IN_PARAMETER_LIST
+SCSI_SENSE_ASCQ_TOO_MANY_TARGET_DESCRIPTORS = _libiscsi.SCSI_SENSE_ASCQ_TOO_MANY_TARGET_DESCRIPTORS
+SCSI_SENSE_ASCQ_UNSUPPORTED_TARGET_DESCRIPTOR_TYPE_CODE = _libiscsi.SCSI_SENSE_ASCQ_UNSUPPORTED_TARGET_DESCRIPTOR_TYPE_CODE
+SCSI_SENSE_ASCQ_TOO_MANY_SEGMENT_DESCRIPTORS = _libiscsi.SCSI_SENSE_ASCQ_TOO_MANY_SEGMENT_DESCRIPTORS
+SCSI_SENSE_ASCQ_UNSUPPORTED_SEGMENT_DESCRIPTOR_TYPE_CODE = _libiscsi.SCSI_SENSE_ASCQ_UNSUPPORTED_SEGMENT_DESCRIPTOR_TYPE_CODE
 SCSI_SENSE_ASCQ_WRITE_PROTECTED = _libiscsi.SCSI_SENSE_ASCQ_WRITE_PROTECTED
+SCSI_SENSE_ASCQ_HARDWARE_WRITE_PROTECTED = _libiscsi.SCSI_SENSE_ASCQ_HARDWARE_WRITE_PROTECTED
+SCSI_SENSE_ASCQ_SOFTWARE_WRITE_PROTECTED = _libiscsi.SCSI_SENSE_ASCQ_SOFTWARE_WRITE_PROTECTED
 SCSI_SENSE_ASCQ_BUS_RESET = _libiscsi.SCSI_SENSE_ASCQ_BUS_RESET
 SCSI_SENSE_ASCQ_POWER_ON_OCCURED = _libiscsi.SCSI_SENSE_ASCQ_POWER_ON_OCCURED
 SCSI_SENSE_ASCQ_SCSI_BUS_RESET_OCCURED = _libiscsi.SCSI_SENSE_ASCQ_SCSI_BUS_RESET_OCCURED
@@ -901,6 +303,257 @@ scsi_pr_type_str = _libiscsi.scsi_pr_type_str
 SCSI_XFER_NONE = _libiscsi.SCSI_XFER_NONE
 SCSI_XFER_READ = _libiscsi.SCSI_XFER_READ
 SCSI_XFER_WRITE = _libiscsi.SCSI_XFER_WRITE
+
+def scsi_cdb_readtoc(msf: 'int', format: 'int', track_session: 'int', alloc_len: 'uint16_t') -> "struct scsi_task *":
+    return _libiscsi.scsi_cdb_readtoc(msf, format, track_session, alloc_len)
+scsi_cdb_readtoc = _libiscsi.scsi_cdb_readtoc
+SCSI_READ_TOC = _libiscsi.SCSI_READ_TOC
+SCSI_READ_SESSION_INFO = _libiscsi.SCSI_READ_SESSION_INFO
+SCSI_READ_FULL_TOC = _libiscsi.SCSI_READ_FULL_TOC
+SCSI_READ_PMA = _libiscsi.SCSI_READ_PMA
+SCSI_READ_ATIP = _libiscsi.SCSI_READ_ATIP
+class scsi_readtoc_desc(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_readtoc_desc, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_readtoc_desc, name)
+    __repr__ = _swig_repr
+    __swig_getmethods__["desc"] = _libiscsi.scsi_readtoc_desc_desc_get
+    if _newclass:
+        desc = _swig_property(_libiscsi.scsi_readtoc_desc_desc_get)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_readtoc_desc()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_readtoc_desc
+    __del__ = lambda self: None
+scsi_readtoc_desc_swigregister = _libiscsi.scsi_readtoc_desc_swigregister
+scsi_readtoc_desc_swigregister(scsi_readtoc_desc)
+
+class scsi_readtoc_desc_desc(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_readtoc_desc_desc, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_readtoc_desc_desc, name)
+    __repr__ = _swig_repr
+    __swig_getmethods__["toc"] = _libiscsi.scsi_readtoc_desc_desc_toc_get
+    if _newclass:
+        toc = _swig_property(_libiscsi.scsi_readtoc_desc_desc_toc_get)
+    __swig_getmethods__["ses"] = _libiscsi.scsi_readtoc_desc_desc_ses_get
+    if _newclass:
+        ses = _swig_property(_libiscsi.scsi_readtoc_desc_desc_ses_get)
+    __swig_getmethods__["full"] = _libiscsi.scsi_readtoc_desc_desc_full_get
+    if _newclass:
+        full = _swig_property(_libiscsi.scsi_readtoc_desc_desc_full_get)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_readtoc_desc_desc()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_readtoc_desc_desc
+    __del__ = lambda self: None
+scsi_readtoc_desc_desc_swigregister = _libiscsi.scsi_readtoc_desc_desc_swigregister
+scsi_readtoc_desc_desc_swigregister(scsi_readtoc_desc_desc)
+
+class scsi_toc_desc(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_toc_desc, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_toc_desc, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["adr"] = _libiscsi.scsi_toc_desc_adr_set
+    __swig_getmethods__["adr"] = _libiscsi.scsi_toc_desc_adr_get
+    if _newclass:
+        adr = _swig_property(_libiscsi.scsi_toc_desc_adr_get, _libiscsi.scsi_toc_desc_adr_set)
+    __swig_setmethods__["control"] = _libiscsi.scsi_toc_desc_control_set
+    __swig_getmethods__["control"] = _libiscsi.scsi_toc_desc_control_get
+    if _newclass:
+        control = _swig_property(_libiscsi.scsi_toc_desc_control_get, _libiscsi.scsi_toc_desc_control_set)
+    __swig_setmethods__["track"] = _libiscsi.scsi_toc_desc_track_set
+    __swig_getmethods__["track"] = _libiscsi.scsi_toc_desc_track_get
+    if _newclass:
+        track = _swig_property(_libiscsi.scsi_toc_desc_track_get, _libiscsi.scsi_toc_desc_track_set)
+    __swig_setmethods__["lba"] = _libiscsi.scsi_toc_desc_lba_set
+    __swig_getmethods__["lba"] = _libiscsi.scsi_toc_desc_lba_get
+    if _newclass:
+        lba = _swig_property(_libiscsi.scsi_toc_desc_lba_get, _libiscsi.scsi_toc_desc_lba_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_toc_desc()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_toc_desc
+    __del__ = lambda self: None
+scsi_toc_desc_swigregister = _libiscsi.scsi_toc_desc_swigregister
+scsi_toc_desc_swigregister(scsi_toc_desc)
+
+class scsi_session_desc(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_session_desc, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_session_desc, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["adr"] = _libiscsi.scsi_session_desc_adr_set
+    __swig_getmethods__["adr"] = _libiscsi.scsi_session_desc_adr_get
+    if _newclass:
+        adr = _swig_property(_libiscsi.scsi_session_desc_adr_get, _libiscsi.scsi_session_desc_adr_set)
+    __swig_setmethods__["control"] = _libiscsi.scsi_session_desc_control_set
+    __swig_getmethods__["control"] = _libiscsi.scsi_session_desc_control_get
+    if _newclass:
+        control = _swig_property(_libiscsi.scsi_session_desc_control_get, _libiscsi.scsi_session_desc_control_set)
+    __swig_setmethods__["first_in_last"] = _libiscsi.scsi_session_desc_first_in_last_set
+    __swig_getmethods__["first_in_last"] = _libiscsi.scsi_session_desc_first_in_last_get
+    if _newclass:
+        first_in_last = _swig_property(_libiscsi.scsi_session_desc_first_in_last_get, _libiscsi.scsi_session_desc_first_in_last_set)
+    __swig_setmethods__["lba"] = _libiscsi.scsi_session_desc_lba_set
+    __swig_getmethods__["lba"] = _libiscsi.scsi_session_desc_lba_get
+    if _newclass:
+        lba = _swig_property(_libiscsi.scsi_session_desc_lba_get, _libiscsi.scsi_session_desc_lba_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_session_desc()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_session_desc
+    __del__ = lambda self: None
+scsi_session_desc_swigregister = _libiscsi.scsi_session_desc_swigregister
+scsi_session_desc_swigregister(scsi_session_desc)
+
+class scsi_fulltoc_desc(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_fulltoc_desc, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_fulltoc_desc, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["session"] = _libiscsi.scsi_fulltoc_desc_session_set
+    __swig_getmethods__["session"] = _libiscsi.scsi_fulltoc_desc_session_get
+    if _newclass:
+        session = _swig_property(_libiscsi.scsi_fulltoc_desc_session_get, _libiscsi.scsi_fulltoc_desc_session_set)
+    __swig_setmethods__["adr"] = _libiscsi.scsi_fulltoc_desc_adr_set
+    __swig_getmethods__["adr"] = _libiscsi.scsi_fulltoc_desc_adr_get
+    if _newclass:
+        adr = _swig_property(_libiscsi.scsi_fulltoc_desc_adr_get, _libiscsi.scsi_fulltoc_desc_adr_set)
+    __swig_setmethods__["control"] = _libiscsi.scsi_fulltoc_desc_control_set
+    __swig_getmethods__["control"] = _libiscsi.scsi_fulltoc_desc_control_get
+    if _newclass:
+        control = _swig_property(_libiscsi.scsi_fulltoc_desc_control_get, _libiscsi.scsi_fulltoc_desc_control_set)
+    __swig_setmethods__["tno"] = _libiscsi.scsi_fulltoc_desc_tno_set
+    __swig_getmethods__["tno"] = _libiscsi.scsi_fulltoc_desc_tno_get
+    if _newclass:
+        tno = _swig_property(_libiscsi.scsi_fulltoc_desc_tno_get, _libiscsi.scsi_fulltoc_desc_tno_set)
+    __swig_setmethods__["point"] = _libiscsi.scsi_fulltoc_desc_point_set
+    __swig_getmethods__["point"] = _libiscsi.scsi_fulltoc_desc_point_get
+    if _newclass:
+        point = _swig_property(_libiscsi.scsi_fulltoc_desc_point_get, _libiscsi.scsi_fulltoc_desc_point_set)
+    __swig_setmethods__["min"] = _libiscsi.scsi_fulltoc_desc_min_set
+    __swig_getmethods__["min"] = _libiscsi.scsi_fulltoc_desc_min_get
+    if _newclass:
+        min = _swig_property(_libiscsi.scsi_fulltoc_desc_min_get, _libiscsi.scsi_fulltoc_desc_min_set)
+    __swig_setmethods__["sec"] = _libiscsi.scsi_fulltoc_desc_sec_set
+    __swig_getmethods__["sec"] = _libiscsi.scsi_fulltoc_desc_sec_get
+    if _newclass:
+        sec = _swig_property(_libiscsi.scsi_fulltoc_desc_sec_get, _libiscsi.scsi_fulltoc_desc_sec_set)
+    __swig_setmethods__["frame"] = _libiscsi.scsi_fulltoc_desc_frame_set
+    __swig_getmethods__["frame"] = _libiscsi.scsi_fulltoc_desc_frame_get
+    if _newclass:
+        frame = _swig_property(_libiscsi.scsi_fulltoc_desc_frame_get, _libiscsi.scsi_fulltoc_desc_frame_set)
+    __swig_setmethods__["zero"] = _libiscsi.scsi_fulltoc_desc_zero_set
+    __swig_getmethods__["zero"] = _libiscsi.scsi_fulltoc_desc_zero_get
+    if _newclass:
+        zero = _swig_property(_libiscsi.scsi_fulltoc_desc_zero_get, _libiscsi.scsi_fulltoc_desc_zero_set)
+    __swig_setmethods__["pmin"] = _libiscsi.scsi_fulltoc_desc_pmin_set
+    __swig_getmethods__["pmin"] = _libiscsi.scsi_fulltoc_desc_pmin_get
+    if _newclass:
+        pmin = _swig_property(_libiscsi.scsi_fulltoc_desc_pmin_get, _libiscsi.scsi_fulltoc_desc_pmin_set)
+    __swig_setmethods__["psec"] = _libiscsi.scsi_fulltoc_desc_psec_set
+    __swig_getmethods__["psec"] = _libiscsi.scsi_fulltoc_desc_psec_get
+    if _newclass:
+        psec = _swig_property(_libiscsi.scsi_fulltoc_desc_psec_get, _libiscsi.scsi_fulltoc_desc_psec_set)
+    __swig_setmethods__["pframe"] = _libiscsi.scsi_fulltoc_desc_pframe_set
+    __swig_getmethods__["pframe"] = _libiscsi.scsi_fulltoc_desc_pframe_get
+    if _newclass:
+        pframe = _swig_property(_libiscsi.scsi_fulltoc_desc_pframe_get, _libiscsi.scsi_fulltoc_desc_pframe_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_fulltoc_desc()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_fulltoc_desc
+    __del__ = lambda self: None
+scsi_fulltoc_desc_swigregister = _libiscsi.scsi_fulltoc_desc_swigregister
+scsi_fulltoc_desc_swigregister(scsi_fulltoc_desc)
+
+class scsi_readtoc_list(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_readtoc_list, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_readtoc_list, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["num"] = _libiscsi.scsi_readtoc_list_num_set
+    __swig_getmethods__["num"] = _libiscsi.scsi_readtoc_list_num_get
+    if _newclass:
+        num = _swig_property(_libiscsi.scsi_readtoc_list_num_get, _libiscsi.scsi_readtoc_list_num_set)
+    __swig_setmethods__["first"] = _libiscsi.scsi_readtoc_list_first_set
+    __swig_getmethods__["first"] = _libiscsi.scsi_readtoc_list_first_get
+    if _newclass:
+        first = _swig_property(_libiscsi.scsi_readtoc_list_first_get, _libiscsi.scsi_readtoc_list_first_set)
+    __swig_setmethods__["last"] = _libiscsi.scsi_readtoc_list_last_set
+    __swig_getmethods__["last"] = _libiscsi.scsi_readtoc_list_last_get
+    if _newclass:
+        last = _swig_property(_libiscsi.scsi_readtoc_list_last_get, _libiscsi.scsi_readtoc_list_last_set)
+    __swig_setmethods__["desc"] = _libiscsi.scsi_readtoc_list_desc_set
+    __swig_getmethods__["desc"] = _libiscsi.scsi_readtoc_list_desc_get
+    if _newclass:
+        desc = _swig_property(_libiscsi.scsi_readtoc_list_desc_get, _libiscsi.scsi_readtoc_list_desc_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_readtoc_list()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_readtoc_list
+    __del__ = lambda self: None
+scsi_readtoc_list_swigregister = _libiscsi.scsi_readtoc_list_swigregister
+scsi_readtoc_list_swigregister(scsi_readtoc_list)
+
+class scsi_report_supported_params(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_report_supported_params, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_report_supported_params, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["return_timeouts"] = _libiscsi.scsi_report_supported_params_return_timeouts_set
+    __swig_getmethods__["return_timeouts"] = _libiscsi.scsi_report_supported_params_return_timeouts_get
+    if _newclass:
+        return_timeouts = _swig_property(_libiscsi.scsi_report_supported_params_return_timeouts_get, _libiscsi.scsi_report_supported_params_return_timeouts_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_report_supported_params()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_report_supported_params
+    __del__ = lambda self: None
+scsi_report_supported_params_swigregister = _libiscsi.scsi_report_supported_params_swigregister
+scsi_report_supported_params_swigregister(scsi_report_supported_params)
+
+SCSI_SENSE_FIXED_CURRENT = _libiscsi.SCSI_SENSE_FIXED_CURRENT
+SCSI_SENSE_FIXED_DEFERRED_ERRORS = _libiscsi.SCSI_SENSE_FIXED_DEFERRED_ERRORS
+SCSI_SENSE_DESCRIPTOR_CURRENT = _libiscsi.SCSI_SENSE_DESCRIPTOR_CURRENT
+SCSI_SENSE_DESCRIPTOR_DEFERRED_ERRORS = _libiscsi.SCSI_SENSE_DESCRIPTOR_DEFERRED_ERRORS
 class scsi_sense(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_sense, name, value)
@@ -919,6 +572,26 @@ class scsi_sense(_object):
     __swig_getmethods__["ascq"] = _libiscsi.scsi_sense_ascq_get
     if _newclass:
         ascq = _swig_property(_libiscsi.scsi_sense_ascq_get, _libiscsi.scsi_sense_ascq_set)
+    __swig_setmethods__["sense_specific"] = _libiscsi.scsi_sense_sense_specific_set
+    __swig_getmethods__["sense_specific"] = _libiscsi.scsi_sense_sense_specific_get
+    if _newclass:
+        sense_specific = _swig_property(_libiscsi.scsi_sense_sense_specific_get, _libiscsi.scsi_sense_sense_specific_set)
+    __swig_setmethods__["ill_param_in_cdb"] = _libiscsi.scsi_sense_ill_param_in_cdb_set
+    __swig_getmethods__["ill_param_in_cdb"] = _libiscsi.scsi_sense_ill_param_in_cdb_get
+    if _newclass:
+        ill_param_in_cdb = _swig_property(_libiscsi.scsi_sense_ill_param_in_cdb_get, _libiscsi.scsi_sense_ill_param_in_cdb_set)
+    __swig_setmethods__["bit_pointer_valid"] = _libiscsi.scsi_sense_bit_pointer_valid_set
+    __swig_getmethods__["bit_pointer_valid"] = _libiscsi.scsi_sense_bit_pointer_valid_get
+    if _newclass:
+        bit_pointer_valid = _swig_property(_libiscsi.scsi_sense_bit_pointer_valid_get, _libiscsi.scsi_sense_bit_pointer_valid_set)
+    __swig_setmethods__["bit_pointer"] = _libiscsi.scsi_sense_bit_pointer_set
+    __swig_getmethods__["bit_pointer"] = _libiscsi.scsi_sense_bit_pointer_get
+    if _newclass:
+        bit_pointer = _swig_property(_libiscsi.scsi_sense_bit_pointer_get, _libiscsi.scsi_sense_bit_pointer_set)
+    __swig_setmethods__["field_pointer"] = _libiscsi.scsi_sense_field_pointer_set
+    __swig_getmethods__["field_pointer"] = _libiscsi.scsi_sense_field_pointer_get
+    if _newclass:
+        field_pointer = _swig_property(_libiscsi.scsi_sense_field_pointer_get, _libiscsi.scsi_sense_field_pointer_set)
 
     def __init__(self):
         this = _libiscsi.new_scsi_sense()
@@ -931,25 +604,185 @@ class scsi_sense(_object):
 scsi_sense_swigregister = _libiscsi.scsi_sense_swigregister
 scsi_sense_swigregister(scsi_sense)
 
+class scsi_data(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_data, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_data, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["size"] = _libiscsi.scsi_data_size_set
+    __swig_getmethods__["size"] = _libiscsi.scsi_data_size_get
+    if _newclass:
+        size = _swig_property(_libiscsi.scsi_data_size_get, _libiscsi.scsi_data_size_set)
+    __swig_setmethods__["data"] = _libiscsi.scsi_data_data_set
+    __swig_getmethods__["data"] = _libiscsi.scsi_data_data_get
+    if _newclass:
+        data = _swig_property(_libiscsi.scsi_data_data_get, _libiscsi.scsi_data_data_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_data()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_data
+    __del__ = lambda self: None
+scsi_data_swigregister = _libiscsi.scsi_data_swigregister
+scsi_data_swigregister(scsi_data)
+
 SCSI_RESIDUAL_NO_RESIDUAL = _libiscsi.SCSI_RESIDUAL_NO_RESIDUAL
 SCSI_RESIDUAL_UNDERFLOW = _libiscsi.SCSI_RESIDUAL_UNDERFLOW
 SCSI_RESIDUAL_OVERFLOW = _libiscsi.SCSI_RESIDUAL_OVERFLOW
+class scsi_iovec(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_iovec, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_iovec, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["iov_base"] = _libiscsi.scsi_iovec_iov_base_set
+    __swig_getmethods__["iov_base"] = _libiscsi.scsi_iovec_iov_base_get
+    if _newclass:
+        iov_base = _swig_property(_libiscsi.scsi_iovec_iov_base_get, _libiscsi.scsi_iovec_iov_base_set)
+    __swig_setmethods__["iov_len"] = _libiscsi.scsi_iovec_iov_len_set
+    __swig_getmethods__["iov_len"] = _libiscsi.scsi_iovec_iov_len_get
+    if _newclass:
+        iov_len = _swig_property(_libiscsi.scsi_iovec_iov_len_get, _libiscsi.scsi_iovec_iov_len_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_iovec()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_iovec
+    __del__ = lambda self: None
+scsi_iovec_swigregister = _libiscsi.scsi_iovec_swigregister
+scsi_iovec_swigregister(scsi_iovec)
+
+class scsi_iovector(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_iovector, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_iovector, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["iov"] = _libiscsi.scsi_iovector_iov_set
+    __swig_getmethods__["iov"] = _libiscsi.scsi_iovector_iov_get
+    if _newclass:
+        iov = _swig_property(_libiscsi.scsi_iovector_iov_get, _libiscsi.scsi_iovector_iov_set)
+    __swig_setmethods__["niov"] = _libiscsi.scsi_iovector_niov_set
+    __swig_getmethods__["niov"] = _libiscsi.scsi_iovector_niov_get
+    if _newclass:
+        niov = _swig_property(_libiscsi.scsi_iovector_niov_get, _libiscsi.scsi_iovector_niov_set)
+    __swig_setmethods__["nalloc"] = _libiscsi.scsi_iovector_nalloc_set
+    __swig_getmethods__["nalloc"] = _libiscsi.scsi_iovector_nalloc_get
+    if _newclass:
+        nalloc = _swig_property(_libiscsi.scsi_iovector_nalloc_get, _libiscsi.scsi_iovector_nalloc_set)
+    __swig_setmethods__["offset"] = _libiscsi.scsi_iovector_offset_set
+    __swig_getmethods__["offset"] = _libiscsi.scsi_iovector_offset_get
+    if _newclass:
+        offset = _swig_property(_libiscsi.scsi_iovector_offset_get, _libiscsi.scsi_iovector_offset_set)
+    __swig_setmethods__["consumed"] = _libiscsi.scsi_iovector_consumed_set
+    __swig_getmethods__["consumed"] = _libiscsi.scsi_iovector_consumed_get
+    if _newclass:
+        consumed = _swig_property(_libiscsi.scsi_iovector_consumed_get, _libiscsi.scsi_iovector_consumed_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_iovector()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_iovector
+    __del__ = lambda self: None
+scsi_iovector_swigregister = _libiscsi.scsi_iovector_swigregister
+scsi_iovector_swigregister(scsi_iovector)
+
+class scsi_task(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_task, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_task, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["status"] = _libiscsi.scsi_task_status_set
+    __swig_getmethods__["status"] = _libiscsi.scsi_task_status_get
+    if _newclass:
+        status = _swig_property(_libiscsi.scsi_task_status_get, _libiscsi.scsi_task_status_set)
+    __swig_setmethods__["cdb_size"] = _libiscsi.scsi_task_cdb_size_set
+    __swig_getmethods__["cdb_size"] = _libiscsi.scsi_task_cdb_size_get
+    if _newclass:
+        cdb_size = _swig_property(_libiscsi.scsi_task_cdb_size_get, _libiscsi.scsi_task_cdb_size_set)
+    __swig_setmethods__["xfer_dir"] = _libiscsi.scsi_task_xfer_dir_set
+    __swig_getmethods__["xfer_dir"] = _libiscsi.scsi_task_xfer_dir_get
+    if _newclass:
+        xfer_dir = _swig_property(_libiscsi.scsi_task_xfer_dir_get, _libiscsi.scsi_task_xfer_dir_set)
+    __swig_setmethods__["expxferlen"] = _libiscsi.scsi_task_expxferlen_set
+    __swig_getmethods__["expxferlen"] = _libiscsi.scsi_task_expxferlen_get
+    if _newclass:
+        expxferlen = _swig_property(_libiscsi.scsi_task_expxferlen_get, _libiscsi.scsi_task_expxferlen_set)
+    __swig_setmethods__["cdb"] = _libiscsi.scsi_task_cdb_set
+    __swig_getmethods__["cdb"] = _libiscsi.scsi_task_cdb_get
+    if _newclass:
+        cdb = _swig_property(_libiscsi.scsi_task_cdb_get, _libiscsi.scsi_task_cdb_set)
+    __swig_setmethods__["residual_status"] = _libiscsi.scsi_task_residual_status_set
+    __swig_getmethods__["residual_status"] = _libiscsi.scsi_task_residual_status_get
+    if _newclass:
+        residual_status = _swig_property(_libiscsi.scsi_task_residual_status_get, _libiscsi.scsi_task_residual_status_set)
+    __swig_setmethods__["residual"] = _libiscsi.scsi_task_residual_set
+    __swig_getmethods__["residual"] = _libiscsi.scsi_task_residual_get
+    if _newclass:
+        residual = _swig_property(_libiscsi.scsi_task_residual_get, _libiscsi.scsi_task_residual_set)
+    __swig_setmethods__["sense"] = _libiscsi.scsi_task_sense_set
+    __swig_getmethods__["sense"] = _libiscsi.scsi_task_sense_get
+    if _newclass:
+        sense = _swig_property(_libiscsi.scsi_task_sense_get, _libiscsi.scsi_task_sense_set)
+    __swig_setmethods__["datain"] = _libiscsi.scsi_task_datain_set
+    __swig_getmethods__["datain"] = _libiscsi.scsi_task_datain_get
+    if _newclass:
+        datain = _swig_property(_libiscsi.scsi_task_datain_get, _libiscsi.scsi_task_datain_set)
+    __swig_setmethods__["mem"] = _libiscsi.scsi_task_mem_set
+    __swig_getmethods__["mem"] = _libiscsi.scsi_task_mem_get
+    if _newclass:
+        mem = _swig_property(_libiscsi.scsi_task_mem_get, _libiscsi.scsi_task_mem_set)
+    __swig_setmethods__["ptr"] = _libiscsi.scsi_task_ptr_set
+    __swig_getmethods__["ptr"] = _libiscsi.scsi_task_ptr_get
+    if _newclass:
+        ptr = _swig_property(_libiscsi.scsi_task_ptr_get, _libiscsi.scsi_task_ptr_set)
+    __swig_setmethods__["itt"] = _libiscsi.scsi_task_itt_set
+    __swig_getmethods__["itt"] = _libiscsi.scsi_task_itt_get
+    if _newclass:
+        itt = _swig_property(_libiscsi.scsi_task_itt_get, _libiscsi.scsi_task_itt_set)
+    __swig_setmethods__["cmdsn"] = _libiscsi.scsi_task_cmdsn_set
+    __swig_getmethods__["cmdsn"] = _libiscsi.scsi_task_cmdsn_get
+    if _newclass:
+        cmdsn = _swig_property(_libiscsi.scsi_task_cmdsn_get, _libiscsi.scsi_task_cmdsn_set)
+    __swig_setmethods__["lun"] = _libiscsi.scsi_task_lun_set
+    __swig_getmethods__["lun"] = _libiscsi.scsi_task_lun_get
+    if _newclass:
+        lun = _swig_property(_libiscsi.scsi_task_lun_get, _libiscsi.scsi_task_lun_set)
+    __swig_setmethods__["iovector_in"] = _libiscsi.scsi_task_iovector_in_set
+    __swig_getmethods__["iovector_in"] = _libiscsi.scsi_task_iovector_in_get
+    if _newclass:
+        iovector_in = _swig_property(_libiscsi.scsi_task_iovector_in_get, _libiscsi.scsi_task_iovector_in_set)
+    __swig_setmethods__["iovector_out"] = _libiscsi.scsi_task_iovector_out_set
+    __swig_getmethods__["iovector_out"] = _libiscsi.scsi_task_iovector_out_get
+    if _newclass:
+        iovector_out = _swig_property(_libiscsi.scsi_task_iovector_out_get, _libiscsi.scsi_task_iovector_out_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_task()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_task
+    __del__ = lambda self: None
+scsi_task_swigregister = _libiscsi.scsi_task_swigregister
+scsi_task_swigregister(scsi_task)
+
 
 def scsi_create_task(cdb_size: 'int', xfer_dir: 'int', expxferlen: 'int') -> "struct scsi_task *":
     return _libiscsi.scsi_create_task(cdb_size, xfer_dir, expxferlen)
 scsi_create_task = _libiscsi.scsi_create_task
-
-def scsi_task_add_data_in_buffer(task: 'scsi_task', len: 'int') -> "int":
-    return _libiscsi.scsi_task_add_data_in_buffer(task, len)
-scsi_task_add_data_in_buffer = _libiscsi.scsi_task_add_data_in_buffer
-
-def scsi_task_add_data_out_buffer(task: 'scsi_task', len: 'int') -> "int":
-    return _libiscsi.scsi_task_add_data_out_buffer(task, len)
-scsi_task_add_data_out_buffer = _libiscsi.scsi_task_add_data_out_buffer
-
-def scsi_task_get_status(task: 'scsi_task', sense: 'scsi_sense') -> "int":
-    return _libiscsi.scsi_task_get_status(task, sense)
-scsi_task_get_status = _libiscsi.scsi_task_get_status
 
 def scsi_free_scsi_task(task: 'scsi_task') -> "void":
     return _libiscsi.scsi_free_scsi_task(task)
@@ -1361,6 +1194,26 @@ class scsi_inquiry_block_limits(_object):
     __swig_getmethods__["max_ws_len"] = _libiscsi.scsi_inquiry_block_limits_max_ws_len_get
     if _newclass:
         max_ws_len = _swig_property(_libiscsi.scsi_inquiry_block_limits_max_ws_len_get, _libiscsi.scsi_inquiry_block_limits_max_ws_len_set)
+    __swig_setmethods__["max_atomic_xfer_len"] = _libiscsi.scsi_inquiry_block_limits_max_atomic_xfer_len_set
+    __swig_getmethods__["max_atomic_xfer_len"] = _libiscsi.scsi_inquiry_block_limits_max_atomic_xfer_len_get
+    if _newclass:
+        max_atomic_xfer_len = _swig_property(_libiscsi.scsi_inquiry_block_limits_max_atomic_xfer_len_get, _libiscsi.scsi_inquiry_block_limits_max_atomic_xfer_len_set)
+    __swig_setmethods__["atomic_align"] = _libiscsi.scsi_inquiry_block_limits_atomic_align_set
+    __swig_getmethods__["atomic_align"] = _libiscsi.scsi_inquiry_block_limits_atomic_align_get
+    if _newclass:
+        atomic_align = _swig_property(_libiscsi.scsi_inquiry_block_limits_atomic_align_get, _libiscsi.scsi_inquiry_block_limits_atomic_align_set)
+    __swig_setmethods__["atomic_gran"] = _libiscsi.scsi_inquiry_block_limits_atomic_gran_set
+    __swig_getmethods__["atomic_gran"] = _libiscsi.scsi_inquiry_block_limits_atomic_gran_get
+    if _newclass:
+        atomic_gran = _swig_property(_libiscsi.scsi_inquiry_block_limits_atomic_gran_get, _libiscsi.scsi_inquiry_block_limits_atomic_gran_set)
+    __swig_setmethods__["max_atomic_tl_with_atomic_boundary"] = _libiscsi.scsi_inquiry_block_limits_max_atomic_tl_with_atomic_boundary_set
+    __swig_getmethods__["max_atomic_tl_with_atomic_boundary"] = _libiscsi.scsi_inquiry_block_limits_max_atomic_tl_with_atomic_boundary_get
+    if _newclass:
+        max_atomic_tl_with_atomic_boundary = _swig_property(_libiscsi.scsi_inquiry_block_limits_max_atomic_tl_with_atomic_boundary_get, _libiscsi.scsi_inquiry_block_limits_max_atomic_tl_with_atomic_boundary_set)
+    __swig_setmethods__["max_atomic_boundary_size"] = _libiscsi.scsi_inquiry_block_limits_max_atomic_boundary_size_set
+    __swig_getmethods__["max_atomic_boundary_size"] = _libiscsi.scsi_inquiry_block_limits_max_atomic_boundary_size_get
+    if _newclass:
+        max_atomic_boundary_size = _swig_property(_libiscsi.scsi_inquiry_block_limits_max_atomic_boundary_size_get, _libiscsi.scsi_inquiry_block_limits_max_atomic_boundary_size_set)
 
     def __init__(self):
         this = _libiscsi.new_scsi_inquiry_block_limits()
@@ -1662,6 +1515,396 @@ SCSI_MODESENSE_PC_CURRENT = _libiscsi.SCSI_MODESENSE_PC_CURRENT
 SCSI_MODESENSE_PC_CHANGEABLE = _libiscsi.SCSI_MODESENSE_PC_CHANGEABLE
 SCSI_MODESENSE_PC_DEFAULT = _libiscsi.SCSI_MODESENSE_PC_DEFAULT
 SCSI_MODESENSE_PC_SAVED = _libiscsi.SCSI_MODESENSE_PC_SAVED
+class scsi_mode_page_caching(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_mode_page_caching, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_mode_page_caching, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["ic"] = _libiscsi.scsi_mode_page_caching_ic_set
+    __swig_getmethods__["ic"] = _libiscsi.scsi_mode_page_caching_ic_get
+    if _newclass:
+        ic = _swig_property(_libiscsi.scsi_mode_page_caching_ic_get, _libiscsi.scsi_mode_page_caching_ic_set)
+    __swig_setmethods__["abpf"] = _libiscsi.scsi_mode_page_caching_abpf_set
+    __swig_getmethods__["abpf"] = _libiscsi.scsi_mode_page_caching_abpf_get
+    if _newclass:
+        abpf = _swig_property(_libiscsi.scsi_mode_page_caching_abpf_get, _libiscsi.scsi_mode_page_caching_abpf_set)
+    __swig_setmethods__["cap"] = _libiscsi.scsi_mode_page_caching_cap_set
+    __swig_getmethods__["cap"] = _libiscsi.scsi_mode_page_caching_cap_get
+    if _newclass:
+        cap = _swig_property(_libiscsi.scsi_mode_page_caching_cap_get, _libiscsi.scsi_mode_page_caching_cap_set)
+    __swig_setmethods__["disc"] = _libiscsi.scsi_mode_page_caching_disc_set
+    __swig_getmethods__["disc"] = _libiscsi.scsi_mode_page_caching_disc_get
+    if _newclass:
+        disc = _swig_property(_libiscsi.scsi_mode_page_caching_disc_get, _libiscsi.scsi_mode_page_caching_disc_set)
+    __swig_setmethods__["size"] = _libiscsi.scsi_mode_page_caching_size_set
+    __swig_getmethods__["size"] = _libiscsi.scsi_mode_page_caching_size_get
+    if _newclass:
+        size = _swig_property(_libiscsi.scsi_mode_page_caching_size_get, _libiscsi.scsi_mode_page_caching_size_set)
+    __swig_setmethods__["wce"] = _libiscsi.scsi_mode_page_caching_wce_set
+    __swig_getmethods__["wce"] = _libiscsi.scsi_mode_page_caching_wce_get
+    if _newclass:
+        wce = _swig_property(_libiscsi.scsi_mode_page_caching_wce_get, _libiscsi.scsi_mode_page_caching_wce_set)
+    __swig_setmethods__["mf"] = _libiscsi.scsi_mode_page_caching_mf_set
+    __swig_getmethods__["mf"] = _libiscsi.scsi_mode_page_caching_mf_get
+    if _newclass:
+        mf = _swig_property(_libiscsi.scsi_mode_page_caching_mf_get, _libiscsi.scsi_mode_page_caching_mf_set)
+    __swig_setmethods__["rcd"] = _libiscsi.scsi_mode_page_caching_rcd_set
+    __swig_getmethods__["rcd"] = _libiscsi.scsi_mode_page_caching_rcd_get
+    if _newclass:
+        rcd = _swig_property(_libiscsi.scsi_mode_page_caching_rcd_get, _libiscsi.scsi_mode_page_caching_rcd_set)
+    __swig_setmethods__["demand_read_retention_priority"] = _libiscsi.scsi_mode_page_caching_demand_read_retention_priority_set
+    __swig_getmethods__["demand_read_retention_priority"] = _libiscsi.scsi_mode_page_caching_demand_read_retention_priority_get
+    if _newclass:
+        demand_read_retention_priority = _swig_property(_libiscsi.scsi_mode_page_caching_demand_read_retention_priority_get, _libiscsi.scsi_mode_page_caching_demand_read_retention_priority_set)
+    __swig_setmethods__["write_retention_priority"] = _libiscsi.scsi_mode_page_caching_write_retention_priority_set
+    __swig_getmethods__["write_retention_priority"] = _libiscsi.scsi_mode_page_caching_write_retention_priority_get
+    if _newclass:
+        write_retention_priority = _swig_property(_libiscsi.scsi_mode_page_caching_write_retention_priority_get, _libiscsi.scsi_mode_page_caching_write_retention_priority_set)
+    __swig_setmethods__["disable_prefetch_transfer_length"] = _libiscsi.scsi_mode_page_caching_disable_prefetch_transfer_length_set
+    __swig_getmethods__["disable_prefetch_transfer_length"] = _libiscsi.scsi_mode_page_caching_disable_prefetch_transfer_length_get
+    if _newclass:
+        disable_prefetch_transfer_length = _swig_property(_libiscsi.scsi_mode_page_caching_disable_prefetch_transfer_length_get, _libiscsi.scsi_mode_page_caching_disable_prefetch_transfer_length_set)
+    __swig_setmethods__["minimum_prefetch"] = _libiscsi.scsi_mode_page_caching_minimum_prefetch_set
+    __swig_getmethods__["minimum_prefetch"] = _libiscsi.scsi_mode_page_caching_minimum_prefetch_get
+    if _newclass:
+        minimum_prefetch = _swig_property(_libiscsi.scsi_mode_page_caching_minimum_prefetch_get, _libiscsi.scsi_mode_page_caching_minimum_prefetch_set)
+    __swig_setmethods__["maximum_prefetch"] = _libiscsi.scsi_mode_page_caching_maximum_prefetch_set
+    __swig_getmethods__["maximum_prefetch"] = _libiscsi.scsi_mode_page_caching_maximum_prefetch_get
+    if _newclass:
+        maximum_prefetch = _swig_property(_libiscsi.scsi_mode_page_caching_maximum_prefetch_get, _libiscsi.scsi_mode_page_caching_maximum_prefetch_set)
+    __swig_setmethods__["maximum_prefetch_ceiling"] = _libiscsi.scsi_mode_page_caching_maximum_prefetch_ceiling_set
+    __swig_getmethods__["maximum_prefetch_ceiling"] = _libiscsi.scsi_mode_page_caching_maximum_prefetch_ceiling_get
+    if _newclass:
+        maximum_prefetch_ceiling = _swig_property(_libiscsi.scsi_mode_page_caching_maximum_prefetch_ceiling_get, _libiscsi.scsi_mode_page_caching_maximum_prefetch_ceiling_set)
+    __swig_setmethods__["fsw"] = _libiscsi.scsi_mode_page_caching_fsw_set
+    __swig_getmethods__["fsw"] = _libiscsi.scsi_mode_page_caching_fsw_get
+    if _newclass:
+        fsw = _swig_property(_libiscsi.scsi_mode_page_caching_fsw_get, _libiscsi.scsi_mode_page_caching_fsw_set)
+    __swig_setmethods__["lbcss"] = _libiscsi.scsi_mode_page_caching_lbcss_set
+    __swig_getmethods__["lbcss"] = _libiscsi.scsi_mode_page_caching_lbcss_get
+    if _newclass:
+        lbcss = _swig_property(_libiscsi.scsi_mode_page_caching_lbcss_get, _libiscsi.scsi_mode_page_caching_lbcss_set)
+    __swig_setmethods__["dra"] = _libiscsi.scsi_mode_page_caching_dra_set
+    __swig_getmethods__["dra"] = _libiscsi.scsi_mode_page_caching_dra_get
+    if _newclass:
+        dra = _swig_property(_libiscsi.scsi_mode_page_caching_dra_get, _libiscsi.scsi_mode_page_caching_dra_set)
+    __swig_setmethods__["nv_dis"] = _libiscsi.scsi_mode_page_caching_nv_dis_set
+    __swig_getmethods__["nv_dis"] = _libiscsi.scsi_mode_page_caching_nv_dis_get
+    if _newclass:
+        nv_dis = _swig_property(_libiscsi.scsi_mode_page_caching_nv_dis_get, _libiscsi.scsi_mode_page_caching_nv_dis_set)
+    __swig_setmethods__["number_of_cache_segments"] = _libiscsi.scsi_mode_page_caching_number_of_cache_segments_set
+    __swig_getmethods__["number_of_cache_segments"] = _libiscsi.scsi_mode_page_caching_number_of_cache_segments_get
+    if _newclass:
+        number_of_cache_segments = _swig_property(_libiscsi.scsi_mode_page_caching_number_of_cache_segments_get, _libiscsi.scsi_mode_page_caching_number_of_cache_segments_set)
+    __swig_setmethods__["cache_segment_size"] = _libiscsi.scsi_mode_page_caching_cache_segment_size_set
+    __swig_getmethods__["cache_segment_size"] = _libiscsi.scsi_mode_page_caching_cache_segment_size_get
+    if _newclass:
+        cache_segment_size = _swig_property(_libiscsi.scsi_mode_page_caching_cache_segment_size_get, _libiscsi.scsi_mode_page_caching_cache_segment_size_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_mode_page_caching()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_mode_page_caching
+    __del__ = lambda self: None
+scsi_mode_page_caching_swigregister = _libiscsi.scsi_mode_page_caching_swigregister
+scsi_mode_page_caching_swigregister(scsi_mode_page_caching)
+
+class scsi_mode_page_power_condition(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_mode_page_power_condition, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_mode_page_power_condition, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["pm_bg_precedence"] = _libiscsi.scsi_mode_page_power_condition_pm_bg_precedence_set
+    __swig_getmethods__["pm_bg_precedence"] = _libiscsi.scsi_mode_page_power_condition_pm_bg_precedence_get
+    if _newclass:
+        pm_bg_precedence = _swig_property(_libiscsi.scsi_mode_page_power_condition_pm_bg_precedence_get, _libiscsi.scsi_mode_page_power_condition_pm_bg_precedence_set)
+    __swig_setmethods__["standby_y"] = _libiscsi.scsi_mode_page_power_condition_standby_y_set
+    __swig_getmethods__["standby_y"] = _libiscsi.scsi_mode_page_power_condition_standby_y_get
+    if _newclass:
+        standby_y = _swig_property(_libiscsi.scsi_mode_page_power_condition_standby_y_get, _libiscsi.scsi_mode_page_power_condition_standby_y_set)
+    __swig_setmethods__["idle_c"] = _libiscsi.scsi_mode_page_power_condition_idle_c_set
+    __swig_getmethods__["idle_c"] = _libiscsi.scsi_mode_page_power_condition_idle_c_get
+    if _newclass:
+        idle_c = _swig_property(_libiscsi.scsi_mode_page_power_condition_idle_c_get, _libiscsi.scsi_mode_page_power_condition_idle_c_set)
+    __swig_setmethods__["idle_b"] = _libiscsi.scsi_mode_page_power_condition_idle_b_set
+    __swig_getmethods__["idle_b"] = _libiscsi.scsi_mode_page_power_condition_idle_b_get
+    if _newclass:
+        idle_b = _swig_property(_libiscsi.scsi_mode_page_power_condition_idle_b_get, _libiscsi.scsi_mode_page_power_condition_idle_b_set)
+    __swig_setmethods__["idle_a"] = _libiscsi.scsi_mode_page_power_condition_idle_a_set
+    __swig_getmethods__["idle_a"] = _libiscsi.scsi_mode_page_power_condition_idle_a_get
+    if _newclass:
+        idle_a = _swig_property(_libiscsi.scsi_mode_page_power_condition_idle_a_get, _libiscsi.scsi_mode_page_power_condition_idle_a_set)
+    __swig_setmethods__["standby_z"] = _libiscsi.scsi_mode_page_power_condition_standby_z_set
+    __swig_getmethods__["standby_z"] = _libiscsi.scsi_mode_page_power_condition_standby_z_get
+    if _newclass:
+        standby_z = _swig_property(_libiscsi.scsi_mode_page_power_condition_standby_z_get, _libiscsi.scsi_mode_page_power_condition_standby_z_set)
+    __swig_setmethods__["idle_a_condition_timer"] = _libiscsi.scsi_mode_page_power_condition_idle_a_condition_timer_set
+    __swig_getmethods__["idle_a_condition_timer"] = _libiscsi.scsi_mode_page_power_condition_idle_a_condition_timer_get
+    if _newclass:
+        idle_a_condition_timer = _swig_property(_libiscsi.scsi_mode_page_power_condition_idle_a_condition_timer_get, _libiscsi.scsi_mode_page_power_condition_idle_a_condition_timer_set)
+    __swig_setmethods__["standby_z_condition_timer"] = _libiscsi.scsi_mode_page_power_condition_standby_z_condition_timer_set
+    __swig_getmethods__["standby_z_condition_timer"] = _libiscsi.scsi_mode_page_power_condition_standby_z_condition_timer_get
+    if _newclass:
+        standby_z_condition_timer = _swig_property(_libiscsi.scsi_mode_page_power_condition_standby_z_condition_timer_get, _libiscsi.scsi_mode_page_power_condition_standby_z_condition_timer_set)
+    __swig_setmethods__["idle_b_condition_timer"] = _libiscsi.scsi_mode_page_power_condition_idle_b_condition_timer_set
+    __swig_getmethods__["idle_b_condition_timer"] = _libiscsi.scsi_mode_page_power_condition_idle_b_condition_timer_get
+    if _newclass:
+        idle_b_condition_timer = _swig_property(_libiscsi.scsi_mode_page_power_condition_idle_b_condition_timer_get, _libiscsi.scsi_mode_page_power_condition_idle_b_condition_timer_set)
+    __swig_setmethods__["idle_c_condition_timer"] = _libiscsi.scsi_mode_page_power_condition_idle_c_condition_timer_set
+    __swig_getmethods__["idle_c_condition_timer"] = _libiscsi.scsi_mode_page_power_condition_idle_c_condition_timer_get
+    if _newclass:
+        idle_c_condition_timer = _swig_property(_libiscsi.scsi_mode_page_power_condition_idle_c_condition_timer_get, _libiscsi.scsi_mode_page_power_condition_idle_c_condition_timer_set)
+    __swig_setmethods__["standby_y_condition_timer"] = _libiscsi.scsi_mode_page_power_condition_standby_y_condition_timer_set
+    __swig_getmethods__["standby_y_condition_timer"] = _libiscsi.scsi_mode_page_power_condition_standby_y_condition_timer_get
+    if _newclass:
+        standby_y_condition_timer = _swig_property(_libiscsi.scsi_mode_page_power_condition_standby_y_condition_timer_get, _libiscsi.scsi_mode_page_power_condition_standby_y_condition_timer_set)
+    __swig_setmethods__["ccf_idle"] = _libiscsi.scsi_mode_page_power_condition_ccf_idle_set
+    __swig_getmethods__["ccf_idle"] = _libiscsi.scsi_mode_page_power_condition_ccf_idle_get
+    if _newclass:
+        ccf_idle = _swig_property(_libiscsi.scsi_mode_page_power_condition_ccf_idle_get, _libiscsi.scsi_mode_page_power_condition_ccf_idle_set)
+    __swig_setmethods__["ccf_standby"] = _libiscsi.scsi_mode_page_power_condition_ccf_standby_set
+    __swig_getmethods__["ccf_standby"] = _libiscsi.scsi_mode_page_power_condition_ccf_standby_get
+    if _newclass:
+        ccf_standby = _swig_property(_libiscsi.scsi_mode_page_power_condition_ccf_standby_get, _libiscsi.scsi_mode_page_power_condition_ccf_standby_set)
+    __swig_setmethods__["ccf_stopped"] = _libiscsi.scsi_mode_page_power_condition_ccf_stopped_set
+    __swig_getmethods__["ccf_stopped"] = _libiscsi.scsi_mode_page_power_condition_ccf_stopped_get
+    if _newclass:
+        ccf_stopped = _swig_property(_libiscsi.scsi_mode_page_power_condition_ccf_stopped_get, _libiscsi.scsi_mode_page_power_condition_ccf_stopped_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_mode_page_power_condition()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_mode_page_power_condition
+    __del__ = lambda self: None
+scsi_mode_page_power_condition_swigregister = _libiscsi.scsi_mode_page_power_condition_swigregister
+scsi_mode_page_power_condition_swigregister(scsi_mode_page_power_condition)
+
+class scsi_mode_page_control(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_mode_page_control, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_mode_page_control, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["tst"] = _libiscsi.scsi_mode_page_control_tst_set
+    __swig_getmethods__["tst"] = _libiscsi.scsi_mode_page_control_tst_get
+    if _newclass:
+        tst = _swig_property(_libiscsi.scsi_mode_page_control_tst_get, _libiscsi.scsi_mode_page_control_tst_set)
+    __swig_setmethods__["tmf_only"] = _libiscsi.scsi_mode_page_control_tmf_only_set
+    __swig_getmethods__["tmf_only"] = _libiscsi.scsi_mode_page_control_tmf_only_get
+    if _newclass:
+        tmf_only = _swig_property(_libiscsi.scsi_mode_page_control_tmf_only_get, _libiscsi.scsi_mode_page_control_tmf_only_set)
+    __swig_setmethods__["dpicz"] = _libiscsi.scsi_mode_page_control_dpicz_set
+    __swig_getmethods__["dpicz"] = _libiscsi.scsi_mode_page_control_dpicz_get
+    if _newclass:
+        dpicz = _swig_property(_libiscsi.scsi_mode_page_control_dpicz_get, _libiscsi.scsi_mode_page_control_dpicz_set)
+    __swig_setmethods__["d_sense"] = _libiscsi.scsi_mode_page_control_d_sense_set
+    __swig_getmethods__["d_sense"] = _libiscsi.scsi_mode_page_control_d_sense_get
+    if _newclass:
+        d_sense = _swig_property(_libiscsi.scsi_mode_page_control_d_sense_get, _libiscsi.scsi_mode_page_control_d_sense_set)
+    __swig_setmethods__["gltsd"] = _libiscsi.scsi_mode_page_control_gltsd_set
+    __swig_getmethods__["gltsd"] = _libiscsi.scsi_mode_page_control_gltsd_get
+    if _newclass:
+        gltsd = _swig_property(_libiscsi.scsi_mode_page_control_gltsd_get, _libiscsi.scsi_mode_page_control_gltsd_set)
+    __swig_setmethods__["rlec"] = _libiscsi.scsi_mode_page_control_rlec_set
+    __swig_getmethods__["rlec"] = _libiscsi.scsi_mode_page_control_rlec_get
+    if _newclass:
+        rlec = _swig_property(_libiscsi.scsi_mode_page_control_rlec_get, _libiscsi.scsi_mode_page_control_rlec_set)
+    __swig_setmethods__["queue_algorithm_modifier"] = _libiscsi.scsi_mode_page_control_queue_algorithm_modifier_set
+    __swig_getmethods__["queue_algorithm_modifier"] = _libiscsi.scsi_mode_page_control_queue_algorithm_modifier_get
+    if _newclass:
+        queue_algorithm_modifier = _swig_property(_libiscsi.scsi_mode_page_control_queue_algorithm_modifier_get, _libiscsi.scsi_mode_page_control_queue_algorithm_modifier_set)
+    __swig_setmethods__["nuar"] = _libiscsi.scsi_mode_page_control_nuar_set
+    __swig_getmethods__["nuar"] = _libiscsi.scsi_mode_page_control_nuar_get
+    if _newclass:
+        nuar = _swig_property(_libiscsi.scsi_mode_page_control_nuar_get, _libiscsi.scsi_mode_page_control_nuar_set)
+    __swig_setmethods__["qerr"] = _libiscsi.scsi_mode_page_control_qerr_set
+    __swig_getmethods__["qerr"] = _libiscsi.scsi_mode_page_control_qerr_get
+    if _newclass:
+        qerr = _swig_property(_libiscsi.scsi_mode_page_control_qerr_get, _libiscsi.scsi_mode_page_control_qerr_set)
+    __swig_setmethods__["vs"] = _libiscsi.scsi_mode_page_control_vs_set
+    __swig_getmethods__["vs"] = _libiscsi.scsi_mode_page_control_vs_get
+    if _newclass:
+        vs = _swig_property(_libiscsi.scsi_mode_page_control_vs_get, _libiscsi.scsi_mode_page_control_vs_set)
+    __swig_setmethods__["rac"] = _libiscsi.scsi_mode_page_control_rac_set
+    __swig_getmethods__["rac"] = _libiscsi.scsi_mode_page_control_rac_get
+    if _newclass:
+        rac = _swig_property(_libiscsi.scsi_mode_page_control_rac_get, _libiscsi.scsi_mode_page_control_rac_set)
+    __swig_setmethods__["ua_intlck_ctrl"] = _libiscsi.scsi_mode_page_control_ua_intlck_ctrl_set
+    __swig_getmethods__["ua_intlck_ctrl"] = _libiscsi.scsi_mode_page_control_ua_intlck_ctrl_get
+    if _newclass:
+        ua_intlck_ctrl = _swig_property(_libiscsi.scsi_mode_page_control_ua_intlck_ctrl_get, _libiscsi.scsi_mode_page_control_ua_intlck_ctrl_set)
+    __swig_setmethods__["swp"] = _libiscsi.scsi_mode_page_control_swp_set
+    __swig_getmethods__["swp"] = _libiscsi.scsi_mode_page_control_swp_get
+    if _newclass:
+        swp = _swig_property(_libiscsi.scsi_mode_page_control_swp_get, _libiscsi.scsi_mode_page_control_swp_set)
+    __swig_setmethods__["ato"] = _libiscsi.scsi_mode_page_control_ato_set
+    __swig_getmethods__["ato"] = _libiscsi.scsi_mode_page_control_ato_get
+    if _newclass:
+        ato = _swig_property(_libiscsi.scsi_mode_page_control_ato_get, _libiscsi.scsi_mode_page_control_ato_set)
+    __swig_setmethods__["tas"] = _libiscsi.scsi_mode_page_control_tas_set
+    __swig_getmethods__["tas"] = _libiscsi.scsi_mode_page_control_tas_get
+    if _newclass:
+        tas = _swig_property(_libiscsi.scsi_mode_page_control_tas_get, _libiscsi.scsi_mode_page_control_tas_set)
+    __swig_setmethods__["atmpe"] = _libiscsi.scsi_mode_page_control_atmpe_set
+    __swig_getmethods__["atmpe"] = _libiscsi.scsi_mode_page_control_atmpe_get
+    if _newclass:
+        atmpe = _swig_property(_libiscsi.scsi_mode_page_control_atmpe_get, _libiscsi.scsi_mode_page_control_atmpe_set)
+    __swig_setmethods__["rwwp"] = _libiscsi.scsi_mode_page_control_rwwp_set
+    __swig_getmethods__["rwwp"] = _libiscsi.scsi_mode_page_control_rwwp_get
+    if _newclass:
+        rwwp = _swig_property(_libiscsi.scsi_mode_page_control_rwwp_get, _libiscsi.scsi_mode_page_control_rwwp_set)
+    __swig_setmethods__["autoload_mode"] = _libiscsi.scsi_mode_page_control_autoload_mode_set
+    __swig_getmethods__["autoload_mode"] = _libiscsi.scsi_mode_page_control_autoload_mode_get
+    if _newclass:
+        autoload_mode = _swig_property(_libiscsi.scsi_mode_page_control_autoload_mode_get, _libiscsi.scsi_mode_page_control_autoload_mode_set)
+    __swig_setmethods__["busy_timeout_period"] = _libiscsi.scsi_mode_page_control_busy_timeout_period_set
+    __swig_getmethods__["busy_timeout_period"] = _libiscsi.scsi_mode_page_control_busy_timeout_period_get
+    if _newclass:
+        busy_timeout_period = _swig_property(_libiscsi.scsi_mode_page_control_busy_timeout_period_get, _libiscsi.scsi_mode_page_control_busy_timeout_period_set)
+    __swig_setmethods__["extended_selftest_completion_time"] = _libiscsi.scsi_mode_page_control_extended_selftest_completion_time_set
+    __swig_getmethods__["extended_selftest_completion_time"] = _libiscsi.scsi_mode_page_control_extended_selftest_completion_time_get
+    if _newclass:
+        extended_selftest_completion_time = _swig_property(_libiscsi.scsi_mode_page_control_extended_selftest_completion_time_get, _libiscsi.scsi_mode_page_control_extended_selftest_completion_time_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_mode_page_control()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_mode_page_control
+    __del__ = lambda self: None
+scsi_mode_page_control_swigregister = _libiscsi.scsi_mode_page_control_swigregister
+scsi_mode_page_control_swigregister(scsi_mode_page_control)
+
+class scsi_mode_page_disconnect_reconnect(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_mode_page_disconnect_reconnect, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_mode_page_disconnect_reconnect, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["buffer_full_ratio"] = _libiscsi.scsi_mode_page_disconnect_reconnect_buffer_full_ratio_set
+    __swig_getmethods__["buffer_full_ratio"] = _libiscsi.scsi_mode_page_disconnect_reconnect_buffer_full_ratio_get
+    if _newclass:
+        buffer_full_ratio = _swig_property(_libiscsi.scsi_mode_page_disconnect_reconnect_buffer_full_ratio_get, _libiscsi.scsi_mode_page_disconnect_reconnect_buffer_full_ratio_set)
+    __swig_setmethods__["buffer_empty_ratio"] = _libiscsi.scsi_mode_page_disconnect_reconnect_buffer_empty_ratio_set
+    __swig_getmethods__["buffer_empty_ratio"] = _libiscsi.scsi_mode_page_disconnect_reconnect_buffer_empty_ratio_get
+    if _newclass:
+        buffer_empty_ratio = _swig_property(_libiscsi.scsi_mode_page_disconnect_reconnect_buffer_empty_ratio_get, _libiscsi.scsi_mode_page_disconnect_reconnect_buffer_empty_ratio_set)
+    __swig_setmethods__["bus_inactivity_limit"] = _libiscsi.scsi_mode_page_disconnect_reconnect_bus_inactivity_limit_set
+    __swig_getmethods__["bus_inactivity_limit"] = _libiscsi.scsi_mode_page_disconnect_reconnect_bus_inactivity_limit_get
+    if _newclass:
+        bus_inactivity_limit = _swig_property(_libiscsi.scsi_mode_page_disconnect_reconnect_bus_inactivity_limit_get, _libiscsi.scsi_mode_page_disconnect_reconnect_bus_inactivity_limit_set)
+    __swig_setmethods__["disconnect_time_limit"] = _libiscsi.scsi_mode_page_disconnect_reconnect_disconnect_time_limit_set
+    __swig_getmethods__["disconnect_time_limit"] = _libiscsi.scsi_mode_page_disconnect_reconnect_disconnect_time_limit_get
+    if _newclass:
+        disconnect_time_limit = _swig_property(_libiscsi.scsi_mode_page_disconnect_reconnect_disconnect_time_limit_get, _libiscsi.scsi_mode_page_disconnect_reconnect_disconnect_time_limit_set)
+    __swig_setmethods__["connect_time_limit"] = _libiscsi.scsi_mode_page_disconnect_reconnect_connect_time_limit_set
+    __swig_getmethods__["connect_time_limit"] = _libiscsi.scsi_mode_page_disconnect_reconnect_connect_time_limit_get
+    if _newclass:
+        connect_time_limit = _swig_property(_libiscsi.scsi_mode_page_disconnect_reconnect_connect_time_limit_get, _libiscsi.scsi_mode_page_disconnect_reconnect_connect_time_limit_set)
+    __swig_setmethods__["maximum_burst_size"] = _libiscsi.scsi_mode_page_disconnect_reconnect_maximum_burst_size_set
+    __swig_getmethods__["maximum_burst_size"] = _libiscsi.scsi_mode_page_disconnect_reconnect_maximum_burst_size_get
+    if _newclass:
+        maximum_burst_size = _swig_property(_libiscsi.scsi_mode_page_disconnect_reconnect_maximum_burst_size_get, _libiscsi.scsi_mode_page_disconnect_reconnect_maximum_burst_size_set)
+    __swig_setmethods__["emdp"] = _libiscsi.scsi_mode_page_disconnect_reconnect_emdp_set
+    __swig_getmethods__["emdp"] = _libiscsi.scsi_mode_page_disconnect_reconnect_emdp_get
+    if _newclass:
+        emdp = _swig_property(_libiscsi.scsi_mode_page_disconnect_reconnect_emdp_get, _libiscsi.scsi_mode_page_disconnect_reconnect_emdp_set)
+    __swig_setmethods__["fair_arbitration"] = _libiscsi.scsi_mode_page_disconnect_reconnect_fair_arbitration_set
+    __swig_getmethods__["fair_arbitration"] = _libiscsi.scsi_mode_page_disconnect_reconnect_fair_arbitration_get
+    if _newclass:
+        fair_arbitration = _swig_property(_libiscsi.scsi_mode_page_disconnect_reconnect_fair_arbitration_get, _libiscsi.scsi_mode_page_disconnect_reconnect_fair_arbitration_set)
+    __swig_setmethods__["dimm"] = _libiscsi.scsi_mode_page_disconnect_reconnect_dimm_set
+    __swig_getmethods__["dimm"] = _libiscsi.scsi_mode_page_disconnect_reconnect_dimm_get
+    if _newclass:
+        dimm = _swig_property(_libiscsi.scsi_mode_page_disconnect_reconnect_dimm_get, _libiscsi.scsi_mode_page_disconnect_reconnect_dimm_set)
+    __swig_setmethods__["dtdc"] = _libiscsi.scsi_mode_page_disconnect_reconnect_dtdc_set
+    __swig_getmethods__["dtdc"] = _libiscsi.scsi_mode_page_disconnect_reconnect_dtdc_get
+    if _newclass:
+        dtdc = _swig_property(_libiscsi.scsi_mode_page_disconnect_reconnect_dtdc_get, _libiscsi.scsi_mode_page_disconnect_reconnect_dtdc_set)
+    __swig_setmethods__["first_burst_size"] = _libiscsi.scsi_mode_page_disconnect_reconnect_first_burst_size_set
+    __swig_getmethods__["first_burst_size"] = _libiscsi.scsi_mode_page_disconnect_reconnect_first_burst_size_get
+    if _newclass:
+        first_burst_size = _swig_property(_libiscsi.scsi_mode_page_disconnect_reconnect_first_burst_size_get, _libiscsi.scsi_mode_page_disconnect_reconnect_first_burst_size_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_mode_page_disconnect_reconnect()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_mode_page_disconnect_reconnect
+    __del__ = lambda self: None
+scsi_mode_page_disconnect_reconnect_swigregister = _libiscsi.scsi_mode_page_disconnect_reconnect_swigregister
+scsi_mode_page_disconnect_reconnect_swigregister(scsi_mode_page_disconnect_reconnect)
+
+class scsi_mode_page_informational_exceptions_control(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_mode_page_informational_exceptions_control, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_mode_page_informational_exceptions_control, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["perf"] = _libiscsi.scsi_mode_page_informational_exceptions_control_perf_set
+    __swig_getmethods__["perf"] = _libiscsi.scsi_mode_page_informational_exceptions_control_perf_get
+    if _newclass:
+        perf = _swig_property(_libiscsi.scsi_mode_page_informational_exceptions_control_perf_get, _libiscsi.scsi_mode_page_informational_exceptions_control_perf_set)
+    __swig_setmethods__["ebf"] = _libiscsi.scsi_mode_page_informational_exceptions_control_ebf_set
+    __swig_getmethods__["ebf"] = _libiscsi.scsi_mode_page_informational_exceptions_control_ebf_get
+    if _newclass:
+        ebf = _swig_property(_libiscsi.scsi_mode_page_informational_exceptions_control_ebf_get, _libiscsi.scsi_mode_page_informational_exceptions_control_ebf_set)
+    __swig_setmethods__["ewasc"] = _libiscsi.scsi_mode_page_informational_exceptions_control_ewasc_set
+    __swig_getmethods__["ewasc"] = _libiscsi.scsi_mode_page_informational_exceptions_control_ewasc_get
+    if _newclass:
+        ewasc = _swig_property(_libiscsi.scsi_mode_page_informational_exceptions_control_ewasc_get, _libiscsi.scsi_mode_page_informational_exceptions_control_ewasc_set)
+    __swig_setmethods__["dexcpt"] = _libiscsi.scsi_mode_page_informational_exceptions_control_dexcpt_set
+    __swig_getmethods__["dexcpt"] = _libiscsi.scsi_mode_page_informational_exceptions_control_dexcpt_get
+    if _newclass:
+        dexcpt = _swig_property(_libiscsi.scsi_mode_page_informational_exceptions_control_dexcpt_get, _libiscsi.scsi_mode_page_informational_exceptions_control_dexcpt_set)
+    __swig_setmethods__["test"] = _libiscsi.scsi_mode_page_informational_exceptions_control_test_set
+    __swig_getmethods__["test"] = _libiscsi.scsi_mode_page_informational_exceptions_control_test_get
+    if _newclass:
+        test = _swig_property(_libiscsi.scsi_mode_page_informational_exceptions_control_test_get, _libiscsi.scsi_mode_page_informational_exceptions_control_test_set)
+    __swig_setmethods__["ebackerr"] = _libiscsi.scsi_mode_page_informational_exceptions_control_ebackerr_set
+    __swig_getmethods__["ebackerr"] = _libiscsi.scsi_mode_page_informational_exceptions_control_ebackerr_get
+    if _newclass:
+        ebackerr = _swig_property(_libiscsi.scsi_mode_page_informational_exceptions_control_ebackerr_get, _libiscsi.scsi_mode_page_informational_exceptions_control_ebackerr_set)
+    __swig_setmethods__["logerr"] = _libiscsi.scsi_mode_page_informational_exceptions_control_logerr_set
+    __swig_getmethods__["logerr"] = _libiscsi.scsi_mode_page_informational_exceptions_control_logerr_get
+    if _newclass:
+        logerr = _swig_property(_libiscsi.scsi_mode_page_informational_exceptions_control_logerr_get, _libiscsi.scsi_mode_page_informational_exceptions_control_logerr_set)
+    __swig_setmethods__["mrie"] = _libiscsi.scsi_mode_page_informational_exceptions_control_mrie_set
+    __swig_getmethods__["mrie"] = _libiscsi.scsi_mode_page_informational_exceptions_control_mrie_get
+    if _newclass:
+        mrie = _swig_property(_libiscsi.scsi_mode_page_informational_exceptions_control_mrie_get, _libiscsi.scsi_mode_page_informational_exceptions_control_mrie_set)
+    __swig_setmethods__["interval_timer"] = _libiscsi.scsi_mode_page_informational_exceptions_control_interval_timer_set
+    __swig_getmethods__["interval_timer"] = _libiscsi.scsi_mode_page_informational_exceptions_control_interval_timer_get
+    if _newclass:
+        interval_timer = _swig_property(_libiscsi.scsi_mode_page_informational_exceptions_control_interval_timer_get, _libiscsi.scsi_mode_page_informational_exceptions_control_interval_timer_set)
+    __swig_setmethods__["report_count"] = _libiscsi.scsi_mode_page_informational_exceptions_control_report_count_set
+    __swig_getmethods__["report_count"] = _libiscsi.scsi_mode_page_informational_exceptions_control_report_count_get
+    if _newclass:
+        report_count = _swig_property(_libiscsi.scsi_mode_page_informational_exceptions_control_report_count_get, _libiscsi.scsi_mode_page_informational_exceptions_control_report_count_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_mode_page_informational_exceptions_control()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_mode_page_informational_exceptions_control
+    __del__ = lambda self: None
+scsi_mode_page_informational_exceptions_control_swigregister = _libiscsi.scsi_mode_page_informational_exceptions_control_swigregister
+scsi_mode_page_informational_exceptions_control_swigregister(scsi_mode_page_informational_exceptions_control)
+
 SCSI_MODEPAGE_READ_WRITE_ERROR_RECOVERY = _libiscsi.SCSI_MODEPAGE_READ_WRITE_ERROR_RECOVERY
 SCSI_MODEPAGE_DISCONNECT_RECONNECT = _libiscsi.SCSI_MODEPAGE_DISCONNECT_RECONNECT
 SCSI_MODEPAGE_VERIFY_ERROR_RECOVERY = _libiscsi.SCSI_MODEPAGE_VERIFY_ERROR_RECOVERY
@@ -1671,6 +1914,134 @@ SCSI_MODEPAGE_CONTROL = _libiscsi.SCSI_MODEPAGE_CONTROL
 SCSI_MODEPAGE_POWER_CONDITION = _libiscsi.SCSI_MODEPAGE_POWER_CONDITION
 SCSI_MODEPAGE_INFORMATIONAL_EXCEPTIONS_CONTROL = _libiscsi.SCSI_MODEPAGE_INFORMATIONAL_EXCEPTIONS_CONTROL
 SCSI_MODEPAGE_RETURN_ALL_PAGES = _libiscsi.SCSI_MODEPAGE_RETURN_ALL_PAGES
+class scsi_mode_page(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_mode_page, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_mode_page, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["next"] = _libiscsi.scsi_mode_page_next_set
+    __swig_getmethods__["next"] = _libiscsi.scsi_mode_page_next_get
+    if _newclass:
+        next = _swig_property(_libiscsi.scsi_mode_page_next_get, _libiscsi.scsi_mode_page_next_set)
+    __swig_setmethods__["ps"] = _libiscsi.scsi_mode_page_ps_set
+    __swig_getmethods__["ps"] = _libiscsi.scsi_mode_page_ps_get
+    if _newclass:
+        ps = _swig_property(_libiscsi.scsi_mode_page_ps_get, _libiscsi.scsi_mode_page_ps_set)
+    __swig_setmethods__["spf"] = _libiscsi.scsi_mode_page_spf_set
+    __swig_getmethods__["spf"] = _libiscsi.scsi_mode_page_spf_get
+    if _newclass:
+        spf = _swig_property(_libiscsi.scsi_mode_page_spf_get, _libiscsi.scsi_mode_page_spf_set)
+    __swig_setmethods__["page_code"] = _libiscsi.scsi_mode_page_page_code_set
+    __swig_getmethods__["page_code"] = _libiscsi.scsi_mode_page_page_code_get
+    if _newclass:
+        page_code = _swig_property(_libiscsi.scsi_mode_page_page_code_get, _libiscsi.scsi_mode_page_page_code_set)
+    __swig_setmethods__["subpage_code"] = _libiscsi.scsi_mode_page_subpage_code_set
+    __swig_getmethods__["subpage_code"] = _libiscsi.scsi_mode_page_subpage_code_get
+    if _newclass:
+        subpage_code = _swig_property(_libiscsi.scsi_mode_page_subpage_code_get, _libiscsi.scsi_mode_page_subpage_code_set)
+    __swig_setmethods__["len"] = _libiscsi.scsi_mode_page_len_set
+    __swig_getmethods__["len"] = _libiscsi.scsi_mode_page_len_get
+    if _newclass:
+        len = _swig_property(_libiscsi.scsi_mode_page_len_get, _libiscsi.scsi_mode_page_len_set)
+    __swig_setmethods__["caching"] = _libiscsi.scsi_mode_page_caching_set
+    __swig_getmethods__["caching"] = _libiscsi.scsi_mode_page_caching_get
+    if _newclass:
+        caching = _swig_property(_libiscsi.scsi_mode_page_caching_get, _libiscsi.scsi_mode_page_caching_set)
+    __swig_setmethods__["control"] = _libiscsi.scsi_mode_page_control_set
+    __swig_getmethods__["control"] = _libiscsi.scsi_mode_page_control_get
+    if _newclass:
+        control = _swig_property(_libiscsi.scsi_mode_page_control_get, _libiscsi.scsi_mode_page_control_set)
+    __swig_setmethods__["disconnect_reconnect"] = _libiscsi.scsi_mode_page_disconnect_reconnect_set
+    __swig_getmethods__["disconnect_reconnect"] = _libiscsi.scsi_mode_page_disconnect_reconnect_get
+    if _newclass:
+        disconnect_reconnect = _swig_property(_libiscsi.scsi_mode_page_disconnect_reconnect_get, _libiscsi.scsi_mode_page_disconnect_reconnect_set)
+    __swig_setmethods__["iec"] = _libiscsi.scsi_mode_page_iec_set
+    __swig_getmethods__["iec"] = _libiscsi.scsi_mode_page_iec_get
+    if _newclass:
+        iec = _swig_property(_libiscsi.scsi_mode_page_iec_get, _libiscsi.scsi_mode_page_iec_set)
+    __swig_setmethods__["power_condition"] = _libiscsi.scsi_mode_page_power_condition_set
+    __swig_getmethods__["power_condition"] = _libiscsi.scsi_mode_page_power_condition_get
+    if _newclass:
+        power_condition = _swig_property(_libiscsi.scsi_mode_page_power_condition_get, _libiscsi.scsi_mode_page_power_condition_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_mode_page()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_mode_page
+    __del__ = lambda self: None
+scsi_mode_page_swigregister = _libiscsi.scsi_mode_page_swigregister
+scsi_mode_page_swigregister(scsi_mode_page)
+
+class scsi_mode_sense(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_mode_sense, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_mode_sense, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["mode_data_length"] = _libiscsi.scsi_mode_sense_mode_data_length_set
+    __swig_getmethods__["mode_data_length"] = _libiscsi.scsi_mode_sense_mode_data_length_get
+    if _newclass:
+        mode_data_length = _swig_property(_libiscsi.scsi_mode_sense_mode_data_length_get, _libiscsi.scsi_mode_sense_mode_data_length_set)
+    __swig_setmethods__["medium_type"] = _libiscsi.scsi_mode_sense_medium_type_set
+    __swig_getmethods__["medium_type"] = _libiscsi.scsi_mode_sense_medium_type_get
+    if _newclass:
+        medium_type = _swig_property(_libiscsi.scsi_mode_sense_medium_type_get, _libiscsi.scsi_mode_sense_medium_type_set)
+    __swig_setmethods__["device_specific_parameter"] = _libiscsi.scsi_mode_sense_device_specific_parameter_set
+    __swig_getmethods__["device_specific_parameter"] = _libiscsi.scsi_mode_sense_device_specific_parameter_get
+    if _newclass:
+        device_specific_parameter = _swig_property(_libiscsi.scsi_mode_sense_device_specific_parameter_get, _libiscsi.scsi_mode_sense_device_specific_parameter_set)
+    __swig_setmethods__["longlba"] = _libiscsi.scsi_mode_sense_longlba_set
+    __swig_getmethods__["longlba"] = _libiscsi.scsi_mode_sense_longlba_get
+    if _newclass:
+        longlba = _swig_property(_libiscsi.scsi_mode_sense_longlba_get, _libiscsi.scsi_mode_sense_longlba_set)
+    __swig_setmethods__["block_descriptor_length"] = _libiscsi.scsi_mode_sense_block_descriptor_length_set
+    __swig_getmethods__["block_descriptor_length"] = _libiscsi.scsi_mode_sense_block_descriptor_length_get
+    if _newclass:
+        block_descriptor_length = _swig_property(_libiscsi.scsi_mode_sense_block_descriptor_length_get, _libiscsi.scsi_mode_sense_block_descriptor_length_set)
+    __swig_setmethods__["pages"] = _libiscsi.scsi_mode_sense_pages_set
+    __swig_getmethods__["pages"] = _libiscsi.scsi_mode_sense_pages_get
+    if _newclass:
+        pages = _swig_property(_libiscsi.scsi_mode_sense_pages_get, _libiscsi.scsi_mode_sense_pages_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_mode_sense()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_mode_sense
+    __del__ = lambda self: None
+scsi_mode_sense_swigregister = _libiscsi.scsi_mode_sense_swigregister
+scsi_mode_sense_swigregister(scsi_mode_sense)
+
+
+def scsi_modesense_get_page(ms: 'scsi_mode_sense', page_code: 'enum scsi_modesense_page_code', subpage_code: 'int') -> "struct scsi_mode_page *":
+    return _libiscsi.scsi_modesense_get_page(ms, page_code, subpage_code)
+scsi_modesense_get_page = _libiscsi.scsi_modesense_get_page
+
+def scsi_cdb_modesense6(dbd: 'int', pc: 'enum scsi_modesense_page_control', page_code: 'enum scsi_modesense_page_code', sub_page_code: 'int', alloc_len: 'unsigned char') -> "struct scsi_task *":
+    return _libiscsi.scsi_cdb_modesense6(dbd, pc, page_code, sub_page_code, alloc_len)
+scsi_cdb_modesense6 = _libiscsi.scsi_cdb_modesense6
+
+def scsi_cdb_modesense10(llbaa: 'int', dbd: 'int', pc: 'enum scsi_modesense_page_control', page_code: 'enum scsi_modesense_page_code', sub_page_code: 'int', alloc_len: 'unsigned char') -> "struct scsi_task *":
+    return _libiscsi.scsi_cdb_modesense10(llbaa, dbd, pc, page_code, sub_page_code, alloc_len)
+scsi_cdb_modesense10 = _libiscsi.scsi_cdb_modesense10
+
+def scsi_cdb_modeselect6(pf: 'int', sp: 'int', param_len: 'int') -> "struct scsi_task *":
+    return _libiscsi.scsi_cdb_modeselect6(pf, sp, param_len)
+scsi_cdb_modeselect6 = _libiscsi.scsi_cdb_modeselect6
+
+def scsi_cdb_modeselect10(pf: 'int', sp: 'int', param_len: 'int') -> "struct scsi_task *":
+    return _libiscsi.scsi_cdb_modeselect10(pf, sp, param_len)
+scsi_cdb_modeselect10 = _libiscsi.scsi_cdb_modeselect10
+
+def scsi_modesense_dataout_marshall(task: 'scsi_task', mp: 'scsi_mode_page', is_modeselect6: 'int') -> "struct scsi_data *":
+    return _libiscsi.scsi_modesense_dataout_marshall(task, mp, is_modeselect6)
+scsi_modesense_dataout_marshall = _libiscsi.scsi_modesense_dataout_marshall
 class scsi_readcapacity16(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_readcapacity16, name, value)
@@ -2000,6 +2371,13 @@ class scsi_persistent_reserve_in_read_reservation(_object):
 scsi_persistent_reserve_in_read_reservation_swigregister = _libiscsi.scsi_persistent_reserve_in_read_reservation_swigregister
 scsi_persistent_reserve_in_read_reservation_swigregister(scsi_persistent_reserve_in_read_reservation)
 
+SCSI_PR_TYPE_MASK_EX_AC_AR = _libiscsi.SCSI_PR_TYPE_MASK_EX_AC_AR
+SCSI_PR_TYPE_MASK_WR_EX = _libiscsi.SCSI_PR_TYPE_MASK_WR_EX
+SCSI_PR_TYPE_MASK_EX_AC = _libiscsi.SCSI_PR_TYPE_MASK_EX_AC
+SCSI_PR_TYPE_MASK_WR_EX_RO = _libiscsi.SCSI_PR_TYPE_MASK_WR_EX_RO
+SCSI_PR_TYPE_MASK_EX_AC_RO = _libiscsi.SCSI_PR_TYPE_MASK_EX_AC_RO
+SCSI_PR_TYPE_MASK_WR_EX_AR = _libiscsi.SCSI_PR_TYPE_MASK_WR_EX_AR
+SCSI_PR_TYPE_MASK_ALL = _libiscsi.SCSI_PR_TYPE_MASK_ALL
 class scsi_persistent_reserve_in_report_capabilities(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_persistent_reserve_in_report_capabilities, name, value)
@@ -2570,40 +2948,68 @@ class scsi_write16_cdb(_object):
 scsi_write16_cdb_swigregister = _libiscsi.scsi_write16_cdb_swigregister
 scsi_write16_cdb_swigregister(scsi_write16_cdb)
 
-class scsi_datain_unmarshalled(_object):
+class scsi_writeatomic16_cdb(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_datain_unmarshalled, name, value)
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_writeatomic16_cdb, name, value)
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, scsi_datain_unmarshalled, name)
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_writeatomic16_cdb, name)
     __repr__ = _swig_repr
-    __swig_setmethods__["readcapacity16"] = _libiscsi.scsi_datain_unmarshalled_readcapacity16_set
-    __swig_getmethods__["readcapacity16"] = _libiscsi.scsi_datain_unmarshalled_readcapacity16_get
+    __swig_setmethods__["opcode"] = _libiscsi.scsi_writeatomic16_cdb_opcode_set
+    __swig_getmethods__["opcode"] = _libiscsi.scsi_writeatomic16_cdb_opcode_get
     if _newclass:
-        readcapacity16 = _swig_property(_libiscsi.scsi_datain_unmarshalled_readcapacity16_get, _libiscsi.scsi_datain_unmarshalled_readcapacity16_set)
+        opcode = _swig_property(_libiscsi.scsi_writeatomic16_cdb_opcode_get, _libiscsi.scsi_writeatomic16_cdb_opcode_set)
+    __swig_setmethods__["wrprotect"] = _libiscsi.scsi_writeatomic16_cdb_wrprotect_set
+    __swig_getmethods__["wrprotect"] = _libiscsi.scsi_writeatomic16_cdb_wrprotect_get
+    if _newclass:
+        wrprotect = _swig_property(_libiscsi.scsi_writeatomic16_cdb_wrprotect_get, _libiscsi.scsi_writeatomic16_cdb_wrprotect_set)
+    __swig_setmethods__["dpo"] = _libiscsi.scsi_writeatomic16_cdb_dpo_set
+    __swig_getmethods__["dpo"] = _libiscsi.scsi_writeatomic16_cdb_dpo_get
+    if _newclass:
+        dpo = _swig_property(_libiscsi.scsi_writeatomic16_cdb_dpo_get, _libiscsi.scsi_writeatomic16_cdb_dpo_set)
+    __swig_setmethods__["fua"] = _libiscsi.scsi_writeatomic16_cdb_fua_set
+    __swig_getmethods__["fua"] = _libiscsi.scsi_writeatomic16_cdb_fua_get
+    if _newclass:
+        fua = _swig_property(_libiscsi.scsi_writeatomic16_cdb_fua_get, _libiscsi.scsi_writeatomic16_cdb_fua_set)
+    __swig_setmethods__["lba"] = _libiscsi.scsi_writeatomic16_cdb_lba_set
+    __swig_getmethods__["lba"] = _libiscsi.scsi_writeatomic16_cdb_lba_get
+    if _newclass:
+        lba = _swig_property(_libiscsi.scsi_writeatomic16_cdb_lba_get, _libiscsi.scsi_writeatomic16_cdb_lba_set)
+    __swig_setmethods__["transfer_length"] = _libiscsi.scsi_writeatomic16_cdb_transfer_length_set
+    __swig_getmethods__["transfer_length"] = _libiscsi.scsi_writeatomic16_cdb_transfer_length_get
+    if _newclass:
+        transfer_length = _swig_property(_libiscsi.scsi_writeatomic16_cdb_transfer_length_get, _libiscsi.scsi_writeatomic16_cdb_transfer_length_set)
+    __swig_setmethods__["group"] = _libiscsi.scsi_writeatomic16_cdb_group_set
+    __swig_getmethods__["group"] = _libiscsi.scsi_writeatomic16_cdb_group_get
+    if _newclass:
+        group = _swig_property(_libiscsi.scsi_writeatomic16_cdb_group_get, _libiscsi.scsi_writeatomic16_cdb_group_set)
+    __swig_setmethods__["control"] = _libiscsi.scsi_writeatomic16_cdb_control_set
+    __swig_getmethods__["control"] = _libiscsi.scsi_writeatomic16_cdb_control_get
+    if _newclass:
+        control = _swig_property(_libiscsi.scsi_writeatomic16_cdb_control_get, _libiscsi.scsi_writeatomic16_cdb_control_set)
 
     def __init__(self):
-        this = _libiscsi.new_scsi_datain_unmarshalled()
+        this = _libiscsi.new_scsi_writeatomic16_cdb()
         try:
             self.this.append(this)
         except __builtin__.Exception:
             self.this = this
-    __swig_destroy__ = _libiscsi.delete_scsi_datain_unmarshalled
+    __swig_destroy__ = _libiscsi.delete_scsi_writeatomic16_cdb
     __del__ = lambda self: None
-scsi_datain_unmarshalled_swigregister = _libiscsi.scsi_datain_unmarshalled_swigregister
-scsi_datain_unmarshalled_swigregister(scsi_datain_unmarshalled)
+scsi_writeatomic16_cdb_swigregister = _libiscsi.scsi_writeatomic16_cdb_swigregister
+scsi_writeatomic16_cdb_swigregister(scsi_writeatomic16_cdb)
 
 
 def scsi_datain_getfullsize(task: 'scsi_task') -> "int":
     return _libiscsi.scsi_datain_getfullsize(task)
 scsi_datain_getfullsize = _libiscsi.scsi_datain_getfullsize
 
-def scsi_datain_unmarshall(task: 'scsi_task') -> "scsi_datain_unmarshalled *":
-    return _libiscsi.scsi_datain_unmarshall(task)
-scsi_datain_unmarshall = _libiscsi.scsi_datain_unmarshall
-
 def scsi_cdb_unmarshall(task: 'scsi_task', opcode: 'enum scsi_opcode') -> "void *":
     return _libiscsi.scsi_cdb_unmarshall(task, opcode)
 scsi_cdb_unmarshall = _libiscsi.scsi_cdb_unmarshall
+
+def scsi_parse_sense_data(sense: 'scsi_sense', sb: 'uint8_t const *') -> "void":
+    return _libiscsi.scsi_parse_sense_data(sense, sb)
+scsi_parse_sense_data = _libiscsi.scsi_parse_sense_data
 
 def scsi_cdb_compareandwrite(lba: 'uint64_t', xferlen: 'uint32_t', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
     return _libiscsi.scsi_cdb_compareandwrite(lba, xferlen, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
@@ -2657,6 +3063,14 @@ def scsi_cdb_readcapacity16() -> "struct scsi_task *":
     return _libiscsi.scsi_cdb_readcapacity16()
 scsi_cdb_readcapacity16 = _libiscsi.scsi_cdb_readcapacity16
 
+def scsi_cdb_readdefectdata10(req_plist: 'int', req_glist: 'int', defect_list_format: 'int', alloc_len: 'uint16_t') -> "struct scsi_task *":
+    return _libiscsi.scsi_cdb_readdefectdata10(req_plist, req_glist, defect_list_format, alloc_len)
+scsi_cdb_readdefectdata10 = _libiscsi.scsi_cdb_readdefectdata10
+
+def scsi_cdb_readdefectdata12(req_plist: 'int', req_glist: 'int', defect_list_format: 'int', address_descriptor_index: 'uint32_t', alloc_len: 'uint32_t') -> "struct scsi_task *":
+    return _libiscsi.scsi_cdb_readdefectdata12(req_plist, req_glist, defect_list_format, address_descriptor_index, alloc_len)
+scsi_cdb_readdefectdata12 = _libiscsi.scsi_cdb_readdefectdata12
+
 def scsi_cdb_report_supported_opcodes(rctd: 'int', options: 'int', opcode: 'enum scsi_opcode', sa: 'int', alloc_len: 'uint32_t') -> "struct scsi_task *":
     return _libiscsi.scsi_cdb_report_supported_opcodes(rctd, options, opcode, sa, alloc_len)
 scsi_cdb_report_supported_opcodes = _libiscsi.scsi_cdb_report_supported_opcodes
@@ -2705,6 +3119,10 @@ def scsi_cdb_write16(lba: 'uint64_t', xferlen: 'uint32_t', blocksize: 'int', wrp
     return _libiscsi.scsi_cdb_write16(lba, xferlen, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
 scsi_cdb_write16 = _libiscsi.scsi_cdb_write16
 
+def scsi_cdb_writeatomic16(lba: 'uint64_t', xferlen: 'uint32_t', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', group_number: 'int') -> "struct scsi_task *":
+    return _libiscsi.scsi_cdb_writeatomic16(lba, xferlen, blocksize, wrprotect, dpo, fua, group_number)
+scsi_cdb_writeatomic16 = _libiscsi.scsi_cdb_writeatomic16
+
 def scsi_cdb_writesame10(wrprotect: 'int', anchor: 'int', unmap: 'int', lba: 'uint32_t', group: 'int', num_blocks: 'uint16_t', datalen: 'uint32_t') -> "struct scsi_task *":
     return _libiscsi.scsi_cdb_writesame10(wrprotect, anchor, unmap, lba, group, num_blocks, datalen)
 scsi_cdb_writesame10 = _libiscsi.scsi_cdb_writesame10
@@ -2724,6 +3142,1221 @@ scsi_cdb_writeverify12 = _libiscsi.scsi_cdb_writeverify12
 def scsi_cdb_writeverify16(lba: 'uint64_t', xferlen: 'uint32_t', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int') -> "struct scsi_task *":
     return _libiscsi.scsi_cdb_writeverify16(lba, xferlen, blocksize, wrprotect, dpo, bytchk, group_number)
 scsi_cdb_writeverify16 = _libiscsi.scsi_cdb_writeverify16
+XCOPY_DESC_OFFSET = _libiscsi.XCOPY_DESC_OFFSET
+SEG_DESC_SRC_INDEX_OFFSET = _libiscsi.SEG_DESC_SRC_INDEX_OFFSET
+LIST_ID_USAGE_HOLD = _libiscsi.LIST_ID_USAGE_HOLD
+LIST_ID_USAGE_DISCARD = _libiscsi.LIST_ID_USAGE_DISCARD
+LIST_ID_USAGE_DISABLE = _libiscsi.LIST_ID_USAGE_DISABLE
+BLK_TO_STRM_SEG_DESCR = _libiscsi.BLK_TO_STRM_SEG_DESCR
+STRM_TO_BLK_SEG_DESCR = _libiscsi.STRM_TO_BLK_SEG_DESCR
+BLK_TO_BLK_SEG_DESCR = _libiscsi.BLK_TO_BLK_SEG_DESCR
+STRM_TO_STRM_SEG_DESCR = _libiscsi.STRM_TO_STRM_SEG_DESCR
+IDENT_DESCR_TGT_DESCR = _libiscsi.IDENT_DESCR_TGT_DESCR
+IPV4_TGT_DESCR = _libiscsi.IPV4_TGT_DESCR
+IPV6_TGT_DESCR = _libiscsi.IPV6_TGT_DESCR
+IP_COPY_SVC_TGT_DESCR = _libiscsi.IP_COPY_SVC_TGT_DESCR
+LU_ID_TYPE_LUN = _libiscsi.LU_ID_TYPE_LUN
+LU_ID_TYPE_PROXY_TOKEN = _libiscsi.LU_ID_TYPE_PROXY_TOKEN
+LU_ID_TYPE_RSVD = _libiscsi.LU_ID_TYPE_RSVD
+LU_ID_TYPE_RSVD1 = _libiscsi.LU_ID_TYPE_RSVD1
+
+def scsi_cdb_extended_copy(immed: 'int') -> "struct scsi_task *":
+    return _libiscsi.scsi_cdb_extended_copy(immed)
+scsi_cdb_extended_copy = _libiscsi.scsi_cdb_extended_copy
+SCSI_COPY_RESULTS_COPY_STATUS = _libiscsi.SCSI_COPY_RESULTS_COPY_STATUS
+SCSI_COPY_RESULTS_RECEIVE_DATA = _libiscsi.SCSI_COPY_RESULTS_RECEIVE_DATA
+SCSI_COPY_RESULTS_OP_PARAMS = _libiscsi.SCSI_COPY_RESULTS_OP_PARAMS
+SCSI_COPY_RESULTS_FAILED_SEGMENT = _libiscsi.SCSI_COPY_RESULTS_FAILED_SEGMENT
+
+def scsi_cdb_receive_copy_results(sa: 'enum scsi_copy_results_sa', list_id: 'int', xferlen: 'int') -> "struct scsi_task *":
+    return _libiscsi.scsi_cdb_receive_copy_results(sa, list_id, xferlen)
+scsi_cdb_receive_copy_results = _libiscsi.scsi_cdb_receive_copy_results
+class scsi_copy_results_copy_status(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_copy_results_copy_status, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_copy_results_copy_status, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["available_data"] = _libiscsi.scsi_copy_results_copy_status_available_data_set
+    __swig_getmethods__["available_data"] = _libiscsi.scsi_copy_results_copy_status_available_data_get
+    if _newclass:
+        available_data = _swig_property(_libiscsi.scsi_copy_results_copy_status_available_data_get, _libiscsi.scsi_copy_results_copy_status_available_data_set)
+    __swig_setmethods__["copy_manager_status"] = _libiscsi.scsi_copy_results_copy_status_copy_manager_status_set
+    __swig_getmethods__["copy_manager_status"] = _libiscsi.scsi_copy_results_copy_status_copy_manager_status_get
+    if _newclass:
+        copy_manager_status = _swig_property(_libiscsi.scsi_copy_results_copy_status_copy_manager_status_get, _libiscsi.scsi_copy_results_copy_status_copy_manager_status_set)
+    __swig_setmethods__["hdd"] = _libiscsi.scsi_copy_results_copy_status_hdd_set
+    __swig_getmethods__["hdd"] = _libiscsi.scsi_copy_results_copy_status_hdd_get
+    if _newclass:
+        hdd = _swig_property(_libiscsi.scsi_copy_results_copy_status_hdd_get, _libiscsi.scsi_copy_results_copy_status_hdd_set)
+    __swig_setmethods__["segments_processed"] = _libiscsi.scsi_copy_results_copy_status_segments_processed_set
+    __swig_getmethods__["segments_processed"] = _libiscsi.scsi_copy_results_copy_status_segments_processed_get
+    if _newclass:
+        segments_processed = _swig_property(_libiscsi.scsi_copy_results_copy_status_segments_processed_get, _libiscsi.scsi_copy_results_copy_status_segments_processed_set)
+    __swig_setmethods__["transfer_count_units"] = _libiscsi.scsi_copy_results_copy_status_transfer_count_units_set
+    __swig_getmethods__["transfer_count_units"] = _libiscsi.scsi_copy_results_copy_status_transfer_count_units_get
+    if _newclass:
+        transfer_count_units = _swig_property(_libiscsi.scsi_copy_results_copy_status_transfer_count_units_get, _libiscsi.scsi_copy_results_copy_status_transfer_count_units_set)
+    __swig_setmethods__["transfer_count"] = _libiscsi.scsi_copy_results_copy_status_transfer_count_set
+    __swig_getmethods__["transfer_count"] = _libiscsi.scsi_copy_results_copy_status_transfer_count_get
+    if _newclass:
+        transfer_count = _swig_property(_libiscsi.scsi_copy_results_copy_status_transfer_count_get, _libiscsi.scsi_copy_results_copy_status_transfer_count_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_copy_results_copy_status()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_copy_results_copy_status
+    __del__ = lambda self: None
+scsi_copy_results_copy_status_swigregister = _libiscsi.scsi_copy_results_copy_status_swigregister
+scsi_copy_results_copy_status_swigregister(scsi_copy_results_copy_status)
+
+class scsi_copy_results_op_params(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_copy_results_op_params, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, scsi_copy_results_op_params, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["available_data"] = _libiscsi.scsi_copy_results_op_params_available_data_set
+    __swig_getmethods__["available_data"] = _libiscsi.scsi_copy_results_op_params_available_data_get
+    if _newclass:
+        available_data = _swig_property(_libiscsi.scsi_copy_results_op_params_available_data_get, _libiscsi.scsi_copy_results_op_params_available_data_set)
+    __swig_setmethods__["max_target_desc_count"] = _libiscsi.scsi_copy_results_op_params_max_target_desc_count_set
+    __swig_getmethods__["max_target_desc_count"] = _libiscsi.scsi_copy_results_op_params_max_target_desc_count_get
+    if _newclass:
+        max_target_desc_count = _swig_property(_libiscsi.scsi_copy_results_op_params_max_target_desc_count_get, _libiscsi.scsi_copy_results_op_params_max_target_desc_count_set)
+    __swig_setmethods__["max_segment_desc_count"] = _libiscsi.scsi_copy_results_op_params_max_segment_desc_count_set
+    __swig_getmethods__["max_segment_desc_count"] = _libiscsi.scsi_copy_results_op_params_max_segment_desc_count_get
+    if _newclass:
+        max_segment_desc_count = _swig_property(_libiscsi.scsi_copy_results_op_params_max_segment_desc_count_get, _libiscsi.scsi_copy_results_op_params_max_segment_desc_count_set)
+    __swig_setmethods__["max_desc_list_length"] = _libiscsi.scsi_copy_results_op_params_max_desc_list_length_set
+    __swig_getmethods__["max_desc_list_length"] = _libiscsi.scsi_copy_results_op_params_max_desc_list_length_get
+    if _newclass:
+        max_desc_list_length = _swig_property(_libiscsi.scsi_copy_results_op_params_max_desc_list_length_get, _libiscsi.scsi_copy_results_op_params_max_desc_list_length_set)
+    __swig_setmethods__["max_segment_length"] = _libiscsi.scsi_copy_results_op_params_max_segment_length_set
+    __swig_getmethods__["max_segment_length"] = _libiscsi.scsi_copy_results_op_params_max_segment_length_get
+    if _newclass:
+        max_segment_length = _swig_property(_libiscsi.scsi_copy_results_op_params_max_segment_length_get, _libiscsi.scsi_copy_results_op_params_max_segment_length_set)
+    __swig_setmethods__["max_inline_data_length"] = _libiscsi.scsi_copy_results_op_params_max_inline_data_length_set
+    __swig_getmethods__["max_inline_data_length"] = _libiscsi.scsi_copy_results_op_params_max_inline_data_length_get
+    if _newclass:
+        max_inline_data_length = _swig_property(_libiscsi.scsi_copy_results_op_params_max_inline_data_length_get, _libiscsi.scsi_copy_results_op_params_max_inline_data_length_set)
+    __swig_setmethods__["held_data_limit"] = _libiscsi.scsi_copy_results_op_params_held_data_limit_set
+    __swig_getmethods__["held_data_limit"] = _libiscsi.scsi_copy_results_op_params_held_data_limit_get
+    if _newclass:
+        held_data_limit = _swig_property(_libiscsi.scsi_copy_results_op_params_held_data_limit_get, _libiscsi.scsi_copy_results_op_params_held_data_limit_set)
+    __swig_setmethods__["max_stream_device_transfer_size"] = _libiscsi.scsi_copy_results_op_params_max_stream_device_transfer_size_set
+    __swig_getmethods__["max_stream_device_transfer_size"] = _libiscsi.scsi_copy_results_op_params_max_stream_device_transfer_size_get
+    if _newclass:
+        max_stream_device_transfer_size = _swig_property(_libiscsi.scsi_copy_results_op_params_max_stream_device_transfer_size_get, _libiscsi.scsi_copy_results_op_params_max_stream_device_transfer_size_set)
+    __swig_setmethods__["total_concurrent_copies"] = _libiscsi.scsi_copy_results_op_params_total_concurrent_copies_set
+    __swig_getmethods__["total_concurrent_copies"] = _libiscsi.scsi_copy_results_op_params_total_concurrent_copies_get
+    if _newclass:
+        total_concurrent_copies = _swig_property(_libiscsi.scsi_copy_results_op_params_total_concurrent_copies_get, _libiscsi.scsi_copy_results_op_params_total_concurrent_copies_set)
+    __swig_setmethods__["max_concurrent_copies"] = _libiscsi.scsi_copy_results_op_params_max_concurrent_copies_set
+    __swig_getmethods__["max_concurrent_copies"] = _libiscsi.scsi_copy_results_op_params_max_concurrent_copies_get
+    if _newclass:
+        max_concurrent_copies = _swig_property(_libiscsi.scsi_copy_results_op_params_max_concurrent_copies_get, _libiscsi.scsi_copy_results_op_params_max_concurrent_copies_set)
+    __swig_setmethods__["data_segment_granularity"] = _libiscsi.scsi_copy_results_op_params_data_segment_granularity_set
+    __swig_getmethods__["data_segment_granularity"] = _libiscsi.scsi_copy_results_op_params_data_segment_granularity_get
+    if _newclass:
+        data_segment_granularity = _swig_property(_libiscsi.scsi_copy_results_op_params_data_segment_granularity_get, _libiscsi.scsi_copy_results_op_params_data_segment_granularity_set)
+    __swig_setmethods__["inline_data_granularity"] = _libiscsi.scsi_copy_results_op_params_inline_data_granularity_set
+    __swig_getmethods__["inline_data_granularity"] = _libiscsi.scsi_copy_results_op_params_inline_data_granularity_get
+    if _newclass:
+        inline_data_granularity = _swig_property(_libiscsi.scsi_copy_results_op_params_inline_data_granularity_get, _libiscsi.scsi_copy_results_op_params_inline_data_granularity_set)
+    __swig_setmethods__["held_data_granularity"] = _libiscsi.scsi_copy_results_op_params_held_data_granularity_set
+    __swig_getmethods__["held_data_granularity"] = _libiscsi.scsi_copy_results_op_params_held_data_granularity_get
+    if _newclass:
+        held_data_granularity = _swig_property(_libiscsi.scsi_copy_results_op_params_held_data_granularity_get, _libiscsi.scsi_copy_results_op_params_held_data_granularity_set)
+    __swig_setmethods__["impl_desc_list_length"] = _libiscsi.scsi_copy_results_op_params_impl_desc_list_length_set
+    __swig_getmethods__["impl_desc_list_length"] = _libiscsi.scsi_copy_results_op_params_impl_desc_list_length_get
+    if _newclass:
+        impl_desc_list_length = _swig_property(_libiscsi.scsi_copy_results_op_params_impl_desc_list_length_get, _libiscsi.scsi_copy_results_op_params_impl_desc_list_length_set)
+    __swig_setmethods__["imp_desc_type_codes"] = _libiscsi.scsi_copy_results_op_params_imp_desc_type_codes_set
+    __swig_getmethods__["imp_desc_type_codes"] = _libiscsi.scsi_copy_results_op_params_imp_desc_type_codes_get
+    if _newclass:
+        imp_desc_type_codes = _swig_property(_libiscsi.scsi_copy_results_op_params_imp_desc_type_codes_get, _libiscsi.scsi_copy_results_op_params_imp_desc_type_codes_set)
+
+    def __init__(self):
+        this = _libiscsi.new_scsi_copy_results_op_params()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_scsi_copy_results_op_params
+    __del__ = lambda self: None
+scsi_copy_results_op_params_swigregister = _libiscsi.scsi_copy_results_op_params_swigregister
+scsi_copy_results_op_params_swigregister(scsi_copy_results_op_params)
+
+
+def scsi_malloc(task: 'scsi_task', size: 'size_t') -> "void *":
+    return _libiscsi.scsi_malloc(task, size)
+scsi_malloc = _libiscsi.scsi_malloc
+
+def scsi_get_uint64(c: 'unsigned char const *') -> "uint64_t":
+    return _libiscsi.scsi_get_uint64(c)
+scsi_get_uint64 = _libiscsi.scsi_get_uint64
+
+def scsi_get_uint32(c: 'unsigned char const *') -> "uint32_t":
+    return _libiscsi.scsi_get_uint32(c)
+scsi_get_uint32 = _libiscsi.scsi_get_uint32
+
+def scsi_get_uint16(c: 'unsigned char const *') -> "uint16_t":
+    return _libiscsi.scsi_get_uint16(c)
+scsi_get_uint16 = _libiscsi.scsi_get_uint16
+
+def scsi_set_uint64(c: 'unsigned char *', val: 'uint64_t') -> "void":
+    return _libiscsi.scsi_set_uint64(c, val)
+scsi_set_uint64 = _libiscsi.scsi_set_uint64
+
+def scsi_set_uint32(c: 'unsigned char *', val: 'uint32_t') -> "void":
+    return _libiscsi.scsi_set_uint32(c, val)
+scsi_set_uint32 = _libiscsi.scsi_set_uint32
+
+def scsi_set_uint16(c: 'unsigned char *', val: 'uint16_t') -> "void":
+    return _libiscsi.scsi_set_uint16(c, val)
+scsi_set_uint16 = _libiscsi.scsi_set_uint16
+LIBISCSI_API_VERSION = _libiscsi.LIBISCSI_API_VERSION
+LIBISCSI_FEATURE_IOVECTOR = _libiscsi.LIBISCSI_FEATURE_IOVECTOR
+LIBISCSI_FEATURE_NOP_COUNTER = _libiscsi.LIBISCSI_FEATURE_NOP_COUNTER
+LIBISCSI_FEATURE_ISER = _libiscsi.LIBISCSI_FEATURE_ISER
+MAX_STRING_SIZE = _libiscsi.MAX_STRING_SIZE
+ISCSI_URL_SYNTAX = _libiscsi.ISCSI_URL_SYNTAX
+ISCSI_PORTAL_URL_SYNTAX = _libiscsi.ISCSI_PORTAL_URL_SYNTAX
+TCP_TRANSPORT = _libiscsi.TCP_TRANSPORT
+ISER_TRANSPORT = _libiscsi.ISER_TRANSPORT
+
+def iscsi_set_cache_allocations(iscsi: 'struct iscsi_context *', ca: 'int') -> "void":
+    return _libiscsi.iscsi_set_cache_allocations(iscsi, ca)
+iscsi_set_cache_allocations = _libiscsi.iscsi_set_cache_allocations
+
+def iscsi_get_fd(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_get_fd(iscsi)
+iscsi_get_fd = _libiscsi.iscsi_get_fd
+
+def iscsi_which_events(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_which_events(iscsi)
+iscsi_which_events = _libiscsi.iscsi_which_events
+
+def iscsi_service(iscsi: 'struct iscsi_context *', revents: 'int') -> "int":
+    return _libiscsi.iscsi_service(iscsi, revents)
+iscsi_service = _libiscsi.iscsi_service
+
+def iscsi_queue_length(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_queue_length(iscsi)
+iscsi_queue_length = _libiscsi.iscsi_queue_length
+
+def iscsi_out_queue_length(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_out_queue_length(iscsi)
+iscsi_out_queue_length = _libiscsi.iscsi_out_queue_length
+
+def iscsi_set_timeout(iscsi: 'struct iscsi_context *', timeout: 'int') -> "int":
+    return _libiscsi.iscsi_set_timeout(iscsi, timeout)
+iscsi_set_timeout = _libiscsi.iscsi_set_timeout
+
+def iscsi_set_tcp_keepalive(iscsi: 'struct iscsi_context *', idle: 'int', count: 'int', interval: 'int') -> "int":
+    return _libiscsi.iscsi_set_tcp_keepalive(iscsi, idle, count, interval)
+iscsi_set_tcp_keepalive = _libiscsi.iscsi_set_tcp_keepalive
+class iscsi_url(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, iscsi_url, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, iscsi_url, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["portal"] = _libiscsi.iscsi_url_portal_set
+    __swig_getmethods__["portal"] = _libiscsi.iscsi_url_portal_get
+    if _newclass:
+        portal = _swig_property(_libiscsi.iscsi_url_portal_get, _libiscsi.iscsi_url_portal_set)
+    __swig_setmethods__["target"] = _libiscsi.iscsi_url_target_set
+    __swig_getmethods__["target"] = _libiscsi.iscsi_url_target_get
+    if _newclass:
+        target = _swig_property(_libiscsi.iscsi_url_target_get, _libiscsi.iscsi_url_target_set)
+    __swig_setmethods__["user"] = _libiscsi.iscsi_url_user_set
+    __swig_getmethods__["user"] = _libiscsi.iscsi_url_user_get
+    if _newclass:
+        user = _swig_property(_libiscsi.iscsi_url_user_get, _libiscsi.iscsi_url_user_set)
+    __swig_setmethods__["passwd"] = _libiscsi.iscsi_url_passwd_set
+    __swig_getmethods__["passwd"] = _libiscsi.iscsi_url_passwd_get
+    if _newclass:
+        passwd = _swig_property(_libiscsi.iscsi_url_passwd_get, _libiscsi.iscsi_url_passwd_set)
+    __swig_setmethods__["target_user"] = _libiscsi.iscsi_url_target_user_set
+    __swig_getmethods__["target_user"] = _libiscsi.iscsi_url_target_user_get
+    if _newclass:
+        target_user = _swig_property(_libiscsi.iscsi_url_target_user_get, _libiscsi.iscsi_url_target_user_set)
+    __swig_setmethods__["target_passwd"] = _libiscsi.iscsi_url_target_passwd_set
+    __swig_getmethods__["target_passwd"] = _libiscsi.iscsi_url_target_passwd_get
+    if _newclass:
+        target_passwd = _swig_property(_libiscsi.iscsi_url_target_passwd_get, _libiscsi.iscsi_url_target_passwd_set)
+    __swig_setmethods__["lun"] = _libiscsi.iscsi_url_lun_set
+    __swig_getmethods__["lun"] = _libiscsi.iscsi_url_lun_get
+    if _newclass:
+        lun = _swig_property(_libiscsi.iscsi_url_lun_get, _libiscsi.iscsi_url_lun_set)
+    __swig_setmethods__["iscsi"] = _libiscsi.iscsi_url_iscsi_set
+    __swig_getmethods__["iscsi"] = _libiscsi.iscsi_url_iscsi_get
+    if _newclass:
+        iscsi = _swig_property(_libiscsi.iscsi_url_iscsi_get, _libiscsi.iscsi_url_iscsi_set)
+    __swig_setmethods__["transport"] = _libiscsi.iscsi_url_transport_set
+    __swig_getmethods__["transport"] = _libiscsi.iscsi_url_transport_get
+    if _newclass:
+        transport = _swig_property(_libiscsi.iscsi_url_transport_get, _libiscsi.iscsi_url_transport_set)
+
+    def __init__(self):
+        this = _libiscsi.new_iscsi_url()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_iscsi_url
+    __del__ = lambda self: None
+iscsi_url_swigregister = _libiscsi.iscsi_url_swigregister
+iscsi_url_swigregister(iscsi_url)
+
+ISCSI_IMMEDIATE_DATA_NO = _libiscsi.ISCSI_IMMEDIATE_DATA_NO
+ISCSI_IMMEDIATE_DATA_YES = _libiscsi.ISCSI_IMMEDIATE_DATA_YES
+
+def iscsi_set_immediate_data(iscsi: 'struct iscsi_context *', immediate_data: 'enum iscsi_immediate_data') -> "int":
+    return _libiscsi.iscsi_set_immediate_data(iscsi, immediate_data)
+iscsi_set_immediate_data = _libiscsi.iscsi_set_immediate_data
+ISCSI_INITIAL_R2T_NO = _libiscsi.ISCSI_INITIAL_R2T_NO
+ISCSI_INITIAL_R2T_YES = _libiscsi.ISCSI_INITIAL_R2T_YES
+
+def iscsi_set_initial_r2t(iscsi: 'struct iscsi_context *', initial_r2t: 'enum iscsi_initial_r2t') -> "int":
+    return _libiscsi.iscsi_set_initial_r2t(iscsi, initial_r2t)
+iscsi_set_initial_r2t = _libiscsi.iscsi_set_initial_r2t
+
+def iscsi_parse_full_url(iscsi: 'struct iscsi_context *', url: 'char const *') -> "struct iscsi_url *":
+    return _libiscsi.iscsi_parse_full_url(iscsi, url)
+iscsi_parse_full_url = _libiscsi.iscsi_parse_full_url
+
+def iscsi_destroy_url(iscsi_url: 'iscsi_url') -> "void":
+    return _libiscsi.iscsi_destroy_url(iscsi_url)
+iscsi_destroy_url = _libiscsi.iscsi_destroy_url
+
+def iscsi_parse_portal_url(iscsi: 'struct iscsi_context *', url: 'char const *') -> "struct iscsi_url *":
+    return _libiscsi.iscsi_parse_portal_url(iscsi, url)
+iscsi_parse_portal_url = _libiscsi.iscsi_parse_portal_url
+
+def iscsi_get_error(iscsi: 'struct iscsi_context *') -> "char const *":
+    return _libiscsi.iscsi_get_error(iscsi)
+iscsi_get_error = _libiscsi.iscsi_get_error
+
+def iscsi_create_context(initiator_name: 'char const *') -> "struct iscsi_context *":
+    return _libiscsi.iscsi_create_context(initiator_name)
+iscsi_create_context = _libiscsi.iscsi_create_context
+
+def iscsi_destroy_context(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_destroy_context(iscsi)
+iscsi_destroy_context = _libiscsi.iscsi_destroy_context
+
+def iscsi_init_transport(iscsi: 'struct iscsi_context *', transport: 'enum iscsi_transport_type') -> "int":
+    return _libiscsi.iscsi_init_transport(iscsi, transport)
+iscsi_init_transport = _libiscsi.iscsi_init_transport
+
+def iscsi_set_alias(iscsi: 'struct iscsi_context *', alias: 'char const *') -> "int":
+    return _libiscsi.iscsi_set_alias(iscsi, alias)
+iscsi_set_alias = _libiscsi.iscsi_set_alias
+
+def iscsi_set_targetname(iscsi: 'struct iscsi_context *', targetname: 'char const *') -> "int":
+    return _libiscsi.iscsi_set_targetname(iscsi, targetname)
+iscsi_set_targetname = _libiscsi.iscsi_set_targetname
+
+def iscsi_get_target_address(iscsi: 'struct iscsi_context *') -> "char const *":
+    return _libiscsi.iscsi_get_target_address(iscsi)
+iscsi_get_target_address = _libiscsi.iscsi_get_target_address
+ISCSI_SESSION_DISCOVERY = _libiscsi.ISCSI_SESSION_DISCOVERY
+ISCSI_SESSION_NORMAL = _libiscsi.ISCSI_SESSION_NORMAL
+
+def iscsi_set_session_type(iscsi: 'struct iscsi_context *', session_type: 'enum iscsi_session_type') -> "int":
+    return _libiscsi.iscsi_set_session_type(iscsi, session_type)
+iscsi_set_session_type = _libiscsi.iscsi_set_session_type
+ISCSI_HEADER_DIGEST_NONE = _libiscsi.ISCSI_HEADER_DIGEST_NONE
+ISCSI_HEADER_DIGEST_NONE_CRC32C = _libiscsi.ISCSI_HEADER_DIGEST_NONE_CRC32C
+ISCSI_HEADER_DIGEST_CRC32C_NONE = _libiscsi.ISCSI_HEADER_DIGEST_CRC32C_NONE
+ISCSI_HEADER_DIGEST_CRC32C = _libiscsi.ISCSI_HEADER_DIGEST_CRC32C
+ISCSI_HEADER_DIGEST_LAST = _libiscsi.ISCSI_HEADER_DIGEST_LAST
+
+def iscsi_set_header_digest(iscsi: 'struct iscsi_context *', header_digest: 'enum iscsi_header_digest') -> "int":
+    return _libiscsi.iscsi_set_header_digest(iscsi, header_digest)
+iscsi_set_header_digest = _libiscsi.iscsi_set_header_digest
+
+def iscsi_set_initiator_username_pwd(iscsi: 'struct iscsi_context *', user: 'char const *', passwd: 'char const *') -> "int":
+    return _libiscsi.iscsi_set_initiator_username_pwd(iscsi, user, passwd)
+iscsi_set_initiator_username_pwd = _libiscsi.iscsi_set_initiator_username_pwd
+
+def iscsi_set_target_username_pwd(iscsi: 'struct iscsi_context *', user: 'char const *', passwd: 'char const *') -> "int":
+    return _libiscsi.iscsi_set_target_username_pwd(iscsi, user, passwd)
+iscsi_set_target_username_pwd = _libiscsi.iscsi_set_target_username_pwd
+
+def iscsi_is_logged_in(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_is_logged_in(iscsi)
+iscsi_is_logged_in = _libiscsi.iscsi_is_logged_in
+SCSI_STATUS_GOOD = _libiscsi.SCSI_STATUS_GOOD
+SCSI_STATUS_CHECK_CONDITION = _libiscsi.SCSI_STATUS_CHECK_CONDITION
+SCSI_STATUS_CONDITION_MET = _libiscsi.SCSI_STATUS_CONDITION_MET
+SCSI_STATUS_BUSY = _libiscsi.SCSI_STATUS_BUSY
+SCSI_STATUS_RESERVATION_CONFLICT = _libiscsi.SCSI_STATUS_RESERVATION_CONFLICT
+SCSI_STATUS_TASK_SET_FULL = _libiscsi.SCSI_STATUS_TASK_SET_FULL
+SCSI_STATUS_ACA_ACTIVE = _libiscsi.SCSI_STATUS_ACA_ACTIVE
+SCSI_STATUS_TASK_ABORTED = _libiscsi.SCSI_STATUS_TASK_ABORTED
+SCSI_STATUS_REDIRECT = _libiscsi.SCSI_STATUS_REDIRECT
+SCSI_STATUS_CANCELLED = _libiscsi.SCSI_STATUS_CANCELLED
+SCSI_STATUS_ERROR = _libiscsi.SCSI_STATUS_ERROR
+SCSI_STATUS_TIMEOUT = _libiscsi.SCSI_STATUS_TIMEOUT
+
+def iscsi_connect_async(iscsi: 'struct iscsi_context *', portal: 'char const *', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+    return _libiscsi.iscsi_connect_async(iscsi, portal, cb, private_data)
+iscsi_connect_async = _libiscsi.iscsi_connect_async
+
+def iscsi_connect_sync(iscsi: 'struct iscsi_context *', portal: 'char const *') -> "int":
+    return _libiscsi.iscsi_connect_sync(iscsi, portal)
+iscsi_connect_sync = _libiscsi.iscsi_connect_sync
+
+def iscsi_full_connect_async(iscsi: 'struct iscsi_context *', portal: 'char const *', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+    return _libiscsi.iscsi_full_connect_async(iscsi, portal, lun, cb, private_data)
+iscsi_full_connect_async = _libiscsi.iscsi_full_connect_async
+
+def iscsi_full_connect_sync(iscsi: 'struct iscsi_context *', portal: 'char const *', lun: 'int') -> "int":
+    return _libiscsi.iscsi_full_connect_sync(iscsi, portal, lun)
+iscsi_full_connect_sync = _libiscsi.iscsi_full_connect_sync
+
+def iscsi_disconnect(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_disconnect(iscsi)
+iscsi_disconnect = _libiscsi.iscsi_disconnect
+
+def iscsi_reconnect(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_reconnect(iscsi)
+iscsi_reconnect = _libiscsi.iscsi_reconnect
+
+def iscsi_reconnect_sync(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_reconnect_sync(iscsi)
+iscsi_reconnect_sync = _libiscsi.iscsi_reconnect_sync
+
+def iscsi_login_async(iscsi: 'struct iscsi_context *', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+    return _libiscsi.iscsi_login_async(iscsi, cb, private_data)
+iscsi_login_async = _libiscsi.iscsi_login_async
+
+def iscsi_login_sync(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_login_sync(iscsi)
+iscsi_login_sync = _libiscsi.iscsi_login_sync
+
+def iscsi_logout_async(iscsi: 'struct iscsi_context *', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+    return _libiscsi.iscsi_logout_async(iscsi, cb, private_data)
+iscsi_logout_async = _libiscsi.iscsi_logout_async
+
+def iscsi_logout_sync(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_logout_sync(iscsi)
+iscsi_logout_sync = _libiscsi.iscsi_logout_sync
+class iscsi_target_portal(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, iscsi_target_portal, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, iscsi_target_portal, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["next"] = _libiscsi.iscsi_target_portal_next_set
+    __swig_getmethods__["next"] = _libiscsi.iscsi_target_portal_next_get
+    if _newclass:
+        next = _swig_property(_libiscsi.iscsi_target_portal_next_get, _libiscsi.iscsi_target_portal_next_set)
+    __swig_setmethods__["portal"] = _libiscsi.iscsi_target_portal_portal_set
+    __swig_getmethods__["portal"] = _libiscsi.iscsi_target_portal_portal_get
+    if _newclass:
+        portal = _swig_property(_libiscsi.iscsi_target_portal_portal_get, _libiscsi.iscsi_target_portal_portal_set)
+
+    def __init__(self):
+        this = _libiscsi.new_iscsi_target_portal()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_iscsi_target_portal
+    __del__ = lambda self: None
+iscsi_target_portal_swigregister = _libiscsi.iscsi_target_portal_swigregister
+iscsi_target_portal_swigregister(iscsi_target_portal)
+
+class iscsi_discovery_address(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, iscsi_discovery_address, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, iscsi_discovery_address, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["next"] = _libiscsi.iscsi_discovery_address_next_set
+    __swig_getmethods__["next"] = _libiscsi.iscsi_discovery_address_next_get
+    if _newclass:
+        next = _swig_property(_libiscsi.iscsi_discovery_address_next_get, _libiscsi.iscsi_discovery_address_next_set)
+    __swig_setmethods__["target_name"] = _libiscsi.iscsi_discovery_address_target_name_set
+    __swig_getmethods__["target_name"] = _libiscsi.iscsi_discovery_address_target_name_get
+    if _newclass:
+        target_name = _swig_property(_libiscsi.iscsi_discovery_address_target_name_get, _libiscsi.iscsi_discovery_address_target_name_set)
+    __swig_setmethods__["portals"] = _libiscsi.iscsi_discovery_address_portals_set
+    __swig_getmethods__["portals"] = _libiscsi.iscsi_discovery_address_portals_get
+    if _newclass:
+        portals = _swig_property(_libiscsi.iscsi_discovery_address_portals_get, _libiscsi.iscsi_discovery_address_portals_set)
+
+    def __init__(self):
+        this = _libiscsi.new_iscsi_discovery_address()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_iscsi_discovery_address
+    __del__ = lambda self: None
+iscsi_discovery_address_swigregister = _libiscsi.iscsi_discovery_address_swigregister
+iscsi_discovery_address_swigregister(iscsi_discovery_address)
+
+
+def iscsi_discovery_async(iscsi: 'struct iscsi_context *', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+    return _libiscsi.iscsi_discovery_async(iscsi, cb, private_data)
+iscsi_discovery_async = _libiscsi.iscsi_discovery_async
+
+def iscsi_discovery_sync(iscsi: 'struct iscsi_context *') -> "struct iscsi_discovery_address *":
+    return _libiscsi.iscsi_discovery_sync(iscsi)
+iscsi_discovery_sync = _libiscsi.iscsi_discovery_sync
+
+def iscsi_free_discovery_data(iscsi: 'struct iscsi_context *', da: 'iscsi_discovery_address') -> "void":
+    return _libiscsi.iscsi_free_discovery_data(iscsi, da)
+iscsi_free_discovery_data = _libiscsi.iscsi_free_discovery_data
+
+def iscsi_nop_out_async(iscsi: 'struct iscsi_context *', cb: 'iscsi_command_cb', data: 'unsigned char *', private_data: 'void *') -> "int":
+    return _libiscsi.iscsi_nop_out_async(iscsi, cb, data, private_data)
+iscsi_nop_out_async = _libiscsi.iscsi_nop_out_async
+
+def iscsi_get_nops_in_flight(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_get_nops_in_flight(iscsi)
+iscsi_get_nops_in_flight = _libiscsi.iscsi_get_nops_in_flight
+ISCSI_TM_ABORT_TASK = _libiscsi.ISCSI_TM_ABORT_TASK
+ISCSI_TM_ABORT_TASK_SET = _libiscsi.ISCSI_TM_ABORT_TASK_SET
+ISCSI_TM_CLEAR_ACA = _libiscsi.ISCSI_TM_CLEAR_ACA
+ISCSI_TM_CLEAR_TASK_SET = _libiscsi.ISCSI_TM_CLEAR_TASK_SET
+ISCSI_TM_LUN_RESET = _libiscsi.ISCSI_TM_LUN_RESET
+ISCSI_TM_TARGET_WARM_RESET = _libiscsi.ISCSI_TM_TARGET_WARM_RESET
+ISCSI_TM_TARGET_COLD_RESET = _libiscsi.ISCSI_TM_TARGET_COLD_RESET
+ISCSI_TM_TASK_REASSIGN = _libiscsi.ISCSI_TM_TASK_REASSIGN
+ISCSI_TMR_FUNC_COMPLETE = _libiscsi.ISCSI_TMR_FUNC_COMPLETE
+ISCSI_TMR_TASK_DOES_NOT_EXIST = _libiscsi.ISCSI_TMR_TASK_DOES_NOT_EXIST
+ISCSI_TMR_LUN_DOES_NOT_EXIST = _libiscsi.ISCSI_TMR_LUN_DOES_NOT_EXIST
+ISCSI_TMR_TASK_STILL_ALLEGIANT = _libiscsi.ISCSI_TMR_TASK_STILL_ALLEGIANT
+ISCSI_TMR_TASK_ALLEGIANCE_REASS_NOT_SUPPORTED = _libiscsi.ISCSI_TMR_TASK_ALLEGIANCE_REASS_NOT_SUPPORTED
+ISCSI_TMR_TMF_NOT_SUPPORTED = _libiscsi.ISCSI_TMR_TMF_NOT_SUPPORTED
+ISCSI_TMR_FUNC_AUTH_FAILED = _libiscsi.ISCSI_TMR_FUNC_AUTH_FAILED
+ISCSI_TMR_FUNC_REJECTED = _libiscsi.ISCSI_TMR_FUNC_REJECTED
+
+def iscsi_task_mgmt_async(iscsi: 'struct iscsi_context *', lun: 'int', function: 'enum iscsi_task_mgmt_funcs', ritt: 'uint32_t', rcmdscn: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+    return _libiscsi.iscsi_task_mgmt_async(iscsi, lun, function, ritt, rcmdscn, cb, private_data)
+iscsi_task_mgmt_async = _libiscsi.iscsi_task_mgmt_async
+
+def iscsi_task_mgmt_abort_task_async(iscsi: 'struct iscsi_context *', task: 'scsi_task', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+    return _libiscsi.iscsi_task_mgmt_abort_task_async(iscsi, task, cb, private_data)
+iscsi_task_mgmt_abort_task_async = _libiscsi.iscsi_task_mgmt_abort_task_async
+
+def iscsi_task_mgmt_abort_task_set_async(iscsi: 'struct iscsi_context *', lun: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+    return _libiscsi.iscsi_task_mgmt_abort_task_set_async(iscsi, lun, cb, private_data)
+iscsi_task_mgmt_abort_task_set_async = _libiscsi.iscsi_task_mgmt_abort_task_set_async
+
+def iscsi_task_mgmt_lun_reset_async(iscsi: 'struct iscsi_context *', lun: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+    return _libiscsi.iscsi_task_mgmt_lun_reset_async(iscsi, lun, cb, private_data)
+iscsi_task_mgmt_lun_reset_async = _libiscsi.iscsi_task_mgmt_lun_reset_async
+
+def iscsi_task_mgmt_target_warm_reset_async(iscsi: 'struct iscsi_context *', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+    return _libiscsi.iscsi_task_mgmt_target_warm_reset_async(iscsi, cb, private_data)
+iscsi_task_mgmt_target_warm_reset_async = _libiscsi.iscsi_task_mgmt_target_warm_reset_async
+
+def iscsi_task_mgmt_target_cold_reset_async(iscsi: 'struct iscsi_context *', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+    return _libiscsi.iscsi_task_mgmt_target_cold_reset_async(iscsi, cb, private_data)
+iscsi_task_mgmt_target_cold_reset_async = _libiscsi.iscsi_task_mgmt_target_cold_reset_async
+
+def iscsi_task_mgmt_sync(iscsi: 'struct iscsi_context *', lun: 'int', function: 'enum iscsi_task_mgmt_funcs', ritt: 'uint32_t', rcmdscn: 'uint32_t') -> "int":
+    return _libiscsi.iscsi_task_mgmt_sync(iscsi, lun, function, ritt, rcmdscn)
+iscsi_task_mgmt_sync = _libiscsi.iscsi_task_mgmt_sync
+
+def iscsi_task_mgmt_abort_task_sync(iscsi: 'struct iscsi_context *', task: 'scsi_task') -> "int":
+    return _libiscsi.iscsi_task_mgmt_abort_task_sync(iscsi, task)
+iscsi_task_mgmt_abort_task_sync = _libiscsi.iscsi_task_mgmt_abort_task_sync
+
+def iscsi_task_mgmt_abort_task_set_sync(iscsi: 'struct iscsi_context *', lun: 'uint32_t') -> "int":
+    return _libiscsi.iscsi_task_mgmt_abort_task_set_sync(iscsi, lun)
+iscsi_task_mgmt_abort_task_set_sync = _libiscsi.iscsi_task_mgmt_abort_task_set_sync
+
+def iscsi_task_mgmt_lun_reset_sync(iscsi: 'struct iscsi_context *', lun: 'uint32_t') -> "int":
+    return _libiscsi.iscsi_task_mgmt_lun_reset_sync(iscsi, lun)
+iscsi_task_mgmt_lun_reset_sync = _libiscsi.iscsi_task_mgmt_lun_reset_sync
+
+def iscsi_task_mgmt_target_warm_reset_sync(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_task_mgmt_target_warm_reset_sync(iscsi)
+iscsi_task_mgmt_target_warm_reset_sync = _libiscsi.iscsi_task_mgmt_target_warm_reset_sync
+
+def iscsi_task_mgmt_target_cold_reset_sync(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_task_mgmt_target_cold_reset_sync(iscsi)
+iscsi_task_mgmt_target_cold_reset_sync = _libiscsi.iscsi_task_mgmt_target_cold_reset_sync
+class iscsi_data(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, iscsi_data, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, iscsi_data, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["size"] = _libiscsi.iscsi_data_size_set
+    __swig_getmethods__["size"] = _libiscsi.iscsi_data_size_get
+    if _newclass:
+        size = _swig_property(_libiscsi.iscsi_data_size_get, _libiscsi.iscsi_data_size_set)
+    __swig_setmethods__["data"] = _libiscsi.iscsi_data_data_set
+    __swig_getmethods__["data"] = _libiscsi.iscsi_data_data_get
+    if _newclass:
+        data = _swig_property(_libiscsi.iscsi_data_data_get, _libiscsi.iscsi_data_data_set)
+
+    def __init__(self):
+        this = _libiscsi.new_iscsi_data()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_iscsi_data
+    __del__ = lambda self: None
+iscsi_data_swigregister = _libiscsi.iscsi_data_swigregister
+iscsi_data_swigregister(iscsi_data)
+
+
+def iscsi_set_isid_oui(iscsi: 'struct iscsi_context *', oui: 'uint32_t', qualifier: 'uint32_t') -> "int":
+    return _libiscsi.iscsi_set_isid_oui(iscsi, oui, qualifier)
+iscsi_set_isid_oui = _libiscsi.iscsi_set_isid_oui
+
+def iscsi_set_isid_en(iscsi: 'struct iscsi_context *', en: 'uint32_t', qualifier: 'uint32_t') -> "int":
+    return _libiscsi.iscsi_set_isid_en(iscsi, en, qualifier)
+iscsi_set_isid_en = _libiscsi.iscsi_set_isid_en
+
+def iscsi_set_isid_random(iscsi: 'struct iscsi_context *', rnd: 'uint32_t', qualifier: 'uint32_t') -> "int":
+    return _libiscsi.iscsi_set_isid_random(iscsi, rnd, qualifier)
+iscsi_set_isid_random = _libiscsi.iscsi_set_isid_random
+
+def iscsi_set_isid_reserved(iscsi: 'struct iscsi_context *') -> "int":
+    return _libiscsi.iscsi_set_isid_reserved(iscsi)
+iscsi_set_isid_reserved = _libiscsi.iscsi_set_isid_reserved
+
+def iscsi_scsi_command_async(iscsi: 'struct iscsi_context *', lun: 'int', task: 'scsi_task', cb: 'iscsi_command_cb', data: 'iscsi_data', private_data: 'void *') -> "int":
+    return _libiscsi.iscsi_scsi_command_async(iscsi, lun, task, cb, data, private_data)
+iscsi_scsi_command_async = _libiscsi.iscsi_scsi_command_async
+
+def iscsi_reportluns_task(iscsi: 'struct iscsi_context *', report_type: 'int', alloc_len: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_reportluns_task(iscsi, report_type, alloc_len, cb, private_data)
+iscsi_reportluns_task = _libiscsi.iscsi_reportluns_task
+
+def iscsi_testunitready_task(iscsi: 'struct iscsi_context *', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_testunitready_task(iscsi, lun, cb, private_data)
+iscsi_testunitready_task = _libiscsi.iscsi_testunitready_task
+
+def iscsi_inquiry_task(iscsi: 'struct iscsi_context *', lun: 'int', evpd: 'int', page_code: 'int', maxsize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_inquiry_task(iscsi, lun, evpd, page_code, maxsize, cb, private_data)
+iscsi_inquiry_task = _libiscsi.iscsi_inquiry_task
+
+def iscsi_readcapacity10_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'int', pmi: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_readcapacity10_task(iscsi, lun, lba, pmi, cb, private_data)
+iscsi_readcapacity10_task = _libiscsi.iscsi_readcapacity10_task
+
+def iscsi_readcapacity16_task(iscsi: 'struct iscsi_context *', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_readcapacity16_task(iscsi, lun, cb, private_data)
+iscsi_readcapacity16_task = _libiscsi.iscsi_readcapacity16_task
+
+def iscsi_readdefectdata10_task(iscsi: 'struct iscsi_context *', lun: 'int', req_plist: 'int', req_glist: 'int', defect_list_format: 'int', alloc_len: 'uint16_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_readdefectdata10_task(iscsi, lun, req_plist, req_glist, defect_list_format, alloc_len, cb, private_data)
+iscsi_readdefectdata10_task = _libiscsi.iscsi_readdefectdata10_task
+
+def iscsi_readdefectdata12_task(iscsi: 'struct iscsi_context *', lun: 'int', req_plist: 'int', req_glist: 'int', defect_list_format: 'int', address_descriptor_index: 'uint32_t', alloc_len: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_readdefectdata12_task(iscsi, lun, req_plist, req_glist, defect_list_format, address_descriptor_index, alloc_len, cb, private_data)
+iscsi_readdefectdata12_task = _libiscsi.iscsi_readdefectdata12_task
+
+def iscsi_sanitize_task(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int', sa: 'int', param_len: 'int', data: 'iscsi_data', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_sanitize_task(iscsi, lun, immed, ause, sa, param_len, data, cb, private_data)
+iscsi_sanitize_task = _libiscsi.iscsi_sanitize_task
+
+def iscsi_sanitize_block_erase_task(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_sanitize_block_erase_task(iscsi, lun, immed, ause, cb, private_data)
+iscsi_sanitize_block_erase_task = _libiscsi.iscsi_sanitize_block_erase_task
+
+def iscsi_sanitize_crypto_erase_task(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_sanitize_crypto_erase_task(iscsi, lun, immed, ause, cb, private_data)
+iscsi_sanitize_crypto_erase_task = _libiscsi.iscsi_sanitize_crypto_erase_task
+
+def iscsi_sanitize_exit_failure_mode_task(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_sanitize_exit_failure_mode_task(iscsi, lun, immed, ause, cb, private_data)
+iscsi_sanitize_exit_failure_mode_task = _libiscsi.iscsi_sanitize_exit_failure_mode_task
+
+def iscsi_get_lba_status_task(iscsi: 'struct iscsi_context *', lun: 'int', starting_lba: 'uint64_t', alloc_len: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_get_lba_status_task(iscsi, lun, starting_lba, alloc_len, cb, private_data)
+iscsi_get_lba_status_task = _libiscsi.iscsi_get_lba_status_task
+
+def iscsi_synchronizecache10_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'int', num_blocks: 'int', syncnv: 'int', immed: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_synchronizecache10_task(iscsi, lun, lba, num_blocks, syncnv, immed, cb, private_data)
+iscsi_synchronizecache10_task = _libiscsi.iscsi_synchronizecache10_task
+
+def iscsi_synchronizecache16_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', num_blocks: 'uint32_t', syncnv: 'int', immed: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_synchronizecache16_task(iscsi, lun, lba, num_blocks, syncnv, immed, cb, private_data)
+iscsi_synchronizecache16_task = _libiscsi.iscsi_synchronizecache16_task
+
+def iscsi_prefetch10_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', num_blocks: 'int', immed: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_prefetch10_task(iscsi, lun, lba, num_blocks, immed, group, cb, private_data)
+iscsi_prefetch10_task = _libiscsi.iscsi_prefetch10_task
+
+def iscsi_prefetch16_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', num_blocks: 'int', immed: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_prefetch16_task(iscsi, lun, lba, num_blocks, immed, group, cb, private_data)
+iscsi_prefetch16_task = _libiscsi.iscsi_prefetch16_task
+
+def iscsi_read6_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read6_task(iscsi, lun, lba, datalen, blocksize, cb, private_data)
+iscsi_read6_task = _libiscsi.iscsi_read6_task
+
+def iscsi_read6_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read6_iov_task(iscsi, lun, lba, datalen, blocksize, cb, private_data, iov, niov)
+iscsi_read6_iov_task = _libiscsi.iscsi_read6_iov_task
+
+def iscsi_read10_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read10_task(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, cb, private_data)
+iscsi_read10_task = _libiscsi.iscsi_read10_task
+
+def iscsi_read10_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read10_iov_task(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
+iscsi_read10_iov_task = _libiscsi.iscsi_read10_iov_task
+
+def iscsi_write10_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_write10_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data)
+iscsi_write10_task = _libiscsi.iscsi_write10_task
+
+def iscsi_write10_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_write10_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
+iscsi_write10_iov_task = _libiscsi.iscsi_write10_iov_task
+
+def iscsi_writeverify10_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeverify10_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, cb, private_data)
+iscsi_writeverify10_task = _libiscsi.iscsi_writeverify10_task
+
+def iscsi_writeverify10_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeverify10_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, cb, private_data, iov, niov)
+iscsi_writeverify10_iov_task = _libiscsi.iscsi_writeverify10_iov_task
+
+def iscsi_read12_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read12_task(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, cb, private_data)
+iscsi_read12_task = _libiscsi.iscsi_read12_task
+
+def iscsi_read12_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read12_iov_task(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
+iscsi_read12_iov_task = _libiscsi.iscsi_read12_iov_task
+
+def iscsi_write12_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_write12_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data)
+iscsi_write12_task = _libiscsi.iscsi_write12_task
+
+def iscsi_write12_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_write12_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
+iscsi_write12_iov_task = _libiscsi.iscsi_write12_iov_task
+
+def iscsi_writeverify12_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeverify12_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, cb, private_data)
+iscsi_writeverify12_task = _libiscsi.iscsi_writeverify12_task
+
+def iscsi_writeverify12_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeverify12_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, cb, private_data, iov, niov)
+iscsi_writeverify12_iov_task = _libiscsi.iscsi_writeverify12_iov_task
+
+def iscsi_read16_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read16_task(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, cb, private_data)
+iscsi_read16_task = _libiscsi.iscsi_read16_task
+
+def iscsi_read16_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read16_iov_task(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
+iscsi_read16_iov_task = _libiscsi.iscsi_read16_iov_task
+
+def iscsi_write16_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_write16_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data)
+iscsi_write16_task = _libiscsi.iscsi_write16_task
+
+def iscsi_write16_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_write16_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
+iscsi_write16_iov_task = _libiscsi.iscsi_write16_iov_task
+
+def iscsi_writeatomic16_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeatomic16_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, group_number, cb, private_data)
+iscsi_writeatomic16_task = _libiscsi.iscsi_writeatomic16_task
+
+def iscsi_writeatomic16_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeatomic16_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, group_number, cb, private_data, iov, niov)
+iscsi_writeatomic16_iov_task = _libiscsi.iscsi_writeatomic16_iov_task
+
+def iscsi_orwrite_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_orwrite_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data)
+iscsi_orwrite_task = _libiscsi.iscsi_orwrite_task
+
+def iscsi_orwrite_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_orwrite_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
+iscsi_orwrite_iov_task = _libiscsi.iscsi_orwrite_iov_task
+
+def iscsi_startstopunit_task(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', pcm: 'int', pc: 'int', no_flush: 'int', loej: 'int', start: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_startstopunit_task(iscsi, lun, immed, pcm, pc, no_flush, loej, start, cb, private_data)
+iscsi_startstopunit_task = _libiscsi.iscsi_startstopunit_task
+
+def iscsi_preventallow_task(iscsi: 'struct iscsi_context *', lun: 'int', prevent: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_preventallow_task(iscsi, lun, prevent, cb, private_data)
+iscsi_preventallow_task = _libiscsi.iscsi_preventallow_task
+
+def iscsi_compareandwrite_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_compareandwrite_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data)
+iscsi_compareandwrite_task = _libiscsi.iscsi_compareandwrite_task
+
+def iscsi_compareandwrite_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_compareandwrite_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
+iscsi_compareandwrite_iov_task = _libiscsi.iscsi_compareandwrite_iov_task
+
+def iscsi_writeverify16_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeverify16_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, cb, private_data)
+iscsi_writeverify16_task = _libiscsi.iscsi_writeverify16_task
+
+def iscsi_writeverify16_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeverify16_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, cb, private_data, iov, niov)
+iscsi_writeverify16_iov_task = _libiscsi.iscsi_writeverify16_iov_task
+
+def iscsi_verify10_task(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_verify10_task(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, cb, private_data)
+iscsi_verify10_task = _libiscsi.iscsi_verify10_task
+
+def iscsi_verify10_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_verify10_iov_task(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, cb, private_data, iov, niov)
+iscsi_verify10_iov_task = _libiscsi.iscsi_verify10_iov_task
+
+def iscsi_verify12_task(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_verify12_task(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, cb, private_data)
+iscsi_verify12_task = _libiscsi.iscsi_verify12_task
+
+def iscsi_verify12_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_verify12_iov_task(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, cb, private_data, iov, niov)
+iscsi_verify12_iov_task = _libiscsi.iscsi_verify12_iov_task
+
+def iscsi_verify16_task(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint64_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_verify16_task(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, cb, private_data)
+iscsi_verify16_task = _libiscsi.iscsi_verify16_task
+
+def iscsi_verify16_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint64_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_verify16_iov_task(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, cb, private_data, iov, niov)
+iscsi_verify16_iov_task = _libiscsi.iscsi_verify16_iov_task
+
+def iscsi_writesame10_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', num_blocks: 'uint16_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writesame10_task(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group, cb, private_data)
+iscsi_writesame10_task = _libiscsi.iscsi_writesame10_task
+
+def iscsi_writesame10_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', num_blocks: 'uint16_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writesame10_iov_task(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group, cb, private_data, iov, niov)
+iscsi_writesame10_iov_task = _libiscsi.iscsi_writesame10_iov_task
+
+def iscsi_writesame16_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', num_blocks: 'uint32_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writesame16_task(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group, cb, private_data)
+iscsi_writesame16_task = _libiscsi.iscsi_writesame16_task
+
+def iscsi_writesame16_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', num_blocks: 'uint32_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writesame16_iov_task(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group, cb, private_data, iov, niov)
+iscsi_writesame16_iov_task = _libiscsi.iscsi_writesame16_iov_task
+
+def iscsi_modeselect6_task(iscsi: 'struct iscsi_context *', lun: 'int', pf: 'int', sp: 'int', mp: 'scsi_mode_page', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_modeselect6_task(iscsi, lun, pf, sp, mp, cb, private_data)
+iscsi_modeselect6_task = _libiscsi.iscsi_modeselect6_task
+
+def iscsi_modeselect10_task(iscsi: 'struct iscsi_context *', lun: 'int', pf: 'int', sp: 'int', mp: 'scsi_mode_page', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_modeselect10_task(iscsi, lun, pf, sp, mp, cb, private_data)
+iscsi_modeselect10_task = _libiscsi.iscsi_modeselect10_task
+
+def iscsi_modesense6_task(iscsi: 'struct iscsi_context *', lun: 'int', dbd: 'int', pc: 'int', page_code: 'int', sub_page_code: 'int', alloc_len: 'unsigned char', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_modesense6_task(iscsi, lun, dbd, pc, page_code, sub_page_code, alloc_len, cb, private_data)
+iscsi_modesense6_task = _libiscsi.iscsi_modesense6_task
+
+def iscsi_modesense10_task(iscsi: 'struct iscsi_context *', lun: 'int', llbaa: 'int', dbd: 'int', pc: 'int', page_code: 'int', sub_page_code: 'int', alloc_len: 'unsigned char', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_modesense10_task(iscsi, lun, llbaa, dbd, pc, page_code, sub_page_code, alloc_len, cb, private_data)
+iscsi_modesense10_task = _libiscsi.iscsi_modesense10_task
+class unmap_list(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, unmap_list, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, unmap_list, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["lba"] = _libiscsi.unmap_list_lba_set
+    __swig_getmethods__["lba"] = _libiscsi.unmap_list_lba_get
+    if _newclass:
+        lba = _swig_property(_libiscsi.unmap_list_lba_get, _libiscsi.unmap_list_lba_set)
+    __swig_setmethods__["num"] = _libiscsi.unmap_list_num_set
+    __swig_getmethods__["num"] = _libiscsi.unmap_list_num_get
+    if _newclass:
+        num = _swig_property(_libiscsi.unmap_list_num_get, _libiscsi.unmap_list_num_set)
+
+    def __init__(self):
+        this = _libiscsi.new_unmap_list()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _libiscsi.delete_unmap_list
+    __del__ = lambda self: None
+unmap_list_swigregister = _libiscsi.unmap_list_swigregister
+unmap_list_swigregister(unmap_list)
+
+
+def iscsi_persistent_reserve_in_task(iscsi: 'struct iscsi_context *', lun: 'int', sa: 'int', xferlen: 'uint16_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_persistent_reserve_in_task(iscsi, lun, sa, xferlen, cb, private_data)
+iscsi_persistent_reserve_in_task = _libiscsi.iscsi_persistent_reserve_in_task
+
+def iscsi_persistent_reserve_out_task(iscsi: 'struct iscsi_context *', lun: 'int', sa: 'int', scope: 'int', type: 'int', params: 'void *', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_persistent_reserve_out_task(iscsi, lun, sa, scope, type, params, cb, private_data)
+iscsi_persistent_reserve_out_task = _libiscsi.iscsi_persistent_reserve_out_task
+
+def iscsi_unmap_task(iscsi: 'struct iscsi_context *', lun: 'int', anchor: 'int', group: 'int', list: 'unmap_list', list_len: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_unmap_task(iscsi, lun, anchor, group, list, list_len, cb, private_data)
+iscsi_unmap_task = _libiscsi.iscsi_unmap_task
+
+def iscsi_readtoc_task(iscsi: 'struct iscsi_context *', lun: 'int', msf: 'int', format: 'int', track_session: 'int', maxsize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_readtoc_task(iscsi, lun, msf, format, track_session, maxsize, cb, private_data)
+iscsi_readtoc_task = _libiscsi.iscsi_readtoc_task
+
+def iscsi_reserve6_task(iscsi: 'struct iscsi_context *', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_reserve6_task(iscsi, lun, cb, private_data)
+iscsi_reserve6_task = _libiscsi.iscsi_reserve6_task
+
+def iscsi_release6_task(iscsi: 'struct iscsi_context *', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_release6_task(iscsi, lun, cb, private_data)
+iscsi_release6_task = _libiscsi.iscsi_release6_task
+
+def iscsi_report_supported_opcodes_task(iscsi: 'struct iscsi_context *', lun: 'int', rctd: 'int', options: 'int', opcode: 'int', sa: 'int', alloc_len: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_report_supported_opcodes_task(iscsi, lun, rctd, options, opcode, sa, alloc_len, cb, private_data)
+iscsi_report_supported_opcodes_task = _libiscsi.iscsi_report_supported_opcodes_task
+
+def iscsi_scsi_command_sync(iscsi: 'struct iscsi_context *', lun: 'int', task: 'scsi_task', data: 'iscsi_data') -> "struct scsi_task *":
+    return _libiscsi.iscsi_scsi_command_sync(iscsi, lun, task, data)
+iscsi_scsi_command_sync = _libiscsi.iscsi_scsi_command_sync
+
+def iscsi_modeselect6_sync(iscsi: 'struct iscsi_context *', lun: 'int', pf: 'int', sp: 'int', mp: 'scsi_mode_page') -> "struct scsi_task *":
+    return _libiscsi.iscsi_modeselect6_sync(iscsi, lun, pf, sp, mp)
+iscsi_modeselect6_sync = _libiscsi.iscsi_modeselect6_sync
+
+def iscsi_modeselect10_sync(iscsi: 'struct iscsi_context *', lun: 'int', pf: 'int', sp: 'int', mp: 'scsi_mode_page') -> "struct scsi_task *":
+    return _libiscsi.iscsi_modeselect10_sync(iscsi, lun, pf, sp, mp)
+iscsi_modeselect10_sync = _libiscsi.iscsi_modeselect10_sync
+
+def iscsi_modesense6_sync(iscsi: 'struct iscsi_context *', lun: 'int', dbd: 'int', pc: 'int', page_code: 'int', sub_page_code: 'int', alloc_len: 'unsigned char') -> "struct scsi_task *":
+    return _libiscsi.iscsi_modesense6_sync(iscsi, lun, dbd, pc, page_code, sub_page_code, alloc_len)
+iscsi_modesense6_sync = _libiscsi.iscsi_modesense6_sync
+
+def iscsi_modesense10_sync(iscsi: 'struct iscsi_context *', lun: 'int', llbaa: 'int', dbd: 'int', pc: 'int', page_code: 'int', sub_page_code: 'int', alloc_len: 'unsigned char') -> "struct scsi_task *":
+    return _libiscsi.iscsi_modesense10_sync(iscsi, lun, llbaa, dbd, pc, page_code, sub_page_code, alloc_len)
+iscsi_modesense10_sync = _libiscsi.iscsi_modesense10_sync
+
+def iscsi_reportluns_sync(iscsi: 'struct iscsi_context *', report_type: 'int', alloc_len: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_reportluns_sync(iscsi, report_type, alloc_len)
+iscsi_reportluns_sync = _libiscsi.iscsi_reportluns_sync
+
+def iscsi_testunitready_sync(iscsi: 'struct iscsi_context *', lun: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_testunitready_sync(iscsi, lun)
+iscsi_testunitready_sync = _libiscsi.iscsi_testunitready_sync
+
+def iscsi_inquiry_sync(iscsi: 'struct iscsi_context *', lun: 'int', evpd: 'int', page_code: 'int', maxsize: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_inquiry_sync(iscsi, lun, evpd, page_code, maxsize)
+iscsi_inquiry_sync = _libiscsi.iscsi_inquiry_sync
+
+def iscsi_read6_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read6_sync(iscsi, lun, lba, datalen, blocksize)
+iscsi_read6_sync = _libiscsi.iscsi_read6_sync
+
+def iscsi_read6_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read6_iov_sync(iscsi, lun, lba, datalen, blocksize, iov, niov)
+iscsi_read6_iov_sync = _libiscsi.iscsi_read6_iov_sync
+
+def iscsi_read10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read10_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number)
+iscsi_read10_sync = _libiscsi.iscsi_read10_sync
+
+def iscsi_read10_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read10_iov_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, iov, niov)
+iscsi_read10_iov_sync = _libiscsi.iscsi_read10_iov_sync
+
+def iscsi_write10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_write10_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
+iscsi_write10_sync = _libiscsi.iscsi_write10_sync
+
+def iscsi_write10_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_write10_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, iov, niov)
+iscsi_write10_iov_sync = _libiscsi.iscsi_write10_iov_sync
+
+def iscsi_writeverify10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeverify10_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number)
+iscsi_writeverify10_sync = _libiscsi.iscsi_writeverify10_sync
+
+def iscsi_writeverify10_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeverify10_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, iov, niov)
+iscsi_writeverify10_iov_sync = _libiscsi.iscsi_writeverify10_iov_sync
+
+def iscsi_read12_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read12_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number)
+iscsi_read12_sync = _libiscsi.iscsi_read12_sync
+
+def iscsi_read12_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read12_iov_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, iov, niov)
+iscsi_read12_iov_sync = _libiscsi.iscsi_read12_iov_sync
+
+def iscsi_write12_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_write12_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
+iscsi_write12_sync = _libiscsi.iscsi_write12_sync
+
+def iscsi_write12_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_write12_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, iov, niov)
+iscsi_write12_iov_sync = _libiscsi.iscsi_write12_iov_sync
+
+def iscsi_writeverify12_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeverify12_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number)
+iscsi_writeverify12_sync = _libiscsi.iscsi_writeverify12_sync
+
+def iscsi_writeverify12_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeverify12_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, iov, niov)
+iscsi_writeverify12_iov_sync = _libiscsi.iscsi_writeverify12_iov_sync
+
+def iscsi_read16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read16_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number)
+iscsi_read16_sync = _libiscsi.iscsi_read16_sync
+
+def iscsi_read16_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_read16_iov_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, iov, niov)
+iscsi_read16_iov_sync = _libiscsi.iscsi_read16_iov_sync
+
+def iscsi_write16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_write16_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
+iscsi_write16_sync = _libiscsi.iscsi_write16_sync
+
+def iscsi_write16_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_write16_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, iov, niov)
+iscsi_write16_iov_sync = _libiscsi.iscsi_write16_iov_sync
+
+def iscsi_writeatomic16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', group_number: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeatomic16_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, group_number)
+iscsi_writeatomic16_sync = _libiscsi.iscsi_writeatomic16_sync
+
+def iscsi_writeatomic16_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeatomic16_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, group_number, iov, niov)
+iscsi_writeatomic16_iov_sync = _libiscsi.iscsi_writeatomic16_iov_sync
+
+def iscsi_orwrite_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_orwrite_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
+iscsi_orwrite_sync = _libiscsi.iscsi_orwrite_sync
+
+def iscsi_orwrite_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_orwrite_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, iov, niov)
+iscsi_orwrite_iov_sync = _libiscsi.iscsi_orwrite_iov_sync
+
+def iscsi_startstopunit_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', pcm: 'int', pc: 'int', no_flush: 'int', loej: 'int', start: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_startstopunit_sync(iscsi, lun, immed, pcm, pc, no_flush, loej, start)
+iscsi_startstopunit_sync = _libiscsi.iscsi_startstopunit_sync
+
+def iscsi_preventallow_sync(iscsi: 'struct iscsi_context *', lun: 'int', prevent: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_preventallow_sync(iscsi, lun, prevent)
+iscsi_preventallow_sync = _libiscsi.iscsi_preventallow_sync
+
+def iscsi_compareandwrite_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_compareandwrite_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
+iscsi_compareandwrite_sync = _libiscsi.iscsi_compareandwrite_sync
+
+def iscsi_compareandwrite_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_compareandwrite_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, iov, niov)
+iscsi_compareandwrite_iov_sync = _libiscsi.iscsi_compareandwrite_iov_sync
+
+def iscsi_writeverify16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeverify16_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number)
+iscsi_writeverify16_sync = _libiscsi.iscsi_writeverify16_sync
+
+def iscsi_writeverify16_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writeverify16_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, iov, niov)
+iscsi_writeverify16_iov_sync = _libiscsi.iscsi_writeverify16_iov_sync
+
+def iscsi_readcapacity10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'int', pmi: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_readcapacity10_sync(iscsi, lun, lba, pmi)
+iscsi_readcapacity10_sync = _libiscsi.iscsi_readcapacity10_sync
+
+def iscsi_readcapacity16_sync(iscsi: 'struct iscsi_context *', lun: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_readcapacity16_sync(iscsi, lun)
+iscsi_readcapacity16_sync = _libiscsi.iscsi_readcapacity16_sync
+
+def iscsi_readdefectdata10_sync(iscsi: 'struct iscsi_context *', lun: 'int', req_plist: 'int', req_glist: 'int', defect_list_format: 'int', alloc_len: 'uint16_t') -> "struct scsi_task *":
+    return _libiscsi.iscsi_readdefectdata10_sync(iscsi, lun, req_plist, req_glist, defect_list_format, alloc_len)
+iscsi_readdefectdata10_sync = _libiscsi.iscsi_readdefectdata10_sync
+
+def iscsi_readdefectdata12_sync(iscsi: 'struct iscsi_context *', lun: 'int', req_plist: 'int', req_glist: 'int', defect_list_format: 'int', address_descriptor_index: 'uint32_t', alloc_len: 'uint32_t') -> "struct scsi_task *":
+    return _libiscsi.iscsi_readdefectdata12_sync(iscsi, lun, req_plist, req_glist, defect_list_format, address_descriptor_index, alloc_len)
+iscsi_readdefectdata12_sync = _libiscsi.iscsi_readdefectdata12_sync
+
+def iscsi_get_lba_status_sync(iscsi: 'struct iscsi_context *', lun: 'int', starting_lba: 'uint64_t', alloc_len: 'uint32_t') -> "struct scsi_task *":
+    return _libiscsi.iscsi_get_lba_status_sync(iscsi, lun, starting_lba, alloc_len)
+iscsi_get_lba_status_sync = _libiscsi.iscsi_get_lba_status_sync
+
+def iscsi_sanitize_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int', sa: 'int', param_len: 'int', data: 'iscsi_data') -> "struct scsi_task *":
+    return _libiscsi.iscsi_sanitize_sync(iscsi, lun, immed, ause, sa, param_len, data)
+iscsi_sanitize_sync = _libiscsi.iscsi_sanitize_sync
+
+def iscsi_sanitize_block_erase_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_sanitize_block_erase_sync(iscsi, lun, immed, ause)
+iscsi_sanitize_block_erase_sync = _libiscsi.iscsi_sanitize_block_erase_sync
+
+def iscsi_sanitize_crypto_erase_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_sanitize_crypto_erase_sync(iscsi, lun, immed, ause)
+iscsi_sanitize_crypto_erase_sync = _libiscsi.iscsi_sanitize_crypto_erase_sync
+
+def iscsi_sanitize_exit_failure_mode_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_sanitize_exit_failure_mode_sync(iscsi, lun, immed, ause)
+iscsi_sanitize_exit_failure_mode_sync = _libiscsi.iscsi_sanitize_exit_failure_mode_sync
+
+def iscsi_synchronizecache10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'int', num_blocks: 'int', syncnv: 'int', immed: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_synchronizecache10_sync(iscsi, lun, lba, num_blocks, syncnv, immed)
+iscsi_synchronizecache10_sync = _libiscsi.iscsi_synchronizecache10_sync
+
+def iscsi_synchronizecache16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', num_blocks: 'uint32_t', syncnv: 'int', immed: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_synchronizecache16_sync(iscsi, lun, lba, num_blocks, syncnv, immed)
+iscsi_synchronizecache16_sync = _libiscsi.iscsi_synchronizecache16_sync
+
+def iscsi_prefetch10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', num_blocks: 'int', immed: 'int', group: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_prefetch10_sync(iscsi, lun, lba, num_blocks, immed, group)
+iscsi_prefetch10_sync = _libiscsi.iscsi_prefetch10_sync
+
+def iscsi_prefetch16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', num_blocks: 'int', immed: 'int', group: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_prefetch16_sync(iscsi, lun, lba, num_blocks, immed, group)
+iscsi_prefetch16_sync = _libiscsi.iscsi_prefetch16_sync
+
+def iscsi_verify10_sync(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_verify10_sync(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize)
+iscsi_verify10_sync = _libiscsi.iscsi_verify10_sync
+
+def iscsi_verify10_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_verify10_iov_sync(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, iov, niov)
+iscsi_verify10_iov_sync = _libiscsi.iscsi_verify10_iov_sync
+
+def iscsi_verify12_sync(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_verify12_sync(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize)
+iscsi_verify12_sync = _libiscsi.iscsi_verify12_sync
+
+def iscsi_verify12_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_verify12_iov_sync(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, iov, niov)
+iscsi_verify12_iov_sync = _libiscsi.iscsi_verify12_iov_sync
+
+def iscsi_verify16_sync(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint64_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_verify16_sync(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize)
+iscsi_verify16_sync = _libiscsi.iscsi_verify16_sync
+
+def iscsi_verify16_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint64_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_verify16_iov_sync(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, iov, niov)
+iscsi_verify16_iov_sync = _libiscsi.iscsi_verify16_iov_sync
+
+def iscsi_writesame10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', num_blocks: 'uint16_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writesame10_sync(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group)
+iscsi_writesame10_sync = _libiscsi.iscsi_writesame10_sync
+
+def iscsi_writesame10_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', num_blocks: 'uint16_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writesame10_iov_sync(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group, iov, niov)
+iscsi_writesame10_iov_sync = _libiscsi.iscsi_writesame10_iov_sync
+
+def iscsi_writesame16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', num_blocks: 'uint32_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writesame16_sync(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group)
+iscsi_writesame16_sync = _libiscsi.iscsi_writesame16_sync
+
+def iscsi_writesame16_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', num_blocks: 'uint32_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_writesame16_iov_sync(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group, iov, niov)
+iscsi_writesame16_iov_sync = _libiscsi.iscsi_writesame16_iov_sync
+
+def iscsi_persistent_reserve_in_sync(iscsi: 'struct iscsi_context *', lun: 'int', sa: 'int', xferlen: 'uint16_t') -> "struct scsi_task *":
+    return _libiscsi.iscsi_persistent_reserve_in_sync(iscsi, lun, sa, xferlen)
+iscsi_persistent_reserve_in_sync = _libiscsi.iscsi_persistent_reserve_in_sync
+
+def iscsi_persistent_reserve_out_sync(iscsi: 'struct iscsi_context *', lun: 'int', sa: 'int', scope: 'int', type: 'int', params: 'void *') -> "struct scsi_task *":
+    return _libiscsi.iscsi_persistent_reserve_out_sync(iscsi, lun, sa, scope, type, params)
+iscsi_persistent_reserve_out_sync = _libiscsi.iscsi_persistent_reserve_out_sync
+
+def iscsi_unmap_sync(iscsi: 'struct iscsi_context *', lun: 'int', anchor: 'int', group: 'int', list: 'unmap_list', list_len: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_unmap_sync(iscsi, lun, anchor, group, list, list_len)
+iscsi_unmap_sync = _libiscsi.iscsi_unmap_sync
+
+def iscsi_readtoc_sync(iscsi: 'struct iscsi_context *', lun: 'int', msf: 'int', format: 'int', track_session: 'int', maxsize: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_readtoc_sync(iscsi, lun, msf, format, track_session, maxsize)
+iscsi_readtoc_sync = _libiscsi.iscsi_readtoc_sync
+
+def iscsi_reserve6_sync(iscsi: 'struct iscsi_context *', lun: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_reserve6_sync(iscsi, lun)
+iscsi_reserve6_sync = _libiscsi.iscsi_reserve6_sync
+
+def iscsi_release6_sync(iscsi: 'struct iscsi_context *', lun: 'int') -> "struct scsi_task *":
+    return _libiscsi.iscsi_release6_sync(iscsi, lun)
+iscsi_release6_sync = _libiscsi.iscsi_release6_sync
+
+def iscsi_report_supported_opcodes_sync(iscsi: 'struct iscsi_context *', lun: 'int', rctd: 'int', options: 'int', opcode: 'int', sa: 'int', alloc_len: 'uint32_t') -> "struct scsi_task *":
+    return _libiscsi.iscsi_report_supported_opcodes_sync(iscsi, lun, rctd, options, opcode, sa, alloc_len)
+iscsi_report_supported_opcodes_sync = _libiscsi.iscsi_report_supported_opcodes_sync
+
+def scsi_task_add_data_in_buffer(task: 'scsi_task', len: 'int') -> "int":
+    return _libiscsi.scsi_task_add_data_in_buffer(task, len)
+scsi_task_add_data_in_buffer = _libiscsi.scsi_task_add_data_in_buffer
+
+def scsi_task_add_data_out_buffer(task: 'scsi_task', len: 'int') -> "int":
+    return _libiscsi.scsi_task_add_data_out_buffer(task, len)
+scsi_task_add_data_out_buffer = _libiscsi.scsi_task_add_data_out_buffer
+
+def scsi_task_set_iov_out(task: 'scsi_task', iov: 'scsi_iovec', niov: 'int') -> "void":
+    return _libiscsi.scsi_task_set_iov_out(task, iov, niov)
+scsi_task_set_iov_out = _libiscsi.scsi_task_set_iov_out
+
+def scsi_task_set_iov_in(task: 'scsi_task', iov: 'scsi_iovec', niov: 'int') -> "void":
+    return _libiscsi.scsi_task_set_iov_in(task, iov, niov)
+scsi_task_set_iov_in = _libiscsi.scsi_task_set_iov_in
+
+def scsi_task_get_status(task: 'scsi_task', sense: 'scsi_sense') -> "int":
+    return _libiscsi.scsi_task_get_status(task, sense)
+scsi_task_get_status = _libiscsi.scsi_task_get_status
+
+def iscsi_scsi_cancel_task(iscsi: 'struct iscsi_context *', task: 'scsi_task') -> "int":
+    return _libiscsi.iscsi_scsi_cancel_task(iscsi, task)
+iscsi_scsi_cancel_task = _libiscsi.iscsi_scsi_cancel_task
+
+def iscsi_scsi_cancel_all_tasks(iscsi: 'struct iscsi_context *') -> "void":
+    return _libiscsi.iscsi_scsi_cancel_all_tasks(iscsi)
+iscsi_scsi_cancel_all_tasks = _libiscsi.iscsi_scsi_cancel_all_tasks
+
+def iscsi_set_log_level(iscsi: 'struct iscsi_context *', level: 'int') -> "void":
+    return _libiscsi.iscsi_set_log_level(iscsi, level)
+iscsi_set_log_level = _libiscsi.iscsi_set_log_level
+
+def iscsi_set_log_fn(iscsi: 'struct iscsi_context *', fn: 'iscsi_log_fn') -> "void":
+    return _libiscsi.iscsi_set_log_fn(iscsi, fn)
+iscsi_set_log_fn = _libiscsi.iscsi_set_log_fn
+
+def iscsi_log_to_stderr(level: 'int', message: 'char const *') -> "void":
+    return _libiscsi.iscsi_log_to_stderr(level, message)
+iscsi_log_to_stderr = _libiscsi.iscsi_log_to_stderr
+
+def iscsi_set_tcp_user_timeout(iscsi: 'struct iscsi_context *', timeout_ms: 'int') -> "void":
+    return _libiscsi.iscsi_set_tcp_user_timeout(iscsi, timeout_ms)
+iscsi_set_tcp_user_timeout = _libiscsi.iscsi_set_tcp_user_timeout
+
+def iscsi_set_tcp_keepidle(iscsi: 'struct iscsi_context *', value: 'int') -> "void":
+    return _libiscsi.iscsi_set_tcp_keepidle(iscsi, value)
+iscsi_set_tcp_keepidle = _libiscsi.iscsi_set_tcp_keepidle
+
+def iscsi_set_tcp_keepcnt(iscsi: 'struct iscsi_context *', value: 'int') -> "void":
+    return _libiscsi.iscsi_set_tcp_keepcnt(iscsi, value)
+iscsi_set_tcp_keepcnt = _libiscsi.iscsi_set_tcp_keepcnt
+
+def iscsi_set_tcp_keepintvl(iscsi: 'struct iscsi_context *', value: 'int') -> "void":
+    return _libiscsi.iscsi_set_tcp_keepintvl(iscsi, value)
+iscsi_set_tcp_keepintvl = _libiscsi.iscsi_set_tcp_keepintvl
+
+def iscsi_set_tcp_syncnt(iscsi: 'struct iscsi_context *', value: 'int') -> "void":
+    return _libiscsi.iscsi_set_tcp_syncnt(iscsi, value)
+iscsi_set_tcp_syncnt = _libiscsi.iscsi_set_tcp_syncnt
+
+def iscsi_set_bind_interfaces(iscsi: 'struct iscsi_context *', interfaces: 'char *') -> "void":
+    return _libiscsi.iscsi_set_bind_interfaces(iscsi, interfaces)
+iscsi_set_bind_interfaces = _libiscsi.iscsi_set_bind_interfaces
+
+def iscsi_set_reconnect_max_retries(iscsi: 'struct iscsi_context *', count: 'int') -> "void":
+    return _libiscsi.iscsi_set_reconnect_max_retries(iscsi, count)
+iscsi_set_reconnect_max_retries = _libiscsi.iscsi_set_reconnect_max_retries
+
+def iscsi_set_no_ua_on_reconnect(iscsi: 'struct iscsi_context *', state: 'int') -> "void":
+    return _libiscsi.iscsi_set_no_ua_on_reconnect(iscsi, state)
+iscsi_set_no_ua_on_reconnect = _libiscsi.iscsi_set_no_ua_on_reconnect
 # This file is compatible with both classic and new-style classes.
 
 

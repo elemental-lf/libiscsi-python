@@ -27,7 +27,8 @@ libiscsi_install_root = os.path.abspath(libiscsi_install_root)
 libiscsi_swig = 'libiscsi-{}/swig'.format(libiscsi_release)
 libiscsi_swig_c_files = ['libiscsi_wrap.c']
 libiscsi_swig_py_files = ['libiscsi.py']
-libiscsi_c_flags = '-fPIC -Wimplicit-fallthrough=0 -Werror=format-truncation=0'
+#libiscsi_c_flags = '-fPIC -Wimplicit-fallthrough=0 -Werror=format-truncation=0'
+libiscsi_c_flags = '-fPIC -w'
 libiscsi_configure_flags = ['--prefix={}'.format(libiscsi_install_root), '--disable-shared']
 
 

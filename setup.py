@@ -5,6 +5,9 @@ import shutil
 import subprocess
 import sys
 
+import pathlib
+from glob import glob
+
 try:
     from setuptools import setup, Extension
     from setuptools.command.build_ext import build_ext
@@ -27,7 +30,7 @@ libiscsi_install_root = os.path.abspath(libiscsi_install_root)
 libiscsi_swig = 'libiscsi-{}/swig'.format(libiscsi_release)
 libiscsi_swig_c_files = ['libiscsi_wrap.c']
 libiscsi_swig_py_files = ['libiscsi.py']
-#libiscsi_c_flags = '-fPIC -Wimplicit-fallthrough=0 -Werror=format-truncation=0'
+# libiscsi_c_flags = '-fPIC -Wimplicit-fallthrough=0 -Werror=format-truncation=0'
 libiscsi_c_flags = '-fPIC -w'
 libiscsi_configure_flags = ['--prefix={}'.format(libiscsi_install_root), '--disable-shared']
 
@@ -62,6 +65,10 @@ class BuildExtLibISCSI(build_ext):
                 os.makedirs(os.path.dirname(dst), exist_ok=True)
                 shutil.copyfile(src, dst)
                 shutil.copystat(src, dst)
+        # Touch files in the right order so Make won't try to rebuild them
+        for f in [os.path.join(libiscsi_src, f2) for f2 in ['aclocal.m4', 'configure', 'config.h.in', 'Makefile.in']
+                 ] + glob(os.path.join(libiscsi_src, '*', 'Makefile.in')):
+            pathlib.Path(f).touch()
 
     @staticmethod
     def libiscsi_configure_libiscsi():

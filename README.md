@@ -5,13 +5,24 @@ https://github.com/elemental-lf/libiscsi-python and is a fork of
 https://github.com/sahlberg/libiscsi-python.  It adds a few things things to
 make this module actually usable to read and write data.
 
-In addition it comes with a complete build environment and does not require 
-installation of `swig`, `autoconf`, `automake` or `libtool`. It builds `libiscsi`
-from  source and links the extension module with the resulting library, no system
-installation of `libiscsi` is required. The only thing that is required is
-a working C compiler installation.
+It comes with a build environment and does only require `git`, `make` and a
+working C compiler installation. In addition it requires Internet access
+to download the `libiscsi` sources. `swig`, `autoconf`, `automake` or `libtool`
+are not needed.  It builds `libiscsi` from  source and links the extension
+module with the resulting  library, no system installation of `libiscsi` is
+required.
 
-The build process required Internet access to download the `libiscsi` sources.
+## Installation
+
+For RHEL/CentOS 7:
+
+```bash
+yum install -y git make gcc epel-release
+yum install -y python36
+python3 -m venv libiscsi
+. libiscsi/bin/activate
+pip install git+https://github.com/elemental-lf/libiscsi-python
+```
 
 ## LICENSE
 

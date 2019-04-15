@@ -95,10 +95,20 @@ except __builtin__.Exception:
         pass
     _newclass = 0
 
+class iscsi_context(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, iscsi_context, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, iscsi_context, name)
 
-def bytes(ptr: 'void *', nelements: 'size_t') -> "BYTESCDATA":
-    return _libiscsi.bytes(ptr, nelements)
-bytes = _libiscsi.bytes
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _libiscsi.delete_iscsi_context
+    __del__ = lambda self: None
+iscsi_context_swigregister = _libiscsi.iscsi_context_swigregister
+iscsi_context_swigregister(iscsi_context)
+
 class scsi_datain_unmarshalled(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_datain_unmarshalled, name, value)
@@ -702,6 +712,9 @@ class scsi_task(_object):
     __setattr__ = lambda self, name, value: _swig_setattr(self, scsi_task, name, value)
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, scsi_task, name)
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
     __swig_setmethods__["status"] = _libiscsi.scsi_task_status_set
     __swig_getmethods__["status"] = _libiscsi.scsi_task_status_get
@@ -735,10 +748,6 @@ class scsi_task(_object):
     __swig_getmethods__["sense"] = _libiscsi.scsi_task_sense_get
     if _newclass:
         sense = _swig_property(_libiscsi.scsi_task_sense_get, _libiscsi.scsi_task_sense_set)
-    __swig_setmethods__["datain"] = _libiscsi.scsi_task_datain_set
-    __swig_getmethods__["datain"] = _libiscsi.scsi_task_datain_get
-    if _newclass:
-        datain = _swig_property(_libiscsi.scsi_task_datain_get, _libiscsi.scsi_task_datain_set)
     __swig_setmethods__["mem"] = _libiscsi.scsi_task_mem_set
     __swig_getmethods__["mem"] = _libiscsi.scsi_task_mem_get
     if _newclass:
@@ -767,15 +776,15 @@ class scsi_task(_object):
     __swig_getmethods__["iovector_out"] = _libiscsi.scsi_task_iovector_out_get
     if _newclass:
         iovector_out = _swig_property(_libiscsi.scsi_task_iovector_out_get, _libiscsi.scsi_task_iovector_out_set)
-
-    def __init__(self):
-        this = _libiscsi.new_scsi_task()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
     __swig_destroy__ = _libiscsi.delete_scsi_task
     __del__ = lambda self: None
+
+    def _datain_get(self) -> "PyObject *":
+        return _libiscsi.scsi_task__datain_get(self)
+
+    __swig_getmethods__["datain"] = _libiscsi.scsi_task__datain_get
+    if _newclass: datain = _swig_property(_libiscsi.scsi_task__datain_get)
+
 scsi_task_swigregister = _libiscsi.scsi_task_swigregister
 scsi_task_swigregister(scsi_task)
 
@@ -3007,8 +3016,8 @@ def scsi_cdb_unmarshall(task: 'scsi_task', opcode: 'enum scsi_opcode') -> "void 
     return _libiscsi.scsi_cdb_unmarshall(task, opcode)
 scsi_cdb_unmarshall = _libiscsi.scsi_cdb_unmarshall
 
-def scsi_parse_sense_data(sense: 'scsi_sense', sb: 'uint8_t const *') -> "void":
-    return _libiscsi.scsi_parse_sense_data(sense, sb)
+def scsi_parse_sense_data(sb: 'uint8_t const *') -> "struct scsi_sense *":
+    return _libiscsi.scsi_parse_sense_data(sb)
 scsi_parse_sense_data = _libiscsi.scsi_parse_sense_data
 
 def scsi_cdb_compareandwrite(lba: 'uint64_t', xferlen: 'uint32_t', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
@@ -3329,35 +3338,35 @@ ISCSI_PORTAL_URL_SYNTAX = _libiscsi.ISCSI_PORTAL_URL_SYNTAX
 TCP_TRANSPORT = _libiscsi.TCP_TRANSPORT
 ISER_TRANSPORT = _libiscsi.ISER_TRANSPORT
 
-def iscsi_set_cache_allocations(iscsi: 'struct iscsi_context *', ca: 'int') -> "void":
+def iscsi_set_cache_allocations(iscsi: 'iscsi_context', ca: 'int') -> "void":
     return _libiscsi.iscsi_set_cache_allocations(iscsi, ca)
 iscsi_set_cache_allocations = _libiscsi.iscsi_set_cache_allocations
 
-def iscsi_get_fd(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_get_fd(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_get_fd(iscsi)
 iscsi_get_fd = _libiscsi.iscsi_get_fd
 
-def iscsi_which_events(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_which_events(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_which_events(iscsi)
 iscsi_which_events = _libiscsi.iscsi_which_events
 
-def iscsi_service(iscsi: 'struct iscsi_context *', revents: 'int') -> "int":
+def iscsi_service(iscsi: 'iscsi_context', revents: 'int') -> "int":
     return _libiscsi.iscsi_service(iscsi, revents)
 iscsi_service = _libiscsi.iscsi_service
 
-def iscsi_queue_length(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_queue_length(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_queue_length(iscsi)
 iscsi_queue_length = _libiscsi.iscsi_queue_length
 
-def iscsi_out_queue_length(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_out_queue_length(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_out_queue_length(iscsi)
 iscsi_out_queue_length = _libiscsi.iscsi_out_queue_length
 
-def iscsi_set_timeout(iscsi: 'struct iscsi_context *', timeout: 'int') -> "int":
+def iscsi_set_timeout(iscsi: 'iscsi_context', timeout: 'int') -> "int":
     return _libiscsi.iscsi_set_timeout(iscsi, timeout)
 iscsi_set_timeout = _libiscsi.iscsi_set_timeout
 
-def iscsi_set_tcp_keepalive(iscsi: 'struct iscsi_context *', idle: 'int', count: 'int', interval: 'int') -> "int":
+def iscsi_set_tcp_keepalive(iscsi: 'iscsi_context', idle: 'int', count: 'int', interval: 'int') -> "int":
     return _libiscsi.iscsi_set_tcp_keepalive(iscsi, idle, count, interval)
 iscsi_set_tcp_keepalive = _libiscsi.iscsi_set_tcp_keepalive
 class iscsi_url(_object):
@@ -3365,6 +3374,9 @@ class iscsi_url(_object):
     __setattr__ = lambda self, name, value: _swig_setattr(self, iscsi_url, name, value)
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, iscsi_url, name)
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
     __swig_setmethods__["portal"] = _libiscsi.iscsi_url_portal_set
     __swig_getmethods__["portal"] = _libiscsi.iscsi_url_portal_get
@@ -3402,13 +3414,6 @@ class iscsi_url(_object):
     __swig_getmethods__["transport"] = _libiscsi.iscsi_url_transport_get
     if _newclass:
         transport = _swig_property(_libiscsi.iscsi_url_transport_get, _libiscsi.iscsi_url_transport_set)
-
-    def __init__(self):
-        this = _libiscsi.new_iscsi_url()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
     __swig_destroy__ = _libiscsi.delete_iscsi_url
     __del__ = lambda self: None
 iscsi_url_swigregister = _libiscsi.iscsi_url_swigregister
@@ -3417,17 +3422,17 @@ iscsi_url_swigregister(iscsi_url)
 ISCSI_IMMEDIATE_DATA_NO = _libiscsi.ISCSI_IMMEDIATE_DATA_NO
 ISCSI_IMMEDIATE_DATA_YES = _libiscsi.ISCSI_IMMEDIATE_DATA_YES
 
-def iscsi_set_immediate_data(iscsi: 'struct iscsi_context *', immediate_data: 'enum iscsi_immediate_data') -> "int":
+def iscsi_set_immediate_data(iscsi: 'iscsi_context', immediate_data: 'enum iscsi_immediate_data') -> "int":
     return _libiscsi.iscsi_set_immediate_data(iscsi, immediate_data)
 iscsi_set_immediate_data = _libiscsi.iscsi_set_immediate_data
 ISCSI_INITIAL_R2T_NO = _libiscsi.ISCSI_INITIAL_R2T_NO
 ISCSI_INITIAL_R2T_YES = _libiscsi.ISCSI_INITIAL_R2T_YES
 
-def iscsi_set_initial_r2t(iscsi: 'struct iscsi_context *', initial_r2t: 'enum iscsi_initial_r2t') -> "int":
+def iscsi_set_initial_r2t(iscsi: 'iscsi_context', initial_r2t: 'enum iscsi_initial_r2t') -> "int":
     return _libiscsi.iscsi_set_initial_r2t(iscsi, initial_r2t)
 iscsi_set_initial_r2t = _libiscsi.iscsi_set_initial_r2t
 
-def iscsi_parse_full_url(iscsi: 'struct iscsi_context *', url: 'char const *') -> "struct iscsi_url *":
+def iscsi_parse_full_url(iscsi: 'iscsi_context', url: 'char const *') -> "struct iscsi_url *":
     return _libiscsi.iscsi_parse_full_url(iscsi, url)
 iscsi_parse_full_url = _libiscsi.iscsi_parse_full_url
 
@@ -3435,11 +3440,11 @@ def iscsi_destroy_url(iscsi_url: 'iscsi_url') -> "void":
     return _libiscsi.iscsi_destroy_url(iscsi_url)
 iscsi_destroy_url = _libiscsi.iscsi_destroy_url
 
-def iscsi_parse_portal_url(iscsi: 'struct iscsi_context *', url: 'char const *') -> "struct iscsi_url *":
+def iscsi_parse_portal_url(iscsi: 'iscsi_context', url: 'char const *') -> "struct iscsi_url *":
     return _libiscsi.iscsi_parse_portal_url(iscsi, url)
 iscsi_parse_portal_url = _libiscsi.iscsi_parse_portal_url
 
-def iscsi_get_error(iscsi: 'struct iscsi_context *') -> "char const *":
+def iscsi_get_error(iscsi: 'iscsi_context') -> "char const *":
     return _libiscsi.iscsi_get_error(iscsi)
 iscsi_get_error = _libiscsi.iscsi_get_error
 
@@ -3447,29 +3452,29 @@ def iscsi_create_context(initiator_name: 'char const *') -> "struct iscsi_contex
     return _libiscsi.iscsi_create_context(initiator_name)
 iscsi_create_context = _libiscsi.iscsi_create_context
 
-def iscsi_destroy_context(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_destroy_context(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_destroy_context(iscsi)
 iscsi_destroy_context = _libiscsi.iscsi_destroy_context
 
-def iscsi_init_transport(iscsi: 'struct iscsi_context *', transport: 'enum iscsi_transport_type') -> "int":
+def iscsi_init_transport(iscsi: 'iscsi_context', transport: 'enum iscsi_transport_type') -> "int":
     return _libiscsi.iscsi_init_transport(iscsi, transport)
 iscsi_init_transport = _libiscsi.iscsi_init_transport
 
-def iscsi_set_alias(iscsi: 'struct iscsi_context *', alias: 'char const *') -> "int":
+def iscsi_set_alias(iscsi: 'iscsi_context', alias: 'char const *') -> "int":
     return _libiscsi.iscsi_set_alias(iscsi, alias)
 iscsi_set_alias = _libiscsi.iscsi_set_alias
 
-def iscsi_set_targetname(iscsi: 'struct iscsi_context *', targetname: 'char const *') -> "int":
+def iscsi_set_targetname(iscsi: 'iscsi_context', targetname: 'char const *') -> "int":
     return _libiscsi.iscsi_set_targetname(iscsi, targetname)
 iscsi_set_targetname = _libiscsi.iscsi_set_targetname
 
-def iscsi_get_target_address(iscsi: 'struct iscsi_context *') -> "char const *":
+def iscsi_get_target_address(iscsi: 'iscsi_context') -> "char const *":
     return _libiscsi.iscsi_get_target_address(iscsi)
 iscsi_get_target_address = _libiscsi.iscsi_get_target_address
 ISCSI_SESSION_DISCOVERY = _libiscsi.ISCSI_SESSION_DISCOVERY
 ISCSI_SESSION_NORMAL = _libiscsi.ISCSI_SESSION_NORMAL
 
-def iscsi_set_session_type(iscsi: 'struct iscsi_context *', session_type: 'enum iscsi_session_type') -> "int":
+def iscsi_set_session_type(iscsi: 'iscsi_context', session_type: 'enum iscsi_session_type') -> "int":
     return _libiscsi.iscsi_set_session_type(iscsi, session_type)
 iscsi_set_session_type = _libiscsi.iscsi_set_session_type
 ISCSI_HEADER_DIGEST_NONE = _libiscsi.ISCSI_HEADER_DIGEST_NONE
@@ -3478,19 +3483,19 @@ ISCSI_HEADER_DIGEST_CRC32C_NONE = _libiscsi.ISCSI_HEADER_DIGEST_CRC32C_NONE
 ISCSI_HEADER_DIGEST_CRC32C = _libiscsi.ISCSI_HEADER_DIGEST_CRC32C
 ISCSI_HEADER_DIGEST_LAST = _libiscsi.ISCSI_HEADER_DIGEST_LAST
 
-def iscsi_set_header_digest(iscsi: 'struct iscsi_context *', header_digest: 'enum iscsi_header_digest') -> "int":
+def iscsi_set_header_digest(iscsi: 'iscsi_context', header_digest: 'enum iscsi_header_digest') -> "int":
     return _libiscsi.iscsi_set_header_digest(iscsi, header_digest)
 iscsi_set_header_digest = _libiscsi.iscsi_set_header_digest
 
-def iscsi_set_initiator_username_pwd(iscsi: 'struct iscsi_context *', user: 'char const *', passwd: 'char const *') -> "int":
+def iscsi_set_initiator_username_pwd(iscsi: 'iscsi_context', user: 'char const *', passwd: 'char const *') -> "int":
     return _libiscsi.iscsi_set_initiator_username_pwd(iscsi, user, passwd)
 iscsi_set_initiator_username_pwd = _libiscsi.iscsi_set_initiator_username_pwd
 
-def iscsi_set_target_username_pwd(iscsi: 'struct iscsi_context *', user: 'char const *', passwd: 'char const *') -> "int":
+def iscsi_set_target_username_pwd(iscsi: 'iscsi_context', user: 'char const *', passwd: 'char const *') -> "int":
     return _libiscsi.iscsi_set_target_username_pwd(iscsi, user, passwd)
 iscsi_set_target_username_pwd = _libiscsi.iscsi_set_target_username_pwd
 
-def iscsi_is_logged_in(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_is_logged_in(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_is_logged_in(iscsi)
 iscsi_is_logged_in = _libiscsi.iscsi_is_logged_in
 SCSI_STATUS_GOOD = _libiscsi.SCSI_STATUS_GOOD
@@ -3506,47 +3511,47 @@ SCSI_STATUS_CANCELLED = _libiscsi.SCSI_STATUS_CANCELLED
 SCSI_STATUS_ERROR = _libiscsi.SCSI_STATUS_ERROR
 SCSI_STATUS_TIMEOUT = _libiscsi.SCSI_STATUS_TIMEOUT
 
-def iscsi_connect_async(iscsi: 'struct iscsi_context *', portal: 'char const *', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+def iscsi_connect_async(iscsi: 'iscsi_context', portal: 'char const *', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
     return _libiscsi.iscsi_connect_async(iscsi, portal, cb, private_data)
 iscsi_connect_async = _libiscsi.iscsi_connect_async
 
-def iscsi_connect_sync(iscsi: 'struct iscsi_context *', portal: 'char const *') -> "int":
+def iscsi_connect_sync(iscsi: 'iscsi_context', portal: 'char const *') -> "int":
     return _libiscsi.iscsi_connect_sync(iscsi, portal)
 iscsi_connect_sync = _libiscsi.iscsi_connect_sync
 
-def iscsi_full_connect_async(iscsi: 'struct iscsi_context *', portal: 'char const *', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+def iscsi_full_connect_async(iscsi: 'iscsi_context', portal: 'char const *', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
     return _libiscsi.iscsi_full_connect_async(iscsi, portal, lun, cb, private_data)
 iscsi_full_connect_async = _libiscsi.iscsi_full_connect_async
 
-def iscsi_full_connect_sync(iscsi: 'struct iscsi_context *', portal: 'char const *', lun: 'int') -> "int":
+def iscsi_full_connect_sync(iscsi: 'iscsi_context', portal: 'char const *', lun: 'int') -> "int":
     return _libiscsi.iscsi_full_connect_sync(iscsi, portal, lun)
 iscsi_full_connect_sync = _libiscsi.iscsi_full_connect_sync
 
-def iscsi_disconnect(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_disconnect(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_disconnect(iscsi)
 iscsi_disconnect = _libiscsi.iscsi_disconnect
 
-def iscsi_reconnect(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_reconnect(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_reconnect(iscsi)
 iscsi_reconnect = _libiscsi.iscsi_reconnect
 
-def iscsi_reconnect_sync(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_reconnect_sync(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_reconnect_sync(iscsi)
 iscsi_reconnect_sync = _libiscsi.iscsi_reconnect_sync
 
-def iscsi_login_async(iscsi: 'struct iscsi_context *', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+def iscsi_login_async(iscsi: 'iscsi_context', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
     return _libiscsi.iscsi_login_async(iscsi, cb, private_data)
 iscsi_login_async = _libiscsi.iscsi_login_async
 
-def iscsi_login_sync(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_login_sync(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_login_sync(iscsi)
 iscsi_login_sync = _libiscsi.iscsi_login_sync
 
-def iscsi_logout_async(iscsi: 'struct iscsi_context *', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+def iscsi_logout_async(iscsi: 'iscsi_context', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
     return _libiscsi.iscsi_logout_async(iscsi, cb, private_data)
 iscsi_logout_async = _libiscsi.iscsi_logout_async
 
-def iscsi_logout_sync(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_logout_sync(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_logout_sync(iscsi)
 iscsi_logout_sync = _libiscsi.iscsi_logout_sync
 class iscsi_target_portal(_object):
@@ -3606,23 +3611,23 @@ iscsi_discovery_address_swigregister = _libiscsi.iscsi_discovery_address_swigreg
 iscsi_discovery_address_swigregister(iscsi_discovery_address)
 
 
-def iscsi_discovery_async(iscsi: 'struct iscsi_context *', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+def iscsi_discovery_async(iscsi: 'iscsi_context', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
     return _libiscsi.iscsi_discovery_async(iscsi, cb, private_data)
 iscsi_discovery_async = _libiscsi.iscsi_discovery_async
 
-def iscsi_discovery_sync(iscsi: 'struct iscsi_context *') -> "struct iscsi_discovery_address *":
+def iscsi_discovery_sync(iscsi: 'iscsi_context') -> "struct iscsi_discovery_address *":
     return _libiscsi.iscsi_discovery_sync(iscsi)
 iscsi_discovery_sync = _libiscsi.iscsi_discovery_sync
 
-def iscsi_free_discovery_data(iscsi: 'struct iscsi_context *', da: 'iscsi_discovery_address') -> "void":
+def iscsi_free_discovery_data(iscsi: 'iscsi_context', da: 'iscsi_discovery_address') -> "void":
     return _libiscsi.iscsi_free_discovery_data(iscsi, da)
 iscsi_free_discovery_data = _libiscsi.iscsi_free_discovery_data
 
-def iscsi_nop_out_async(iscsi: 'struct iscsi_context *', cb: 'iscsi_command_cb', data: 'unsigned char *', private_data: 'void *') -> "int":
+def iscsi_nop_out_async(iscsi: 'iscsi_context', cb: 'iscsi_command_cb', data: 'unsigned char *', private_data: 'void *') -> "int":
     return _libiscsi.iscsi_nop_out_async(iscsi, cb, data, private_data)
 iscsi_nop_out_async = _libiscsi.iscsi_nop_out_async
 
-def iscsi_get_nops_in_flight(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_get_nops_in_flight(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_get_nops_in_flight(iscsi)
 iscsi_get_nops_in_flight = _libiscsi.iscsi_get_nops_in_flight
 ISCSI_TM_ABORT_TASK = _libiscsi.ISCSI_TM_ABORT_TASK
@@ -3642,51 +3647,51 @@ ISCSI_TMR_TMF_NOT_SUPPORTED = _libiscsi.ISCSI_TMR_TMF_NOT_SUPPORTED
 ISCSI_TMR_FUNC_AUTH_FAILED = _libiscsi.ISCSI_TMR_FUNC_AUTH_FAILED
 ISCSI_TMR_FUNC_REJECTED = _libiscsi.ISCSI_TMR_FUNC_REJECTED
 
-def iscsi_task_mgmt_async(iscsi: 'struct iscsi_context *', lun: 'int', function: 'enum iscsi_task_mgmt_funcs', ritt: 'uint32_t', rcmdscn: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+def iscsi_task_mgmt_async(iscsi: 'iscsi_context', lun: 'int', function: 'enum iscsi_task_mgmt_funcs', ritt: 'uint32_t', rcmdscn: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
     return _libiscsi.iscsi_task_mgmt_async(iscsi, lun, function, ritt, rcmdscn, cb, private_data)
 iscsi_task_mgmt_async = _libiscsi.iscsi_task_mgmt_async
 
-def iscsi_task_mgmt_abort_task_async(iscsi: 'struct iscsi_context *', task: 'scsi_task', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+def iscsi_task_mgmt_abort_task_async(iscsi: 'iscsi_context', task: 'scsi_task', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
     return _libiscsi.iscsi_task_mgmt_abort_task_async(iscsi, task, cb, private_data)
 iscsi_task_mgmt_abort_task_async = _libiscsi.iscsi_task_mgmt_abort_task_async
 
-def iscsi_task_mgmt_abort_task_set_async(iscsi: 'struct iscsi_context *', lun: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+def iscsi_task_mgmt_abort_task_set_async(iscsi: 'iscsi_context', lun: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
     return _libiscsi.iscsi_task_mgmt_abort_task_set_async(iscsi, lun, cb, private_data)
 iscsi_task_mgmt_abort_task_set_async = _libiscsi.iscsi_task_mgmt_abort_task_set_async
 
-def iscsi_task_mgmt_lun_reset_async(iscsi: 'struct iscsi_context *', lun: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+def iscsi_task_mgmt_lun_reset_async(iscsi: 'iscsi_context', lun: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
     return _libiscsi.iscsi_task_mgmt_lun_reset_async(iscsi, lun, cb, private_data)
 iscsi_task_mgmt_lun_reset_async = _libiscsi.iscsi_task_mgmt_lun_reset_async
 
-def iscsi_task_mgmt_target_warm_reset_async(iscsi: 'struct iscsi_context *', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+def iscsi_task_mgmt_target_warm_reset_async(iscsi: 'iscsi_context', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
     return _libiscsi.iscsi_task_mgmt_target_warm_reset_async(iscsi, cb, private_data)
 iscsi_task_mgmt_target_warm_reset_async = _libiscsi.iscsi_task_mgmt_target_warm_reset_async
 
-def iscsi_task_mgmt_target_cold_reset_async(iscsi: 'struct iscsi_context *', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
+def iscsi_task_mgmt_target_cold_reset_async(iscsi: 'iscsi_context', cb: 'iscsi_command_cb', private_data: 'void *') -> "int":
     return _libiscsi.iscsi_task_mgmt_target_cold_reset_async(iscsi, cb, private_data)
 iscsi_task_mgmt_target_cold_reset_async = _libiscsi.iscsi_task_mgmt_target_cold_reset_async
 
-def iscsi_task_mgmt_sync(iscsi: 'struct iscsi_context *', lun: 'int', function: 'enum iscsi_task_mgmt_funcs', ritt: 'uint32_t', rcmdscn: 'uint32_t') -> "int":
+def iscsi_task_mgmt_sync(iscsi: 'iscsi_context', lun: 'int', function: 'enum iscsi_task_mgmt_funcs', ritt: 'uint32_t', rcmdscn: 'uint32_t') -> "int":
     return _libiscsi.iscsi_task_mgmt_sync(iscsi, lun, function, ritt, rcmdscn)
 iscsi_task_mgmt_sync = _libiscsi.iscsi_task_mgmt_sync
 
-def iscsi_task_mgmt_abort_task_sync(iscsi: 'struct iscsi_context *', task: 'scsi_task') -> "int":
+def iscsi_task_mgmt_abort_task_sync(iscsi: 'iscsi_context', task: 'scsi_task') -> "int":
     return _libiscsi.iscsi_task_mgmt_abort_task_sync(iscsi, task)
 iscsi_task_mgmt_abort_task_sync = _libiscsi.iscsi_task_mgmt_abort_task_sync
 
-def iscsi_task_mgmt_abort_task_set_sync(iscsi: 'struct iscsi_context *', lun: 'uint32_t') -> "int":
+def iscsi_task_mgmt_abort_task_set_sync(iscsi: 'iscsi_context', lun: 'uint32_t') -> "int":
     return _libiscsi.iscsi_task_mgmt_abort_task_set_sync(iscsi, lun)
 iscsi_task_mgmt_abort_task_set_sync = _libiscsi.iscsi_task_mgmt_abort_task_set_sync
 
-def iscsi_task_mgmt_lun_reset_sync(iscsi: 'struct iscsi_context *', lun: 'uint32_t') -> "int":
+def iscsi_task_mgmt_lun_reset_sync(iscsi: 'iscsi_context', lun: 'uint32_t') -> "int":
     return _libiscsi.iscsi_task_mgmt_lun_reset_sync(iscsi, lun)
 iscsi_task_mgmt_lun_reset_sync = _libiscsi.iscsi_task_mgmt_lun_reset_sync
 
-def iscsi_task_mgmt_target_warm_reset_sync(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_task_mgmt_target_warm_reset_sync(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_task_mgmt_target_warm_reset_sync(iscsi)
 iscsi_task_mgmt_target_warm_reset_sync = _libiscsi.iscsi_task_mgmt_target_warm_reset_sync
 
-def iscsi_task_mgmt_target_cold_reset_sync(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_task_mgmt_target_cold_reset_sync(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_task_mgmt_target_cold_reset_sync(iscsi)
 iscsi_task_mgmt_target_cold_reset_sync = _libiscsi.iscsi_task_mgmt_target_cold_reset_sync
 class iscsi_data(_object):
@@ -3716,255 +3721,255 @@ iscsi_data_swigregister = _libiscsi.iscsi_data_swigregister
 iscsi_data_swigregister(iscsi_data)
 
 
-def iscsi_set_isid_oui(iscsi: 'struct iscsi_context *', oui: 'uint32_t', qualifier: 'uint32_t') -> "int":
+def iscsi_set_isid_oui(iscsi: 'iscsi_context', oui: 'uint32_t', qualifier: 'uint32_t') -> "int":
     return _libiscsi.iscsi_set_isid_oui(iscsi, oui, qualifier)
 iscsi_set_isid_oui = _libiscsi.iscsi_set_isid_oui
 
-def iscsi_set_isid_en(iscsi: 'struct iscsi_context *', en: 'uint32_t', qualifier: 'uint32_t') -> "int":
+def iscsi_set_isid_en(iscsi: 'iscsi_context', en: 'uint32_t', qualifier: 'uint32_t') -> "int":
     return _libiscsi.iscsi_set_isid_en(iscsi, en, qualifier)
 iscsi_set_isid_en = _libiscsi.iscsi_set_isid_en
 
-def iscsi_set_isid_random(iscsi: 'struct iscsi_context *', rnd: 'uint32_t', qualifier: 'uint32_t') -> "int":
+def iscsi_set_isid_random(iscsi: 'iscsi_context', rnd: 'uint32_t', qualifier: 'uint32_t') -> "int":
     return _libiscsi.iscsi_set_isid_random(iscsi, rnd, qualifier)
 iscsi_set_isid_random = _libiscsi.iscsi_set_isid_random
 
-def iscsi_set_isid_reserved(iscsi: 'struct iscsi_context *') -> "int":
+def iscsi_set_isid_reserved(iscsi: 'iscsi_context') -> "int":
     return _libiscsi.iscsi_set_isid_reserved(iscsi)
 iscsi_set_isid_reserved = _libiscsi.iscsi_set_isid_reserved
 
-def iscsi_scsi_command_async(iscsi: 'struct iscsi_context *', lun: 'int', task: 'scsi_task', cb: 'iscsi_command_cb', data: 'iscsi_data', private_data: 'void *') -> "int":
+def iscsi_scsi_command_async(iscsi: 'iscsi_context', lun: 'int', task: 'scsi_task', cb: 'iscsi_command_cb', data: 'iscsi_data', private_data: 'void *') -> "int":
     return _libiscsi.iscsi_scsi_command_async(iscsi, lun, task, cb, data, private_data)
 iscsi_scsi_command_async = _libiscsi.iscsi_scsi_command_async
 
-def iscsi_reportluns_task(iscsi: 'struct iscsi_context *', report_type: 'int', alloc_len: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_reportluns_task(iscsi: 'iscsi_context', report_type: 'int', alloc_len: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_reportluns_task(iscsi, report_type, alloc_len, cb, private_data)
 iscsi_reportluns_task = _libiscsi.iscsi_reportluns_task
 
-def iscsi_testunitready_task(iscsi: 'struct iscsi_context *', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_testunitready_task(iscsi: 'iscsi_context', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_testunitready_task(iscsi, lun, cb, private_data)
 iscsi_testunitready_task = _libiscsi.iscsi_testunitready_task
 
-def iscsi_inquiry_task(iscsi: 'struct iscsi_context *', lun: 'int', evpd: 'int', page_code: 'int', maxsize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_inquiry_task(iscsi: 'iscsi_context', lun: 'int', evpd: 'int', page_code: 'int', maxsize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_inquiry_task(iscsi, lun, evpd, page_code, maxsize, cb, private_data)
 iscsi_inquiry_task = _libiscsi.iscsi_inquiry_task
 
-def iscsi_readcapacity10_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'int', pmi: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_readcapacity10_task(iscsi: 'iscsi_context', lun: 'int', lba: 'int', pmi: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_readcapacity10_task(iscsi, lun, lba, pmi, cb, private_data)
 iscsi_readcapacity10_task = _libiscsi.iscsi_readcapacity10_task
 
-def iscsi_readcapacity16_task(iscsi: 'struct iscsi_context *', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_readcapacity16_task(iscsi: 'iscsi_context', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_readcapacity16_task(iscsi, lun, cb, private_data)
 iscsi_readcapacity16_task = _libiscsi.iscsi_readcapacity16_task
 
-def iscsi_readdefectdata10_task(iscsi: 'struct iscsi_context *', lun: 'int', req_plist: 'int', req_glist: 'int', defect_list_format: 'int', alloc_len: 'uint16_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_readdefectdata10_task(iscsi: 'iscsi_context', lun: 'int', req_plist: 'int', req_glist: 'int', defect_list_format: 'int', alloc_len: 'uint16_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_readdefectdata10_task(iscsi, lun, req_plist, req_glist, defect_list_format, alloc_len, cb, private_data)
 iscsi_readdefectdata10_task = _libiscsi.iscsi_readdefectdata10_task
 
-def iscsi_readdefectdata12_task(iscsi: 'struct iscsi_context *', lun: 'int', req_plist: 'int', req_glist: 'int', defect_list_format: 'int', address_descriptor_index: 'uint32_t', alloc_len: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_readdefectdata12_task(iscsi: 'iscsi_context', lun: 'int', req_plist: 'int', req_glist: 'int', defect_list_format: 'int', address_descriptor_index: 'uint32_t', alloc_len: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_readdefectdata12_task(iscsi, lun, req_plist, req_glist, defect_list_format, address_descriptor_index, alloc_len, cb, private_data)
 iscsi_readdefectdata12_task = _libiscsi.iscsi_readdefectdata12_task
 
-def iscsi_sanitize_task(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int', sa: 'int', param_len: 'int', data: 'iscsi_data', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_sanitize_task(iscsi: 'iscsi_context', lun: 'int', immed: 'int', ause: 'int', sa: 'int', param_len: 'int', data: 'iscsi_data', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_sanitize_task(iscsi, lun, immed, ause, sa, param_len, data, cb, private_data)
 iscsi_sanitize_task = _libiscsi.iscsi_sanitize_task
 
-def iscsi_sanitize_block_erase_task(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_sanitize_block_erase_task(iscsi: 'iscsi_context', lun: 'int', immed: 'int', ause: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_sanitize_block_erase_task(iscsi, lun, immed, ause, cb, private_data)
 iscsi_sanitize_block_erase_task = _libiscsi.iscsi_sanitize_block_erase_task
 
-def iscsi_sanitize_crypto_erase_task(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_sanitize_crypto_erase_task(iscsi: 'iscsi_context', lun: 'int', immed: 'int', ause: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_sanitize_crypto_erase_task(iscsi, lun, immed, ause, cb, private_data)
 iscsi_sanitize_crypto_erase_task = _libiscsi.iscsi_sanitize_crypto_erase_task
 
-def iscsi_sanitize_exit_failure_mode_task(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_sanitize_exit_failure_mode_task(iscsi: 'iscsi_context', lun: 'int', immed: 'int', ause: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_sanitize_exit_failure_mode_task(iscsi, lun, immed, ause, cb, private_data)
 iscsi_sanitize_exit_failure_mode_task = _libiscsi.iscsi_sanitize_exit_failure_mode_task
 
-def iscsi_get_lba_status_task(iscsi: 'struct iscsi_context *', lun: 'int', starting_lba: 'uint64_t', alloc_len: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_get_lba_status_task(iscsi: 'iscsi_context', lun: 'int', starting_lba: 'uint64_t', alloc_len: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_get_lba_status_task(iscsi, lun, starting_lba, alloc_len, cb, private_data)
 iscsi_get_lba_status_task = _libiscsi.iscsi_get_lba_status_task
 
-def iscsi_synchronizecache10_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'int', num_blocks: 'int', syncnv: 'int', immed: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_synchronizecache10_task(iscsi: 'iscsi_context', lun: 'int', lba: 'int', num_blocks: 'int', syncnv: 'int', immed: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_synchronizecache10_task(iscsi, lun, lba, num_blocks, syncnv, immed, cb, private_data)
 iscsi_synchronizecache10_task = _libiscsi.iscsi_synchronizecache10_task
 
-def iscsi_synchronizecache16_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', num_blocks: 'uint32_t', syncnv: 'int', immed: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_synchronizecache16_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', num_blocks: 'uint32_t', syncnv: 'int', immed: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_synchronizecache16_task(iscsi, lun, lba, num_blocks, syncnv, immed, cb, private_data)
 iscsi_synchronizecache16_task = _libiscsi.iscsi_synchronizecache16_task
 
-def iscsi_prefetch10_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', num_blocks: 'int', immed: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_prefetch10_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', num_blocks: 'int', immed: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_prefetch10_task(iscsi, lun, lba, num_blocks, immed, group, cb, private_data)
 iscsi_prefetch10_task = _libiscsi.iscsi_prefetch10_task
 
-def iscsi_prefetch16_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', num_blocks: 'int', immed: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_prefetch16_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', num_blocks: 'int', immed: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_prefetch16_task(iscsi, lun, lba, num_blocks, immed, group, cb, private_data)
 iscsi_prefetch16_task = _libiscsi.iscsi_prefetch16_task
 
-def iscsi_read6_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_read6_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_read6_task(iscsi, lun, lba, datalen, blocksize, cb, private_data)
 iscsi_read6_task = _libiscsi.iscsi_read6_task
 
-def iscsi_read6_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_read6_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_read6_iov_task(iscsi, lun, lba, datalen, blocksize, cb, private_data, iov, niov)
 iscsi_read6_iov_task = _libiscsi.iscsi_read6_iov_task
 
-def iscsi_read10_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_read10_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_read10_task(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, cb, private_data)
 iscsi_read10_task = _libiscsi.iscsi_read10_task
 
-def iscsi_read10_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_read10_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_read10_iov_task(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
 iscsi_read10_iov_task = _libiscsi.iscsi_read10_iov_task
 
-def iscsi_write10_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_write10_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_write10_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data)
 iscsi_write10_task = _libiscsi.iscsi_write10_task
 
-def iscsi_write10_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_write10_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_write10_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
 iscsi_write10_iov_task = _libiscsi.iscsi_write10_iov_task
 
-def iscsi_writeverify10_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_writeverify10_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeverify10_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, cb, private_data)
 iscsi_writeverify10_task = _libiscsi.iscsi_writeverify10_task
 
-def iscsi_writeverify10_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_writeverify10_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeverify10_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, cb, private_data, iov, niov)
 iscsi_writeverify10_iov_task = _libiscsi.iscsi_writeverify10_iov_task
 
-def iscsi_read12_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_read12_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_read12_task(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, cb, private_data)
 iscsi_read12_task = _libiscsi.iscsi_read12_task
 
-def iscsi_read12_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_read12_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_read12_iov_task(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
 iscsi_read12_iov_task = _libiscsi.iscsi_read12_iov_task
 
-def iscsi_write12_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_write12_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_write12_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data)
 iscsi_write12_task = _libiscsi.iscsi_write12_task
 
-def iscsi_write12_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_write12_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_write12_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
 iscsi_write12_iov_task = _libiscsi.iscsi_write12_iov_task
 
-def iscsi_writeverify12_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_writeverify12_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeverify12_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, cb, private_data)
 iscsi_writeverify12_task = _libiscsi.iscsi_writeverify12_task
 
-def iscsi_writeverify12_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_writeverify12_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeverify12_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, cb, private_data, iov, niov)
 iscsi_writeverify12_iov_task = _libiscsi.iscsi_writeverify12_iov_task
 
-def iscsi_read16_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_read16_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_read16_task(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, cb, private_data)
 iscsi_read16_task = _libiscsi.iscsi_read16_task
 
-def iscsi_read16_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_read16_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_read16_iov_task(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
 iscsi_read16_iov_task = _libiscsi.iscsi_read16_iov_task
 
-def iscsi_write16_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_write16_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_write16_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data)
 iscsi_write16_task = _libiscsi.iscsi_write16_task
 
-def iscsi_write16_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_write16_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_write16_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
 iscsi_write16_iov_task = _libiscsi.iscsi_write16_iov_task
 
-def iscsi_writeatomic16_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_writeatomic16_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeatomic16_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, group_number, cb, private_data)
 iscsi_writeatomic16_task = _libiscsi.iscsi_writeatomic16_task
 
-def iscsi_writeatomic16_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_writeatomic16_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeatomic16_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, group_number, cb, private_data, iov, niov)
 iscsi_writeatomic16_iov_task = _libiscsi.iscsi_writeatomic16_iov_task
 
-def iscsi_orwrite_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_orwrite_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_orwrite_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data)
 iscsi_orwrite_task = _libiscsi.iscsi_orwrite_task
 
-def iscsi_orwrite_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_orwrite_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_orwrite_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
 iscsi_orwrite_iov_task = _libiscsi.iscsi_orwrite_iov_task
 
-def iscsi_startstopunit_task(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', pcm: 'int', pc: 'int', no_flush: 'int', loej: 'int', start: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_startstopunit_task(iscsi: 'iscsi_context', lun: 'int', immed: 'int', pcm: 'int', pc: 'int', no_flush: 'int', loej: 'int', start: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_startstopunit_task(iscsi, lun, immed, pcm, pc, no_flush, loej, start, cb, private_data)
 iscsi_startstopunit_task = _libiscsi.iscsi_startstopunit_task
 
-def iscsi_preventallow_task(iscsi: 'struct iscsi_context *', lun: 'int', prevent: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_preventallow_task(iscsi: 'iscsi_context', lun: 'int', prevent: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_preventallow_task(iscsi, lun, prevent, cb, private_data)
 iscsi_preventallow_task = _libiscsi.iscsi_preventallow_task
 
-def iscsi_compareandwrite_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_compareandwrite_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_compareandwrite_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data)
 iscsi_compareandwrite_task = _libiscsi.iscsi_compareandwrite_task
 
-def iscsi_compareandwrite_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_compareandwrite_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_compareandwrite_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, cb, private_data, iov, niov)
 iscsi_compareandwrite_iov_task = _libiscsi.iscsi_compareandwrite_iov_task
 
-def iscsi_writeverify16_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_writeverify16_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeverify16_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, cb, private_data)
 iscsi_writeverify16_task = _libiscsi.iscsi_writeverify16_task
 
-def iscsi_writeverify16_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_writeverify16_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeverify16_iov_task(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, cb, private_data, iov, niov)
 iscsi_writeverify16_iov_task = _libiscsi.iscsi_writeverify16_iov_task
 
-def iscsi_verify10_task(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_verify10_task(iscsi: 'iscsi_context', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_verify10_task(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, cb, private_data)
 iscsi_verify10_task = _libiscsi.iscsi_verify10_task
 
-def iscsi_verify10_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_verify10_iov_task(iscsi: 'iscsi_context', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_verify10_iov_task(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, cb, private_data, iov, niov)
 iscsi_verify10_iov_task = _libiscsi.iscsi_verify10_iov_task
 
-def iscsi_verify12_task(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_verify12_task(iscsi: 'iscsi_context', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_verify12_task(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, cb, private_data)
 iscsi_verify12_task = _libiscsi.iscsi_verify12_task
 
-def iscsi_verify12_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_verify12_iov_task(iscsi: 'iscsi_context', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_verify12_iov_task(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, cb, private_data, iov, niov)
 iscsi_verify12_iov_task = _libiscsi.iscsi_verify12_iov_task
 
-def iscsi_verify16_task(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint64_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_verify16_task(iscsi: 'iscsi_context', lun: 'int', data: 'unsigned char *', lba: 'uint64_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_verify16_task(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, cb, private_data)
 iscsi_verify16_task = _libiscsi.iscsi_verify16_task
 
-def iscsi_verify16_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint64_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_verify16_iov_task(iscsi: 'iscsi_context', lun: 'int', data: 'unsigned char *', lba: 'uint64_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_verify16_iov_task(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, cb, private_data, iov, niov)
 iscsi_verify16_iov_task = _libiscsi.iscsi_verify16_iov_task
 
-def iscsi_writesame10_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', num_blocks: 'uint16_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_writesame10_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', num_blocks: 'uint16_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_writesame10_task(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group, cb, private_data)
 iscsi_writesame10_task = _libiscsi.iscsi_writesame10_task
 
-def iscsi_writesame10_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', num_blocks: 'uint16_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_writesame10_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', num_blocks: 'uint16_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writesame10_iov_task(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group, cb, private_data, iov, niov)
 iscsi_writesame10_iov_task = _libiscsi.iscsi_writesame10_iov_task
 
-def iscsi_writesame16_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', num_blocks: 'uint32_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_writesame16_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', num_blocks: 'uint32_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_writesame16_task(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group, cb, private_data)
 iscsi_writesame16_task = _libiscsi.iscsi_writesame16_task
 
-def iscsi_writesame16_iov_task(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', num_blocks: 'uint32_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_writesame16_iov_task(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', num_blocks: 'uint32_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', cb: 'iscsi_command_cb', private_data: 'void *', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writesame16_iov_task(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group, cb, private_data, iov, niov)
 iscsi_writesame16_iov_task = _libiscsi.iscsi_writesame16_iov_task
 
-def iscsi_modeselect6_task(iscsi: 'struct iscsi_context *', lun: 'int', pf: 'int', sp: 'int', mp: 'scsi_mode_page', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_modeselect6_task(iscsi: 'iscsi_context', lun: 'int', pf: 'int', sp: 'int', mp: 'scsi_mode_page', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_modeselect6_task(iscsi, lun, pf, sp, mp, cb, private_data)
 iscsi_modeselect6_task = _libiscsi.iscsi_modeselect6_task
 
-def iscsi_modeselect10_task(iscsi: 'struct iscsi_context *', lun: 'int', pf: 'int', sp: 'int', mp: 'scsi_mode_page', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_modeselect10_task(iscsi: 'iscsi_context', lun: 'int', pf: 'int', sp: 'int', mp: 'scsi_mode_page', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_modeselect10_task(iscsi, lun, pf, sp, mp, cb, private_data)
 iscsi_modeselect10_task = _libiscsi.iscsi_modeselect10_task
 
-def iscsi_modesense6_task(iscsi: 'struct iscsi_context *', lun: 'int', dbd: 'int', pc: 'int', page_code: 'int', sub_page_code: 'int', alloc_len: 'unsigned char', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_modesense6_task(iscsi: 'iscsi_context', lun: 'int', dbd: 'int', pc: 'int', page_code: 'int', sub_page_code: 'int', alloc_len: 'unsigned char', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_modesense6_task(iscsi, lun, dbd, pc, page_code, sub_page_code, alloc_len, cb, private_data)
 iscsi_modesense6_task = _libiscsi.iscsi_modesense6_task
 
-def iscsi_modesense10_task(iscsi: 'struct iscsi_context *', lun: 'int', llbaa: 'int', dbd: 'int', pc: 'int', page_code: 'int', sub_page_code: 'int', alloc_len: 'unsigned char', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_modesense10_task(iscsi: 'iscsi_context', lun: 'int', llbaa: 'int', dbd: 'int', pc: 'int', page_code: 'int', sub_page_code: 'int', alloc_len: 'unsigned char', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_modesense10_task(iscsi, lun, llbaa, dbd, pc, page_code, sub_page_code, alloc_len, cb, private_data)
 iscsi_modesense10_task = _libiscsi.iscsi_modesense10_task
 class unmap_list(_object):
@@ -3994,295 +3999,295 @@ unmap_list_swigregister = _libiscsi.unmap_list_swigregister
 unmap_list_swigregister(unmap_list)
 
 
-def iscsi_persistent_reserve_in_task(iscsi: 'struct iscsi_context *', lun: 'int', sa: 'int', xferlen: 'uint16_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_persistent_reserve_in_task(iscsi: 'iscsi_context', lun: 'int', sa: 'int', xferlen: 'uint16_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_persistent_reserve_in_task(iscsi, lun, sa, xferlen, cb, private_data)
 iscsi_persistent_reserve_in_task = _libiscsi.iscsi_persistent_reserve_in_task
 
-def iscsi_persistent_reserve_out_task(iscsi: 'struct iscsi_context *', lun: 'int', sa: 'int', scope: 'int', type: 'int', params: 'void *', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_persistent_reserve_out_task(iscsi: 'iscsi_context', lun: 'int', sa: 'int', scope: 'int', type: 'int', params: 'void *', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_persistent_reserve_out_task(iscsi, lun, sa, scope, type, params, cb, private_data)
 iscsi_persistent_reserve_out_task = _libiscsi.iscsi_persistent_reserve_out_task
 
-def iscsi_unmap_task(iscsi: 'struct iscsi_context *', lun: 'int', anchor: 'int', group: 'int', list: 'unmap_list', list_len: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_unmap_task(iscsi: 'iscsi_context', lun: 'int', anchor: 'int', group: 'int', list: 'unmap_list', list_len: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_unmap_task(iscsi, lun, anchor, group, list, list_len, cb, private_data)
 iscsi_unmap_task = _libiscsi.iscsi_unmap_task
 
-def iscsi_readtoc_task(iscsi: 'struct iscsi_context *', lun: 'int', msf: 'int', format: 'int', track_session: 'int', maxsize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_readtoc_task(iscsi: 'iscsi_context', lun: 'int', msf: 'int', format: 'int', track_session: 'int', maxsize: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_readtoc_task(iscsi, lun, msf, format, track_session, maxsize, cb, private_data)
 iscsi_readtoc_task = _libiscsi.iscsi_readtoc_task
 
-def iscsi_reserve6_task(iscsi: 'struct iscsi_context *', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_reserve6_task(iscsi: 'iscsi_context', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_reserve6_task(iscsi, lun, cb, private_data)
 iscsi_reserve6_task = _libiscsi.iscsi_reserve6_task
 
-def iscsi_release6_task(iscsi: 'struct iscsi_context *', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_release6_task(iscsi: 'iscsi_context', lun: 'int', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_release6_task(iscsi, lun, cb, private_data)
 iscsi_release6_task = _libiscsi.iscsi_release6_task
 
-def iscsi_report_supported_opcodes_task(iscsi: 'struct iscsi_context *', lun: 'int', rctd: 'int', options: 'int', opcode: 'int', sa: 'int', alloc_len: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
+def iscsi_report_supported_opcodes_task(iscsi: 'iscsi_context', lun: 'int', rctd: 'int', options: 'int', opcode: 'int', sa: 'int', alloc_len: 'uint32_t', cb: 'iscsi_command_cb', private_data: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_report_supported_opcodes_task(iscsi, lun, rctd, options, opcode, sa, alloc_len, cb, private_data)
 iscsi_report_supported_opcodes_task = _libiscsi.iscsi_report_supported_opcodes_task
 
-def iscsi_scsi_command_sync(iscsi: 'struct iscsi_context *', lun: 'int', task: 'scsi_task', data: 'iscsi_data') -> "struct scsi_task *":
+def iscsi_scsi_command_sync(iscsi: 'iscsi_context', lun: 'int', task: 'scsi_task', data: 'iscsi_data') -> "struct scsi_task *":
     return _libiscsi.iscsi_scsi_command_sync(iscsi, lun, task, data)
 iscsi_scsi_command_sync = _libiscsi.iscsi_scsi_command_sync
 
-def iscsi_modeselect6_sync(iscsi: 'struct iscsi_context *', lun: 'int', pf: 'int', sp: 'int', mp: 'scsi_mode_page') -> "struct scsi_task *":
+def iscsi_modeselect6_sync(iscsi: 'iscsi_context', lun: 'int', pf: 'int', sp: 'int', mp: 'scsi_mode_page') -> "struct scsi_task *":
     return _libiscsi.iscsi_modeselect6_sync(iscsi, lun, pf, sp, mp)
 iscsi_modeselect6_sync = _libiscsi.iscsi_modeselect6_sync
 
-def iscsi_modeselect10_sync(iscsi: 'struct iscsi_context *', lun: 'int', pf: 'int', sp: 'int', mp: 'scsi_mode_page') -> "struct scsi_task *":
+def iscsi_modeselect10_sync(iscsi: 'iscsi_context', lun: 'int', pf: 'int', sp: 'int', mp: 'scsi_mode_page') -> "struct scsi_task *":
     return _libiscsi.iscsi_modeselect10_sync(iscsi, lun, pf, sp, mp)
 iscsi_modeselect10_sync = _libiscsi.iscsi_modeselect10_sync
 
-def iscsi_modesense6_sync(iscsi: 'struct iscsi_context *', lun: 'int', dbd: 'int', pc: 'int', page_code: 'int', sub_page_code: 'int', alloc_len: 'unsigned char') -> "struct scsi_task *":
+def iscsi_modesense6_sync(iscsi: 'iscsi_context', lun: 'int', dbd: 'int', pc: 'int', page_code: 'int', sub_page_code: 'int', alloc_len: 'unsigned char') -> "struct scsi_task *":
     return _libiscsi.iscsi_modesense6_sync(iscsi, lun, dbd, pc, page_code, sub_page_code, alloc_len)
 iscsi_modesense6_sync = _libiscsi.iscsi_modesense6_sync
 
-def iscsi_modesense10_sync(iscsi: 'struct iscsi_context *', lun: 'int', llbaa: 'int', dbd: 'int', pc: 'int', page_code: 'int', sub_page_code: 'int', alloc_len: 'unsigned char') -> "struct scsi_task *":
+def iscsi_modesense10_sync(iscsi: 'iscsi_context', lun: 'int', llbaa: 'int', dbd: 'int', pc: 'int', page_code: 'int', sub_page_code: 'int', alloc_len: 'unsigned char') -> "struct scsi_task *":
     return _libiscsi.iscsi_modesense10_sync(iscsi, lun, llbaa, dbd, pc, page_code, sub_page_code, alloc_len)
 iscsi_modesense10_sync = _libiscsi.iscsi_modesense10_sync
 
-def iscsi_reportluns_sync(iscsi: 'struct iscsi_context *', report_type: 'int', alloc_len: 'int') -> "struct scsi_task *":
+def iscsi_reportluns_sync(iscsi: 'iscsi_context', report_type: 'int', alloc_len: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_reportluns_sync(iscsi, report_type, alloc_len)
 iscsi_reportluns_sync = _libiscsi.iscsi_reportluns_sync
 
-def iscsi_testunitready_sync(iscsi: 'struct iscsi_context *', lun: 'int') -> "struct scsi_task *":
+def iscsi_testunitready_sync(iscsi: 'iscsi_context', lun: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_testunitready_sync(iscsi, lun)
 iscsi_testunitready_sync = _libiscsi.iscsi_testunitready_sync
 
-def iscsi_inquiry_sync(iscsi: 'struct iscsi_context *', lun: 'int', evpd: 'int', page_code: 'int', maxsize: 'int') -> "struct scsi_task *":
+def iscsi_inquiry_sync(iscsi: 'iscsi_context', lun: 'int', evpd: 'int', page_code: 'int', maxsize: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_inquiry_sync(iscsi, lun, evpd, page_code, maxsize)
 iscsi_inquiry_sync = _libiscsi.iscsi_inquiry_sync
 
-def iscsi_read6_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int') -> "struct scsi_task *":
+def iscsi_read6_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_read6_sync(iscsi, lun, lba, datalen, blocksize)
 iscsi_read6_sync = _libiscsi.iscsi_read6_sync
 
-def iscsi_read6_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_read6_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_read6_iov_sync(iscsi, lun, lba, datalen, blocksize, iov, niov)
 iscsi_read6_iov_sync = _libiscsi.iscsi_read6_iov_sync
 
-def iscsi_read10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+def iscsi_read10_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_read10_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number)
 iscsi_read10_sync = _libiscsi.iscsi_read10_sync
 
-def iscsi_read10_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_read10_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_read10_iov_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, iov, niov)
 iscsi_read10_iov_sync = _libiscsi.iscsi_read10_iov_sync
 
-def iscsi_write10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+def iscsi_write10_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_write10_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
 iscsi_write10_sync = _libiscsi.iscsi_write10_sync
 
-def iscsi_write10_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_write10_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_write10_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, iov, niov)
 iscsi_write10_iov_sync = _libiscsi.iscsi_write10_iov_sync
 
-def iscsi_writeverify10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int') -> "struct scsi_task *":
+def iscsi_writeverify10_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeverify10_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number)
 iscsi_writeverify10_sync = _libiscsi.iscsi_writeverify10_sync
 
-def iscsi_writeverify10_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_writeverify10_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeverify10_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, iov, niov)
 iscsi_writeverify10_iov_sync = _libiscsi.iscsi_writeverify10_iov_sync
 
-def iscsi_read12_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+def iscsi_read12_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_read12_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number)
 iscsi_read12_sync = _libiscsi.iscsi_read12_sync
 
-def iscsi_read12_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_read12_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_read12_iov_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, iov, niov)
 iscsi_read12_iov_sync = _libiscsi.iscsi_read12_iov_sync
 
-def iscsi_write12_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+def iscsi_write12_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_write12_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
 iscsi_write12_sync = _libiscsi.iscsi_write12_sync
 
-def iscsi_write12_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_write12_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_write12_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, iov, niov)
 iscsi_write12_iov_sync = _libiscsi.iscsi_write12_iov_sync
 
-def iscsi_writeverify12_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int') -> "struct scsi_task *":
+def iscsi_writeverify12_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeverify12_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number)
 iscsi_writeverify12_sync = _libiscsi.iscsi_writeverify12_sync
 
-def iscsi_writeverify12_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_writeverify12_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeverify12_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, iov, niov)
 iscsi_writeverify12_iov_sync = _libiscsi.iscsi_writeverify12_iov_sync
 
-def iscsi_read16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+def iscsi_read16_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_read16_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number)
 iscsi_read16_sync = _libiscsi.iscsi_read16_sync
 
-def iscsi_read16_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_read16_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', datalen: 'uint32_t', blocksize: 'int', rdprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_read16_iov_sync(iscsi, lun, lba, datalen, blocksize, rdprotect, dpo, fua, fua_nv, group_number, iov, niov)
 iscsi_read16_iov_sync = _libiscsi.iscsi_read16_iov_sync
 
-def iscsi_write16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+def iscsi_write16_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_write16_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
 iscsi_write16_sync = _libiscsi.iscsi_write16_sync
 
-def iscsi_write16_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_write16_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_write16_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, iov, niov)
 iscsi_write16_iov_sync = _libiscsi.iscsi_write16_iov_sync
 
-def iscsi_writeatomic16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', group_number: 'int') -> "struct scsi_task *":
+def iscsi_writeatomic16_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', group_number: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeatomic16_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, group_number)
 iscsi_writeatomic16_sync = _libiscsi.iscsi_writeatomic16_sync
 
-def iscsi_writeatomic16_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_writeatomic16_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeatomic16_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, group_number, iov, niov)
 iscsi_writeatomic16_iov_sync = _libiscsi.iscsi_writeatomic16_iov_sync
 
-def iscsi_orwrite_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+def iscsi_orwrite_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_orwrite_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
 iscsi_orwrite_sync = _libiscsi.iscsi_orwrite_sync
 
-def iscsi_orwrite_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_orwrite_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_orwrite_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, iov, niov)
 iscsi_orwrite_iov_sync = _libiscsi.iscsi_orwrite_iov_sync
 
-def iscsi_startstopunit_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', pcm: 'int', pc: 'int', no_flush: 'int', loej: 'int', start: 'int') -> "struct scsi_task *":
+def iscsi_startstopunit_sync(iscsi: 'iscsi_context', lun: 'int', immed: 'int', pcm: 'int', pc: 'int', no_flush: 'int', loej: 'int', start: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_startstopunit_sync(iscsi, lun, immed, pcm, pc, no_flush, loej, start)
 iscsi_startstopunit_sync = _libiscsi.iscsi_startstopunit_sync
 
-def iscsi_preventallow_sync(iscsi: 'struct iscsi_context *', lun: 'int', prevent: 'int') -> "struct scsi_task *":
+def iscsi_preventallow_sync(iscsi: 'iscsi_context', lun: 'int', prevent: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_preventallow_sync(iscsi, lun, prevent)
 iscsi_preventallow_sync = _libiscsi.iscsi_preventallow_sync
 
-def iscsi_compareandwrite_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
+def iscsi_compareandwrite_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_compareandwrite_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number)
 iscsi_compareandwrite_sync = _libiscsi.iscsi_compareandwrite_sync
 
-def iscsi_compareandwrite_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_compareandwrite_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', fua: 'int', fua_nv: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_compareandwrite_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, fua, fua_nv, group_number, iov, niov)
 iscsi_compareandwrite_iov_sync = _libiscsi.iscsi_compareandwrite_iov_sync
 
-def iscsi_writeverify16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int') -> "struct scsi_task *":
+def iscsi_writeverify16_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeverify16_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number)
 iscsi_writeverify16_sync = _libiscsi.iscsi_writeverify16_sync
 
-def iscsi_writeverify16_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_writeverify16_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', blocksize: 'int', wrprotect: 'int', dpo: 'int', bytchk: 'int', group_number: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writeverify16_iov_sync(iscsi, lun, lba, data, blocksize, wrprotect, dpo, bytchk, group_number, iov, niov)
 iscsi_writeverify16_iov_sync = _libiscsi.iscsi_writeverify16_iov_sync
 
-def iscsi_readcapacity10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'int', pmi: 'int') -> "struct scsi_task *":
+def iscsi_readcapacity10_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'int', pmi: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_readcapacity10_sync(iscsi, lun, lba, pmi)
 iscsi_readcapacity10_sync = _libiscsi.iscsi_readcapacity10_sync
 
-def iscsi_readcapacity16_sync(iscsi: 'struct iscsi_context *', lun: 'int') -> "struct scsi_task *":
+def iscsi_readcapacity16_sync(iscsi: 'iscsi_context', lun: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_readcapacity16_sync(iscsi, lun)
 iscsi_readcapacity16_sync = _libiscsi.iscsi_readcapacity16_sync
 
-def iscsi_readdefectdata10_sync(iscsi: 'struct iscsi_context *', lun: 'int', req_plist: 'int', req_glist: 'int', defect_list_format: 'int', alloc_len: 'uint16_t') -> "struct scsi_task *":
+def iscsi_readdefectdata10_sync(iscsi: 'iscsi_context', lun: 'int', req_plist: 'int', req_glist: 'int', defect_list_format: 'int', alloc_len: 'uint16_t') -> "struct scsi_task *":
     return _libiscsi.iscsi_readdefectdata10_sync(iscsi, lun, req_plist, req_glist, defect_list_format, alloc_len)
 iscsi_readdefectdata10_sync = _libiscsi.iscsi_readdefectdata10_sync
 
-def iscsi_readdefectdata12_sync(iscsi: 'struct iscsi_context *', lun: 'int', req_plist: 'int', req_glist: 'int', defect_list_format: 'int', address_descriptor_index: 'uint32_t', alloc_len: 'uint32_t') -> "struct scsi_task *":
+def iscsi_readdefectdata12_sync(iscsi: 'iscsi_context', lun: 'int', req_plist: 'int', req_glist: 'int', defect_list_format: 'int', address_descriptor_index: 'uint32_t', alloc_len: 'uint32_t') -> "struct scsi_task *":
     return _libiscsi.iscsi_readdefectdata12_sync(iscsi, lun, req_plist, req_glist, defect_list_format, address_descriptor_index, alloc_len)
 iscsi_readdefectdata12_sync = _libiscsi.iscsi_readdefectdata12_sync
 
-def iscsi_get_lba_status_sync(iscsi: 'struct iscsi_context *', lun: 'int', starting_lba: 'uint64_t', alloc_len: 'uint32_t') -> "struct scsi_task *":
+def iscsi_get_lba_status_sync(iscsi: 'iscsi_context', lun: 'int', starting_lba: 'uint64_t', alloc_len: 'uint32_t') -> "struct scsi_task *":
     return _libiscsi.iscsi_get_lba_status_sync(iscsi, lun, starting_lba, alloc_len)
 iscsi_get_lba_status_sync = _libiscsi.iscsi_get_lba_status_sync
 
-def iscsi_sanitize_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int', sa: 'int', param_len: 'int', data: 'iscsi_data') -> "struct scsi_task *":
+def iscsi_sanitize_sync(iscsi: 'iscsi_context', lun: 'int', immed: 'int', ause: 'int', sa: 'int', param_len: 'int', data: 'iscsi_data') -> "struct scsi_task *":
     return _libiscsi.iscsi_sanitize_sync(iscsi, lun, immed, ause, sa, param_len, data)
 iscsi_sanitize_sync = _libiscsi.iscsi_sanitize_sync
 
-def iscsi_sanitize_block_erase_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int') -> "struct scsi_task *":
+def iscsi_sanitize_block_erase_sync(iscsi: 'iscsi_context', lun: 'int', immed: 'int', ause: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_sanitize_block_erase_sync(iscsi, lun, immed, ause)
 iscsi_sanitize_block_erase_sync = _libiscsi.iscsi_sanitize_block_erase_sync
 
-def iscsi_sanitize_crypto_erase_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int') -> "struct scsi_task *":
+def iscsi_sanitize_crypto_erase_sync(iscsi: 'iscsi_context', lun: 'int', immed: 'int', ause: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_sanitize_crypto_erase_sync(iscsi, lun, immed, ause)
 iscsi_sanitize_crypto_erase_sync = _libiscsi.iscsi_sanitize_crypto_erase_sync
 
-def iscsi_sanitize_exit_failure_mode_sync(iscsi: 'struct iscsi_context *', lun: 'int', immed: 'int', ause: 'int') -> "struct scsi_task *":
+def iscsi_sanitize_exit_failure_mode_sync(iscsi: 'iscsi_context', lun: 'int', immed: 'int', ause: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_sanitize_exit_failure_mode_sync(iscsi, lun, immed, ause)
 iscsi_sanitize_exit_failure_mode_sync = _libiscsi.iscsi_sanitize_exit_failure_mode_sync
 
-def iscsi_synchronizecache10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'int', num_blocks: 'int', syncnv: 'int', immed: 'int') -> "struct scsi_task *":
+def iscsi_synchronizecache10_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'int', num_blocks: 'int', syncnv: 'int', immed: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_synchronizecache10_sync(iscsi, lun, lba, num_blocks, syncnv, immed)
 iscsi_synchronizecache10_sync = _libiscsi.iscsi_synchronizecache10_sync
 
-def iscsi_synchronizecache16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', num_blocks: 'uint32_t', syncnv: 'int', immed: 'int') -> "struct scsi_task *":
+def iscsi_synchronizecache16_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', num_blocks: 'uint32_t', syncnv: 'int', immed: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_synchronizecache16_sync(iscsi, lun, lba, num_blocks, syncnv, immed)
 iscsi_synchronizecache16_sync = _libiscsi.iscsi_synchronizecache16_sync
 
-def iscsi_prefetch10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', num_blocks: 'int', immed: 'int', group: 'int') -> "struct scsi_task *":
+def iscsi_prefetch10_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', num_blocks: 'int', immed: 'int', group: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_prefetch10_sync(iscsi, lun, lba, num_blocks, immed, group)
 iscsi_prefetch10_sync = _libiscsi.iscsi_prefetch10_sync
 
-def iscsi_prefetch16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', num_blocks: 'int', immed: 'int', group: 'int') -> "struct scsi_task *":
+def iscsi_prefetch16_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', num_blocks: 'int', immed: 'int', group: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_prefetch16_sync(iscsi, lun, lba, num_blocks, immed, group)
 iscsi_prefetch16_sync = _libiscsi.iscsi_prefetch16_sync
 
-def iscsi_verify10_sync(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int') -> "struct scsi_task *":
+def iscsi_verify10_sync(iscsi: 'iscsi_context', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_verify10_sync(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize)
 iscsi_verify10_sync = _libiscsi.iscsi_verify10_sync
 
-def iscsi_verify10_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_verify10_iov_sync(iscsi: 'iscsi_context', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_verify10_iov_sync(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, iov, niov)
 iscsi_verify10_iov_sync = _libiscsi.iscsi_verify10_iov_sync
 
-def iscsi_verify12_sync(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int') -> "struct scsi_task *":
+def iscsi_verify12_sync(iscsi: 'iscsi_context', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_verify12_sync(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize)
 iscsi_verify12_sync = _libiscsi.iscsi_verify12_sync
 
-def iscsi_verify12_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_verify12_iov_sync(iscsi: 'iscsi_context', lun: 'int', data: 'unsigned char *', lba: 'uint32_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_verify12_iov_sync(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, iov, niov)
 iscsi_verify12_iov_sync = _libiscsi.iscsi_verify12_iov_sync
 
-def iscsi_verify16_sync(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint64_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int') -> "struct scsi_task *":
+def iscsi_verify16_sync(iscsi: 'iscsi_context', lun: 'int', data: 'unsigned char *', lba: 'uint64_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_verify16_sync(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize)
 iscsi_verify16_sync = _libiscsi.iscsi_verify16_sync
 
-def iscsi_verify16_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', data: 'unsigned char *', lba: 'uint64_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_verify16_iov_sync(iscsi: 'iscsi_context', lun: 'int', data: 'unsigned char *', lba: 'uint64_t', vprotect: 'int', dpo: 'int', bytchk: 'int', blocksize: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_verify16_iov_sync(iscsi, lun, data, lba, vprotect, dpo, bytchk, blocksize, iov, niov)
 iscsi_verify16_iov_sync = _libiscsi.iscsi_verify16_iov_sync
 
-def iscsi_writesame10_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', num_blocks: 'uint16_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int') -> "struct scsi_task *":
+def iscsi_writesame10_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', num_blocks: 'uint16_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writesame10_sync(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group)
 iscsi_writesame10_sync = _libiscsi.iscsi_writesame10_sync
 
-def iscsi_writesame10_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', num_blocks: 'uint16_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_writesame10_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint32_t', data: 'unsigned char *', num_blocks: 'uint16_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writesame10_iov_sync(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group, iov, niov)
 iscsi_writesame10_iov_sync = _libiscsi.iscsi_writesame10_iov_sync
 
-def iscsi_writesame16_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', num_blocks: 'uint32_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int') -> "struct scsi_task *":
+def iscsi_writesame16_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', num_blocks: 'uint32_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writesame16_sync(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group)
 iscsi_writesame16_sync = _libiscsi.iscsi_writesame16_sync
 
-def iscsi_writesame16_iov_sync(iscsi: 'struct iscsi_context *', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', num_blocks: 'uint32_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
+def iscsi_writesame16_iov_sync(iscsi: 'iscsi_context', lun: 'int', lba: 'uint64_t', data: 'unsigned char *', num_blocks: 'uint32_t', anchor: 'int', unmap: 'int', wrprotect: 'int', group: 'int', iov: 'scsi_iovec', niov: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_writesame16_iov_sync(iscsi, lun, lba, data, num_blocks, anchor, unmap, wrprotect, group, iov, niov)
 iscsi_writesame16_iov_sync = _libiscsi.iscsi_writesame16_iov_sync
 
-def iscsi_persistent_reserve_in_sync(iscsi: 'struct iscsi_context *', lun: 'int', sa: 'int', xferlen: 'uint16_t') -> "struct scsi_task *":
+def iscsi_persistent_reserve_in_sync(iscsi: 'iscsi_context', lun: 'int', sa: 'int', xferlen: 'uint16_t') -> "struct scsi_task *":
     return _libiscsi.iscsi_persistent_reserve_in_sync(iscsi, lun, sa, xferlen)
 iscsi_persistent_reserve_in_sync = _libiscsi.iscsi_persistent_reserve_in_sync
 
-def iscsi_persistent_reserve_out_sync(iscsi: 'struct iscsi_context *', lun: 'int', sa: 'int', scope: 'int', type: 'int', params: 'void *') -> "struct scsi_task *":
+def iscsi_persistent_reserve_out_sync(iscsi: 'iscsi_context', lun: 'int', sa: 'int', scope: 'int', type: 'int', params: 'void *') -> "struct scsi_task *":
     return _libiscsi.iscsi_persistent_reserve_out_sync(iscsi, lun, sa, scope, type, params)
 iscsi_persistent_reserve_out_sync = _libiscsi.iscsi_persistent_reserve_out_sync
 
-def iscsi_unmap_sync(iscsi: 'struct iscsi_context *', lun: 'int', anchor: 'int', group: 'int', list: 'unmap_list', list_len: 'int') -> "struct scsi_task *":
+def iscsi_unmap_sync(iscsi: 'iscsi_context', lun: 'int', anchor: 'int', group: 'int', list: 'unmap_list', list_len: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_unmap_sync(iscsi, lun, anchor, group, list, list_len)
 iscsi_unmap_sync = _libiscsi.iscsi_unmap_sync
 
-def iscsi_readtoc_sync(iscsi: 'struct iscsi_context *', lun: 'int', msf: 'int', format: 'int', track_session: 'int', maxsize: 'int') -> "struct scsi_task *":
+def iscsi_readtoc_sync(iscsi: 'iscsi_context', lun: 'int', msf: 'int', format: 'int', track_session: 'int', maxsize: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_readtoc_sync(iscsi, lun, msf, format, track_session, maxsize)
 iscsi_readtoc_sync = _libiscsi.iscsi_readtoc_sync
 
-def iscsi_reserve6_sync(iscsi: 'struct iscsi_context *', lun: 'int') -> "struct scsi_task *":
+def iscsi_reserve6_sync(iscsi: 'iscsi_context', lun: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_reserve6_sync(iscsi, lun)
 iscsi_reserve6_sync = _libiscsi.iscsi_reserve6_sync
 
-def iscsi_release6_sync(iscsi: 'struct iscsi_context *', lun: 'int') -> "struct scsi_task *":
+def iscsi_release6_sync(iscsi: 'iscsi_context', lun: 'int') -> "struct scsi_task *":
     return _libiscsi.iscsi_release6_sync(iscsi, lun)
 iscsi_release6_sync = _libiscsi.iscsi_release6_sync
 
-def iscsi_report_supported_opcodes_sync(iscsi: 'struct iscsi_context *', lun: 'int', rctd: 'int', options: 'int', opcode: 'int', sa: 'int', alloc_len: 'uint32_t') -> "struct scsi_task *":
+def iscsi_report_supported_opcodes_sync(iscsi: 'iscsi_context', lun: 'int', rctd: 'int', options: 'int', opcode: 'int', sa: 'int', alloc_len: 'uint32_t') -> "struct scsi_task *":
     return _libiscsi.iscsi_report_supported_opcodes_sync(iscsi, lun, rctd, options, opcode, sa, alloc_len)
 iscsi_report_supported_opcodes_sync = _libiscsi.iscsi_report_supported_opcodes_sync
 
@@ -4302,23 +4307,23 @@ def scsi_task_set_iov_in(task: 'scsi_task', iov: 'scsi_iovec', niov: 'int') -> "
     return _libiscsi.scsi_task_set_iov_in(task, iov, niov)
 scsi_task_set_iov_in = _libiscsi.scsi_task_set_iov_in
 
-def scsi_task_get_status(task: 'scsi_task', sense: 'scsi_sense') -> "int":
-    return _libiscsi.scsi_task_get_status(task, sense)
+def scsi_task_get_status(task: 'scsi_task') -> "struct scsi_sense *":
+    return _libiscsi.scsi_task_get_status(task)
 scsi_task_get_status = _libiscsi.scsi_task_get_status
 
-def iscsi_scsi_cancel_task(iscsi: 'struct iscsi_context *', task: 'scsi_task') -> "int":
+def iscsi_scsi_cancel_task(iscsi: 'iscsi_context', task: 'scsi_task') -> "int":
     return _libiscsi.iscsi_scsi_cancel_task(iscsi, task)
 iscsi_scsi_cancel_task = _libiscsi.iscsi_scsi_cancel_task
 
-def iscsi_scsi_cancel_all_tasks(iscsi: 'struct iscsi_context *') -> "void":
+def iscsi_scsi_cancel_all_tasks(iscsi: 'iscsi_context') -> "void":
     return _libiscsi.iscsi_scsi_cancel_all_tasks(iscsi)
 iscsi_scsi_cancel_all_tasks = _libiscsi.iscsi_scsi_cancel_all_tasks
 
-def iscsi_set_log_level(iscsi: 'struct iscsi_context *', level: 'int') -> "void":
+def iscsi_set_log_level(iscsi: 'iscsi_context', level: 'int') -> "void":
     return _libiscsi.iscsi_set_log_level(iscsi, level)
 iscsi_set_log_level = _libiscsi.iscsi_set_log_level
 
-def iscsi_set_log_fn(iscsi: 'struct iscsi_context *', fn: 'iscsi_log_fn') -> "void":
+def iscsi_set_log_fn(iscsi: 'iscsi_context', fn: 'iscsi_log_fn') -> "void":
     return _libiscsi.iscsi_set_log_fn(iscsi, fn)
 iscsi_set_log_fn = _libiscsi.iscsi_set_log_fn
 
@@ -4326,35 +4331,35 @@ def iscsi_log_to_stderr(level: 'int', message: 'char const *') -> "void":
     return _libiscsi.iscsi_log_to_stderr(level, message)
 iscsi_log_to_stderr = _libiscsi.iscsi_log_to_stderr
 
-def iscsi_set_tcp_user_timeout(iscsi: 'struct iscsi_context *', timeout_ms: 'int') -> "void":
+def iscsi_set_tcp_user_timeout(iscsi: 'iscsi_context', timeout_ms: 'int') -> "void":
     return _libiscsi.iscsi_set_tcp_user_timeout(iscsi, timeout_ms)
 iscsi_set_tcp_user_timeout = _libiscsi.iscsi_set_tcp_user_timeout
 
-def iscsi_set_tcp_keepidle(iscsi: 'struct iscsi_context *', value: 'int') -> "void":
+def iscsi_set_tcp_keepidle(iscsi: 'iscsi_context', value: 'int') -> "void":
     return _libiscsi.iscsi_set_tcp_keepidle(iscsi, value)
 iscsi_set_tcp_keepidle = _libiscsi.iscsi_set_tcp_keepidle
 
-def iscsi_set_tcp_keepcnt(iscsi: 'struct iscsi_context *', value: 'int') -> "void":
+def iscsi_set_tcp_keepcnt(iscsi: 'iscsi_context', value: 'int') -> "void":
     return _libiscsi.iscsi_set_tcp_keepcnt(iscsi, value)
 iscsi_set_tcp_keepcnt = _libiscsi.iscsi_set_tcp_keepcnt
 
-def iscsi_set_tcp_keepintvl(iscsi: 'struct iscsi_context *', value: 'int') -> "void":
+def iscsi_set_tcp_keepintvl(iscsi: 'iscsi_context', value: 'int') -> "void":
     return _libiscsi.iscsi_set_tcp_keepintvl(iscsi, value)
 iscsi_set_tcp_keepintvl = _libiscsi.iscsi_set_tcp_keepintvl
 
-def iscsi_set_tcp_syncnt(iscsi: 'struct iscsi_context *', value: 'int') -> "void":
+def iscsi_set_tcp_syncnt(iscsi: 'iscsi_context', value: 'int') -> "void":
     return _libiscsi.iscsi_set_tcp_syncnt(iscsi, value)
 iscsi_set_tcp_syncnt = _libiscsi.iscsi_set_tcp_syncnt
 
-def iscsi_set_bind_interfaces(iscsi: 'struct iscsi_context *', interfaces: 'char *') -> "void":
+def iscsi_set_bind_interfaces(iscsi: 'iscsi_context', interfaces: 'char *') -> "void":
     return _libiscsi.iscsi_set_bind_interfaces(iscsi, interfaces)
 iscsi_set_bind_interfaces = _libiscsi.iscsi_set_bind_interfaces
 
-def iscsi_set_reconnect_max_retries(iscsi: 'struct iscsi_context *', count: 'int') -> "void":
+def iscsi_set_reconnect_max_retries(iscsi: 'iscsi_context', count: 'int') -> "void":
     return _libiscsi.iscsi_set_reconnect_max_retries(iscsi, count)
 iscsi_set_reconnect_max_retries = _libiscsi.iscsi_set_reconnect_max_retries
 
-def iscsi_set_no_ua_on_reconnect(iscsi: 'struct iscsi_context *', state: 'int') -> "void":
+def iscsi_set_no_ua_on_reconnect(iscsi: 'iscsi_context', state: 'int') -> "void":
     return _libiscsi.iscsi_set_no_ua_on_reconnect(iscsi, state)
 iscsi_set_no_ua_on_reconnect = _libiscsi.iscsi_set_no_ua_on_reconnect
 # This file is compatible with both classic and new-style classes.

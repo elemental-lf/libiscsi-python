@@ -23,7 +23,6 @@
 %}
 
 %include <stdint.i>
-%include <bytes.i>
 
 %typemap(in) (int cdb_size, unsigned char *cdb)
   (int res, Py_ssize_t size = 0, const void *buf = 0) {
@@ -73,6 +72,31 @@
 
 %apply (unsigned char *ro, uint32_t len) { (unsigned char *data, uint32_t datalen), (unsigned char *data, int len) }
 
+/* EXTERN int scsi_task_get_status(struct scsi_task *task, struct scsi_sense *sense); */
+/* EXTERN void scsi_parse_sense_data(struct scsi_sense *sense, const uint8_t *sb);  */
+
+%typemap(in, numinputs=0) struct scsi_sense *sense (struct scsi_sense *_global_sense) {
+  _global_sense = (struct scsi_sense *)calloc(1, sizeof(struct scsi_sense));
+  $1 = _global_sense;
+}
+
+%typemap(argout) struct scsi_sense *sense {
+  PyObject *senseobj = 0;
+
+  senseobj = SWIG_NewPointerObj(SWIG_as_voidptr(_global_sense), SWIGTYPE_p_scsi_sense, SWIG_POINTER_OWN |  0 );
+  $result= SWIG_Python_AppendOutput($result, senseobj);
+}
+
+%nodefaultctor iscsi_context;
+
+struct iscsi_context {
+  %extend {
+    ~iscsi_context() { iscsi_destroy_context($self); };
+  }
+};
+
+%nodefaultctor iscsi_url;
+
 %inline %{
 typedef union {
 	struct scsi_readcapacity16 readcapacity16;
@@ -83,5 +107,29 @@ typedef union {
 %warnfilter(302) scsi_datain_unmarshall;
 scsi_datain_unmarshalled *scsi_datain_unmarshall(struct scsi_task *task);
 
+%nodefaultctor scsi_task;
+%ignore scsi_task::datain;
+
 %include <iscsi/scsi-lowlevel.h>
 %include <iscsi/iscsi.h>
+
+%extend struct iscsi_url {
+  ~iscsi_url() { iscsi_destroy_url($self); };
+}
+
+%rename(datain) scsi_task::datain;
+
+%extend struct scsi_task {
+  ~scsi_task() { scsi_free_scsi_task($self); };
+   PyObject *_datain_get() {
+    if ($self->datain.data) {
+      return PyBytes_FromStringAndSize(%const_cast($self->datain.data, char *), %numeric_cast($self->datain.size, Py_ssize_t));
+    } else {
+      return SWIG_Py_Void();
+    }
+  }
+  %pythoncode %{
+    __swig_getmethods__["datain"] = _libiscsi.scsi_task__datain_get
+    if _newclass: datain = _swig_property(_libiscsi.scsi_task__datain_get)
+  %}
+}
